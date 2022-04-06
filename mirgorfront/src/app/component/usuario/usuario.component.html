@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Usuario</title>
+</head>
+<body>
+<app-inicio></app-inicio>
+
+<form [formGroup]="formularioRegistro">
+
+  <ng-template #content let-c="close" let-d="dismiss" >
+
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Formulario Usuario</h4>
+      <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+        <div class="form-group">
+          <label style="color:black" for="nombre">Nombre</label>
+          <div class="col-sm-12">
+          <input
+            type="text"
+            name="nombre"
+            id="nombre"
+            class="form-control"
+            formControlName="nombre"
+            required
+          />
+        </div>
+
+        </div>
+
+        <div class="form-group">
+          <label style="color:black" for="apellido">Correo</label>
+          <div class="col-sm-12">
+          <input
+            type="text"
+            name="correo"
+            id="correo"
+            class="form-control"
+            formControlName="correo"
+            required
+          />
+        </div>
+      </div>
+
+        <div class="form-group">
+          <label style="color:black" for="nomber">Area</label>
+          <div class="col-sm-12">
+          <input
+            type="text"
+            name="area"
+            id="area"
+            class="form-control"
+            formControlName="area"
+            required
+          />
+        </div>
+      </div>
+
+        <div class="form-group">
+          <label style="color:black" for="telefono">Posicion</label>
+          <div class="col-sm-12">
+          <input
+            type="text"
+            name="posicion"
+            id="posicion"
+            class="form-control"
+            formControlName="posicion"
+            required
+          />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-success"  [hidden]="btnGuardar" (click)="registrarUsuario()" >Guardar</button>
+      <button type="button"  class="btn btn-outline-warning"  [hidden]="btnEditar" (click)="editarUsuarioId()">Editar</button>
+      <button type="reset"  class="btn btn-outline-danger"  (click)="cancelar()" >Limpiar</button>
+    </div>
+  </ng-template>
+
+</form>
+
+<div class="container-fluid" id="contenedorTabla">
+  <legend align="center" style="color: aliceblue;" >LISTADO USUARIOS</legend>
+  <hr>
+  <div class="btn-group">
+    <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
+    <button class="btn btn-outline-primary" (click)="busquedaUsuario()"   style="margin-right: 5px;" >Buscar</button>
+    <input type="text" placeholder="Nombre"
+      class="form-control" [(ngModel)]="buscar_usuario">
+      <button class="btn btn-outline-danger" (click)="cancelarbusquedaUsuario()" style="margin-left: 5px;" >Cancelar</button>
+  </div>
+
+
+
+<table class="table table-sm table-dark table-bordered table-striped table-responsive w-100 d-block d-md-table">
+
+  <thead class="thead-light">
+
+      <tr class="text-center" style="color:black">
+          <th   scope="col">ID</th>
+          <th   scope="col">Nombre</th>
+          <th   scope="col">Correo</th>
+          <th   scope="col">Area</th>
+          <th   scope="col">Posicion</th>
+          <th scope="col">Acciones</th>
+
+      </tr>
+  </thead>
+  <tbody>
+      <tr class="text-center"*ngFor="let usuario of listadoUsuario | paginate: { itemsPerPage: 10, currentPage: p }" >
+          <th scope="row">{{usuario.id}}</th>
+          <td scope="row">{{usuario.nombre}}</td>
+          <td scope="row">{{usuario.correo}}</td>
+          <td scope="row">{{usuario.area}}</td>
+          <td scope="row">{{usuario.posicion}}</td>
+          <td scope="">
+              <button class="btn btn-outline-warning" (click)="UsuarioId(usuario,content)">Editar</button>
+              <button class="btn btn-outline-danger"  (click)="eliminarUsuario(usuario)">Eliminar</button>
+          </td>
+
+      </tr>
+  </tbody>
+
+</table>
+<pagination-controls (pageChange)="p = $event" class="my-pagination"></pagination-controls>
+</div>
+
+
+</body>
+</html>

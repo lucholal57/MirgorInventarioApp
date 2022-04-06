@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Activo General</title>
+</head>
+<body>
+<app-inicio></app-inicio>
+<form [formGroup]="formularioRegistro">
+  <ng-template #content let-c="close" let-d="dismiss" >
+
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Formulario Activo Generales</h4>
+      <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+       <div class="form-group">
+          <div class="row">
+        <div class="col-sm-6">
+          <label style="color:black" >Descripcion</label>
+        <input
+          type="text"
+          name="descripcion"
+          id="descripcion"
+          class="form-control"
+          formControlName="descripcion"
+          required
+        />
+      </div>
+      <div class="col-sm-6">
+        <label style="color:black" >Marca</label>
+      <input
+        type="text"
+        name="marca"
+        id="marca"
+        class="form-control"
+        formControlName="marca"
+        required
+      />
+    </div>
+      </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+        <div class="col-sm-6">
+          <label style="color:black" >Modelo</label>
+        <input
+          type="text"
+          name="modelo"
+          id="modelo"
+          class="form-control"
+          formControlName="modelo"
+          required
+        />
+      </div>
+      <div class="col-sm-6">
+        <label style="color:black" >Serie</label>
+      <input
+        type="text"
+        name="serie"
+        id="serie"
+        class="form-control"
+        formControlName="serie"
+        required
+      />
+    </div>
+      </div>
+      </div>
+
+        <div class="form-group">
+          <div class="row">
+        <div class="col-sm-6">
+          <label style="color:black" >Costo</label>
+        <input
+          type="text"
+          name="costo"
+          id="costo"
+          class="form-control"
+          formControlName="costo"
+          required
+        />
+      </div>
+      <div class="col-sm-6">
+        <label style="color:black" for="nomber">Estado</label>
+        <select name="" id="" class="form-control" formControlName="estado" required>
+          <option value="">Seleccione un Estado</option>
+          <option value="Entregado">Entregado</option>
+          <option value="Reservado">Reservado</option>
+          <option value="Innecesario">Innecesario</option>
+          <option value="Scrap">Scrap</option>
+          <option value="Operativo">Operativo</option>
+          <option value="RMA">RMA</option>
+        </select>
+    </div>
+      </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-success"  [hidden]="btnGuardar" (click)="registrarActivoGeneral()" >Guardar</button>
+      <button type="button"  class="btn btn-outline-warning"  [hidden]="btnEditar" (click)="editarActivoGeneral()">Editar</button>
+      <button type="reset"  class="btn btn-outline-danger"  (click)="cancelar()" >Limpiar</button>
+    </div>
+  </ng-template>
+</form>
+
+<div class="container-fluid" id="contenedorTabla">
+  <legend align="center" style="color: aliceblue;" >ACTIVOS GENERALES</legend>
+  <hr>
+  <div class="btn-group">
+    <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
+    <button class="btn btn-outline-primary" (click)="busquedaActivo()"   style="margin-right: 5px;" >Buscar</button>
+    <input type="text" placeholder="N° Inventario"
+      class="form-control" [(ngModel)]="buscar_activo">
+      <button class="btn btn-outline-danger"   (click)="cancelarbusquedaActivo()" style="margin-left: 5px;"  >Cancelar</button>
+  </div>
+
+
+
+<table class="table table-sm table-dark table-bordered table-striped table-responsive w-100 d-block d-md-table">
+
+  <thead class="thead-light">
+
+      <tr class="text-center" style="color:black">
+          <th   scope="col">Inventario</th>
+          <th   scope="col">Descripcion</th>
+          <th   scope="col">Marca</th>
+          <th   scope="col">Modelo</th>
+          <th   scope="col">Serie</th>
+          <th   scope="col">Costo</th>
+          <th   scope="col">Estado</th>
+          <th scope="col">Acciones</th>
+
+      </tr>
+  </thead>
+  <tbody>
+      <tr class="text-center"*ngFor="let activo of listadoActivoGeneral | paginate: { itemsPerPage: 10, currentPage: p }" >
+          <td scope="row">{{activo.inventario}}</td>
+          <td scope="row">{{activo.descripcion}}</td>
+          <td scope="row">{{activo.marca}}</td>
+          <td scope="row">{{activo.modelo}}</td>
+          <td scope="row">{{activo.serie}}</td>
+          <td scope="row">{{activo.costo}}</td>
+          <td scope="row">{{activo.estado}}</td>
+          <td scope="">
+              <button class="btn btn-outline-warning" (click)="ActivoGeneralId(activo,content)">Editar</button>
+              <button class="btn btn-outline-danger"  (click)="eliminarActivoGeneral(activo)">Eliminar</button>
+          </td>
+
+      </tr>
+  </tbody>
+
+</table>
+<pagination-controls (pageChange)="p = $event" class="my-pagination"></pagination-controls>
+</div>
+
+</body>
+</html>

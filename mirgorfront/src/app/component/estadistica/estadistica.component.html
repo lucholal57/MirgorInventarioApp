@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+
+<body>
+  <app-inicio></app-inicio>
+
+
+    <div id="container-fuid">
+
+asdasd
+    <div class="d-flex p-2">
+        <div class="row">
+            <div class="col">
+                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data" [gradient]="gradient"
+                    [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+                </ngx-charts-bar-vertical>
+
+            </div>
+            <div class="col">
+                <ngx-charts-advanced-pie-chart  [view]="view"
+                [scheme]="colorScheme"
+                [results]="data2"
+                [gradient]="gradient">
+                </ngx-charts-advanced-pie-chart>
+
+            </div>
+        </div>
+    </div>
+    <div class="d-flex p-2">
+        <div class="row">
+            <div class="col">
+                <ngx-charts-bar-horizontal [view]="view" [scheme]="colorScheme" [results]="data3" [gradient]="gradient"
+                    [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+                </ngx-charts-bar-horizontal>
+
+            </div>
+            <div class="col">
+                <ngx-charts-pie-chart   [view]="view"
+                [scheme]="colorScheme"
+                [results]="data4"
+                [gradient]="gradient"
+                [legend]="showLegend"
+                [labels]="showLabels"
+                [doughnut]="isDoughnut">
+                </ngx-charts-pie-chart>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+
+</html>

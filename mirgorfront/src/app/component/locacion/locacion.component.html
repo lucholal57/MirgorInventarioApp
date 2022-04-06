@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Ubicaion</title>
+
+
+</head>
+<body>
+
+<app-inicio></app-inicio>
+<form  [formGroup]="formularioRegistro" (submit)="registrarLocaciones()">
+    <ng-template #content let-c="close" let-d="dismiss" >
+
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Formulario Ubicaciones</h4>
+          <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6" >
+               <ng-multiselect-dropdown
+                [placeholder]="'Seleccione inventario Industrial'"
+                [settings]="dropdownSettings"
+                [data]="listadoActivoIndustrial"
+                formControlName="activo_industrial"
+                >
+
+              </ng-multiselect-dropdown>
+              </div>
+              <div class="col-sm-6" >
+                <ng-multiselect-dropdown
+                [placeholder]="'Seleccione inventario Celular'"
+                [settings]="dropdownSettings"
+                [data]="listadoActivoCelular"
+                formControlName="activo_celular"
+                >
+
+              </ng-multiselect-dropdown>
+              </div>
+              <div class="col-sm-6" >
+                <hr>
+                <ng-multiselect-dropdown
+                [placeholder]="'Seleccione inventario Notebook'"
+                [settings]="dropdownSettings"
+                [data]="listadoActivoNotebook"
+                formControlName="activo_notebook"
+
+              >
+              </ng-multiselect-dropdown>
+              </div>
+              <div class="col-sm-6" >
+                <hr>
+                <ng-multiselect-dropdown
+                [placeholder]="'Seleccione inventario General'"
+                [settings]="dropdownSettings"
+                [data]="listadoActivoGeneral"
+                formControlName="activo_general"
+              >
+              </ng-multiselect-dropdown>
+              </div>
+              <div class="col-sm-6" >
+                <hr>
+                <ng-multiselect-dropdown
+                [placeholder]="'Seleccione inventario Standar'"
+                [settings]="dropdownSettings"
+                [data]="listadoActivoStandar"
+                formControlName="activo_standar"
+              >
+              </ng-multiselect-dropdown>
+              </div>
+              <div class="col-sm-6">
+                <hr>
+                <label style="color:black" for="nombre">Sitio</label>
+              <input
+                type="text"
+                name="sitio"
+                id="sitio"
+                class="form-control"
+                formControlName="sitio"
+                required
+              />
+            </div>
+            <div class="col-sm-6">
+              <label style="color:black" for="nombre">Area</label>
+            <input
+              type="text"
+              name="area"
+              id="area"
+              class="form-control"
+              formControlName="area"
+
+              required
+            />
+
+          </div>
+          <div class="col-sm-6">
+            <label style="color:black" for="nombre">Localizacion</label>
+          <input
+            type="text"
+            name="localizacion"
+            id="localizacion"
+            class="form-control"
+            formControlName="localizacion"
+            required
+          />
+        </div>
+
+        </div>
+          </div>
+            </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-success" [hidden]="btnGuardar" (click)="registrarLocaciones()" >Guardar</button>
+          <button type="button"  class="btn btn-outline-warning" [hidden]="btnEditar" (click)="editarLocacionId()">Editar</button>
+          <button type="reset"  class="btn btn-outline-danger"  (click)="cancelar()" >Limpiar</button>
+        </div>
+      </ng-template>
+
+</form>
+<div class="container">
+  <div class="row">
+
+  </div>
+</div>
+
+    <div class="container-fluid" id="contenedorTabla">
+        <legend align="center"  style="color: aliceblue;" >UBICACIONES</legend>
+        <hr>
+
+            <div class="btn-group">
+              <button class="btn btn-outline-primary"  (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
+              <button class="btn btn-outline-primary"  (click)="busquedaLocacion()" style="margin-right: 5px;" >Buscar</button>
+                <button class="btn btn-outline-danger"   style="margin-left: 5px;" (click)="cancelarbusquedaLocacion()" >Cancelar</button>
+            </div>
+
+            <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="LocacionFiltro">
+
+
+    <table class="table table-sm table-dark table-bordered table-striped table-responsive w-100 d-block d-md-table">
+
+        <thead class="thead-light">
+
+            <tr class="text-center" style="color:black">
+                <th scope="col">Inventario/Marca</th>
+                <th scope="col">Sitio</th>
+                <th scope="col">Area</th>
+                <th scope="col">localizacion</th>
+
+                <th scope="col">Acciones</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center" *ngFor="let locacion of listadoLocaciones | filtroLocacion:LocacionFiltro | paginate: { itemsPerPage: 10, currentPage: p }">
+
+              <td scope="row" *ngIf="locacion.activo_celular != null" >
+                <ul>
+                  <li> {{locacion.activo_celular.inventario}} </li>
+                  <li> {{locacion.activo_celular.marca}} </li>
+                </ul>
+               </td>
+
+              <td scope="row" *ngIf="locacion.activo_industrial != null">
+                <ul>
+                  <li>{{locacion.activo_industrial.inventario}}</li>
+                  <li> {{locacion.activo_industrial.marca}} </li>
+                </ul>
+                 </td>
+
+              <td scope="row" *ngIf="locacion.activo_notebook != null">
+              <ul>
+                <li>{{locacion.activo_notebook.inventario}}</li>
+                <li>{{locacion.activo_notebook.marca}}</li>
+              </ul>
+                 </td>
+              <td scope="row" *ngIf="locacion.activo_general != null">
+                <ul>
+                  <li>{{locacion.activo_general.inventario}}</li>
+                  <li>{{locacion.activo_general.marca}}</li>
+                </ul>
+              </td>
+              <td scope="row" *ngIf="locacion.activo_standar != null">
+                <ul>
+                  <li>{{locacion.activo_standar.inventario}}</li>
+                  <li>{{locacion.activo_standar.marca}}</li>
+                </ul>
+                 </td>
+                <td scope="row">{{locacion.sitio}}</td>
+                <td scope="row">{{locacion.area}}</td>
+                <td scope="row">{{locacion.localizacion}}</td>
+
+                <td scope="">
+                    <button class="btn btn-outline-warning" (click)="LocacionId(locacion,content)">Editar</button>
+                    <button class="btn btn-outline-danger" (click)="eliminarLocacion(locacion)">Eliminar</button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event" class="my-pagination"></pagination-controls>
+</div>
+</body>
+</html>
+
+
+

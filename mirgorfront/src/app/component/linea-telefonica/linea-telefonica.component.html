@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Linea Telefonica</title>
+</head>
+<body>
+<app-inicio></app-inicio>
+
+<form [formGroup]="formularioRegistro">
+
+  <ng-template #content let-c="close" let-d="dismiss" >
+
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Formulario Linea Telefonica</h4>
+      <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+        <div class="form-group">
+          <label style="color:black" for="nombre">Numero</label>
+          <div class="col-sm-12">
+          <input
+            type="text"
+            name="numero"
+            id="numero"
+            class="form-control"
+            formControlName="numero"
+            required
+          />
+        </div>
+
+        </div>
+
+        <div class="form-group">
+          <label style="color:black" for="apellido">Plan</label>
+          <div class="col-sm-12">
+          <input
+            type="text"
+            name="plan"
+            id="plan"
+            class="form-control"
+            formControlName="plan"
+            required
+          />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-success"  [hidden]="btnGuardar" (click)="registrarLineaTelefonica()" >Guardar</button>
+      <button type="button"  class="btn btn-outline-warning"  [hidden]="btnEditar" (click)="editarLineaTelefonicaId()">Editar</button>
+      <button type="reset"  class="btn btn-outline-danger"  (click)="cancelar()" >Limpiar</button>
+    </div>
+  </ng-template>
+
+</form>
+
+<div class="container-fluid" id="contenedorTabla">
+  <legend align="center" style="color: aliceblue;" >LINEAS TELEFONICAS</legend>
+  <hr>
+  <div class="btn-group">
+    <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
+    <button class="btn btn-outline-primary"  (click)="busquedaLineaTelefonica()" style="margin-right: 5px;" >Buscar</button>
+    <input type="text" placeholder="N° Linea"
+      class="form-control" [(ngModel)]="buscar_linea_telefonica" >
+      <button class="btn btn-outline-danger" (click)="cancelarbusquedaLineaTelefonica()"  style="margin-left: 5px;" >Cancelar</button>
+  </div>
+
+
+
+<table class="table table-sm table-dark table-bordered table-striped table-responsive w-100 d-block d-md-table">
+
+  <thead class="thead-light">
+
+      <tr class="text-center" style="color:black">
+          <th   scope="col">ID</th>
+          <th   scope="col">numero</th>
+          <th   scope="col">Plan</th>
+          <th scope="col">Acciones</th>
+
+      </tr>
+  </thead>
+  <tbody>
+      <tr class="text-center"*ngFor="let linea_telefonica of listadoLineaTelefonica | paginate: { itemsPerPage: 10, currentPage: p }" >
+          <th scope="row">{{linea_telefonica.id}}</th>
+          <td scope="row">{{linea_telefonica.numero}}</td>
+          <td scope="row">{{linea_telefonica.plan}}</td>
+          <td scope="">
+              <button class="btn btn-outline-warning" (click)="LineaTelefonicaId(linea_telefonica,content)">Editar</button>
+              <button class="btn btn-outline-danger"  (click)="eliminarLineaTelefonica(linea_telefonica)">Eliminar</button>
+          </td>
+
+      </tr>
+  </tbody>
+
+</table>
+<pagination-controls (pageChange)="p = $event" class="my-pagination"></pagination-controls>
+</div>
+
+</body>
+</html>
