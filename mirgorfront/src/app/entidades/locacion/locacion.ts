@@ -14,4 +14,5 @@ export class Locacion {
     activo_general: ActivoGeneral;
     activo_notebook: ActivoNotebook;
     activo_celular: ActivoCelular;
+    fecha=new Date();
 }

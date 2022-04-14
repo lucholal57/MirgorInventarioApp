@@ -59,7 +59,7 @@
           </div>
           <div class="col-sm-6">
             <label style="color:black" for="nomber">Estado</label>
-            <select name="" id="" class="form-control" formControlName="estado">
+            <select name="" id="" class="form-control" formControlName="estado" required>
               <option value="">Seleccione un Estado</option>
               <option value="Entregado">Entregado</option>
               <option value="Reservado">Reservado</option>
@@ -211,7 +211,6 @@
                 <td scope="row">{{activo.dpi}}</td>
                 <td scope="row">{{activo.ip}}</td>
                 <td scope="">
-                  <button class="btn btn-outline-success" (click)="ActivoId(activo,content)">Mover</button>
                     <button class="btn btn-outline-warning" (click)="ActivoId(activo,content)">Editar</button>
                     <button class="btn btn-outline-danger"  (click)="eliminarActivo(activo)">Eliminar</button>
                 </td>

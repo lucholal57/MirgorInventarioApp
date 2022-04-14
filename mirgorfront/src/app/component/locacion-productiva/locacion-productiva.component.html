@@ -1,1 +1,154 @@
-<p>locacion-productiva works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Ubicacion Productiva</title>
+</head>
+<body>
+  <app-inicio></app-inicio>
+<form [formGroup]="formularioRegistro" (submit)="registrarLocacionesProductivas()">
+  <ng-template #content let-c="close" let-d="dismiss" >
+
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Formulario Ubicaciones Productivas</h4>
+      <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6" >
+            <label style="color:black" for="activo">Inventario</label>
+           <ng-multiselect-dropdown
+            [placeholder]="'Seleccione inventario Industrial'"
+            [settings]="dropdownSettings"
+            [data]="listadoActivoIndustrial"
+            formControlName="activo_industrial"
+            >
+          </ng-multiselect-dropdown>
+          </div>
+          <div class="col-sm-6">
+            <label style="color:black" for="nombre">Sitio</label>
+            <select class="form-control" name="sitio" id="sitio" formControlName="sitio" required >
+              <option value="TDF 1">TDF 1</option>
+              <option value="TDF 2">TDF 2</option>
+              <option value="TDF 3">TDF 3</option>
+            </select>
+        </div>
+        <div class="col-sm-6">
+          <label style="color:black" for="nombre">Linea</label>
+          <select class="form-control" name="linea" id="linea" formControlName="linea" required >
+            <option value="EAP01">EAP01</option>
+            <option value="EAP02">EAP02</option>
+            <option value="EAP03">EAP03</option>
+            <option value="EAP04">EAP04</option>
+            <option value="EAP05">EAP05</option>
+            <option value="EAP06">EAP06</option>
+            <option value="EAP07">EAP07</option>
+            <option value="EAP08">EAP08</option>
+            <option value="EAP09">EAP09</option>
+            <option value="EAP10">EAP10</option>
+
+          </select>
+
+      </div>
+      <div class="col-sm-6">
+        <label style="color:black" for="nombre">Puesto</label>
+        <select class="form-control" name="puesto" id="puesto" formControlName="puesto">
+          <option value="IMEICHECK">IMEICHECK</option>
+          <option value="IMPRESION">IMPRESION</option>
+          <option value="RF">RF</option>
+          <option value="ASOCIACION 1">ASOCIACION 1</option>
+          <option value="AFIP">AFIP</option>
+          <option value="BOXING">BOXING</option>
+          <option value="TEST-CAM">TEST-CAM</option>
+          <option value="CURRENT">CURRENT</option>
+          <option value="OCV-MAIN">OCV-MAIN</option>
+        </select>
+
+    </div>
+    <div class="col-sm-6">
+      <label style="color:black" for="nombre">Fecha</label>
+      <input
+        type="date"
+        name="fecha"
+        id="fecha"
+        class="form-control"
+        formControlName="fecha"
+        required
+      />
+    </div>
+    </div>
+      </div>
+        </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-success" [hidden]="btnGuardar" (click)="registrarLocacionesProductivas()" >Guardar</button>
+      <button type="button"  class="btn btn-outline-warning" [hidden]="btnEditar" (click)="editarLocacionProductivaId()">Editar</button>
+      <button type="reset"  class="btn btn-outline-danger"  (click)="cancelar()" >Limpiar</button>
+    </div>
+  </ng-template>
+</form>
+
+<div class="container">
+
+</div>
+
+    <div class="container-fluid" id="contenedorTabla">
+        <legend align="center"  style="color: aliceblue;" >UBICACIONES PRODUCTIVAS</legend>
+        <hr>
+
+            <div class="btn-group">
+              <button class="btn btn-outline-primary"  (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
+              <button class="btn btn-outline-primary"   style="margin-right: 5px;" >Buscar</button>
+                <button class="btn btn-outline-danger"   style="margin-left: 5px;" (click)="cancelarbusquedaLocacion()" >Cancelar</button>
+            </div>
+
+            <input type="text" class="form-control" name="LocacionFiltro" placeholder="Search..." [(ngModel)]="LocacionFiltro">
+
+
+    <table class="table table-sm table-dark table-bordered table-striped table-responsive w-100 d-block d-md-table">
+
+        <thead class="thead-light">
+
+            <tr class="text-center" style="color:black">
+                <th scope="col">Inventario/Marca</th>
+                <th scope="col">Sitio</th>
+                <th scope="col">Linea</th>
+                <th scope="col">Puesto</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Acciones</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center" *ngFor="let locacion_productiva of listadoLocacionesProductivas  | paginate: { itemsPerPage: 10, currentPage: p }">
+
+              <td scope="row" *ngIf="locacion_productiva.activo_industrial != null">
+                <ul>
+                  <li>{{locacion_productiva.activo_industrial.inventario}}</li>
+                  <li> {{locacion_productiva.activo_industrial.marca}} </li>
+                </ul>
+              </td>
+
+                <td scope="row">{{locacion_productiva.sitio}}</td>
+                <td scope="row">{{locacion_productiva.linea}}</td>
+                <td scope="row">{{locacion_productiva.puesto}}</td>
+                <td scope="row">{{locacion_productiva.fecha}}</td>
+
+                <td scope="">
+                    <button class="btn btn-outline-warning" (click)="LocacionProductivaId(locacion_productiva,content)">Editar</button>
+                    <button class="btn btn-outline-danger" (click)="eliminarLocacionProductiva(locacion_productiva)">Eliminar</button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event" class="my-pagination"></pagination-controls>
+</div>
+
+</body>
+</html>

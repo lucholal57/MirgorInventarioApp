@@ -21,10 +21,31 @@
     </div>
 
     <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-6" >
+          <label style="color:black" for="activo">Inventario</label>
+          <ng-multiselect-dropdown
+          [placeholder]="'Seleccione inventario Celular'"
+          [settings]="dropdownSettings"
+          [data]="listadoActivoCelular"
+          formControlName="activo_celular"
+          >
 
-        <div class="form-group">
-          <label style="color:black" for="nombre">Nombre</label>
-          <div class="col-sm-12">
+        </ng-multiselect-dropdown>
+        </div>
+        <div class="col-sm-6" >
+          <label style="color:black" for="activo">Inventario</label>
+          <ng-multiselect-dropdown
+          [placeholder]="'Seleccione inventario Notebook'"
+          [settings]="dropdownSettings"
+          [data]="listadoActivoNotebook"
+          formControlName="activo_notebook"
+
+        >
+        </ng-multiselect-dropdown>
+        </div>
+          <div class="col-sm-6">
+            <label style="color:black" for="nombre">Nombre</label>
           <input
             type="text"
             name="nombre"
@@ -35,11 +56,8 @@
           />
         </div>
 
-        </div>
-
-        <div class="form-group">
+          <div class="col-sm-6">
           <label style="color:black" for="apellido">Correo</label>
-          <div class="col-sm-12">
           <input
             type="text"
             name="correo"
@@ -48,12 +66,10 @@
             formControlName="correo"
             required
           />
-        </div>
       </div>
 
-        <div class="form-group">
-          <label style="color:black" for="nomber">Area</label>
-          <div class="col-sm-12">
+          <div class="col-sm-6">
+            <label style="color:black" for="nomber">Area</label>
           <input
             type="text"
             name="area"
@@ -62,12 +78,10 @@
             formControlName="area"
             required
           />
-        </div>
-      </div>
+          </div>
 
-        <div class="form-group">
-          <label style="color:black" for="telefono">Posicion</label>
-          <div class="col-sm-12">
+          <div class="col-sm-6">
+            <label style="color:black" for="telefono">Posicion</label>
           <input
             type="text"
             name="posicion"
@@ -77,9 +91,20 @@
             required
           />
         </div>
+        <div class="col-sm-6">
+          <label style="color:black" for="fecha_entrega">Fecha Entrega</label>
+        <input
+          type="date"
+          name="fecha_entrega"
+          id="fecha_entrega"
+          class="form-control"
+          formControlName="fecha_entrega"
+          required
+        />
+      </div>
       </div>
 
-    </div>
+  </div>
 
     <div class="modal-footer">
       <button type="submit" class="btn btn-outline-success"  [hidden]="btnGuardar" (click)="registrarUsuario()" >Guardar</button>
@@ -108,22 +133,39 @@
   <thead class="thead-light">
 
       <tr class="text-center" style="color:black">
-          <th   scope="col">ID</th>
-          <th   scope="col">Nombre</th>
-          <th   scope="col">Correo</th>
-          <th   scope="col">Area</th>
-          <th   scope="col">Posicion</th>
+          <th scope="col">Inventario/Marca/Modelo</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Area</th>
+          <th scope="col">Posicion</th>
+          <th scope="col">Fecha Entrega</th>
           <th scope="col">Acciones</th>
 
       </tr>
   </thead>
   <tbody>
       <tr class="text-center"*ngFor="let usuario of listadoUsuario | paginate: { itemsPerPage: 10, currentPage: p }" >
-          <th scope="row">{{usuario.id}}</th>
+          <th scope="row"  *ngIf="usuario.activo_celular != null">
+            <ul>
+              <li>{{usuario.activo_celular.inventario}}</li>
+              <li>{{usuario.activo_celular.marca}}</li>
+              <li>{{usuario.activo_celular.modelo}}</li>
+            </ul>
+
+          </th>
+          <th scope="row"  *ngIf="usuario.activo_notebook != null">
+            <ul>
+              <li>{{usuario.activo_notebook.inventario}}</li>
+              <li>{{usuario.activo_notebook.marca}}</li>
+              <li>{{usuario.activo_notebook.modelo}}</li>
+            </ul>
+
+          </th>
           <td scope="row">{{usuario.nombre}}</td>
           <td scope="row">{{usuario.correo}}</td>
           <td scope="row">{{usuario.area}}</td>
           <td scope="row">{{usuario.posicion}}</td>
+          <td scope="row">{{usuario.fecha_entrega}}</td>
           <td scope="">
               <button class="btn btn-outline-warning" (click)="UsuarioId(usuario,content)">Editar</button>
               <button class="btn btn-outline-danger"  (click)="eliminarUsuario(usuario)">Eliminar</button>

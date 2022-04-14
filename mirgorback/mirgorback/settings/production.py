@@ -2,14 +2,14 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['192.168.52.60','192.168.52.255', 'mirgorit.com','www.mirgorit.com']
+ALLOWED_HOSTS = ['192.168.52.230','192.168.52.0', 'mirgorit.com','www.mirgorit.com']
 
 DATABASES ={
     'default':{
         'ENGINE' : 'django.db.backends.postgresql_psycopg2',
-        'NAME' : 'mirgordb_prod',
+        'NAME' : 'it_inventario',
         'USER' : 'mirgor',
-        'PASSWORD' : 'riogrande91',
+        'PASSWORD' : 'mirgor.2022',
         'HOST' : 'localhost',
        'PORT' : '5432',
     }

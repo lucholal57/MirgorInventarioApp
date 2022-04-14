@@ -8,8 +8,10 @@ import { ActivoComponent } from './component/activos/activo_industrial/activo.co
 import { EstadisticaComponent } from './component/estadistica/estadistica.component';
 import { InicioComponent } from './component/inicio/inicio.component';
 import { LineaTelefonicaComponent } from './component/linea-telefonica/linea-telefonica.component';
+import { LocacionProductivaComponent } from './component/locacion-productiva/locacion-productiva.component';
 import { LocacionComponent } from './component/locacion/locacion.component';
 import { LoginComponent } from './component/login/login.component';
+import { TrazabilidadComponent } from './component/trazabilidad/trazabilidad.component'
 import { UsuarioComponent } from './component/usuario/usuario.component';
 
 const routes: Routes = [
@@ -24,6 +26,8 @@ const routes: Routes = [
   {path:'usuario', component: UsuarioComponent},
   {path:'linea_telefonica', component:LineaTelefonicaComponent},
   {path:'', component: LoginComponent},
+  {path:'locacion_productiva', component: LocacionProductivaComponent},
+  {path:'trazabilidad', component: TrazabilidadComponent},
 
 ];
 

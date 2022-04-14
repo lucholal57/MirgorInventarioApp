@@ -5,17 +5,27 @@ import { UsuarioService } from '../../services/usuario/usuario.service';
 import { AlertService} from '../../services/alert/alert.service'
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
+import { IDropdownSettings } from 'ng-multiselect-dropdown'
+import { ActivoNotebook } from 'src/app/entidades/activos/activo_notebook/activo-notebook';
+import { ActivoCelular } from 'src/app/entidades/activos/activo_celular/activo-celular';
+import { ActivoCelularService } from 'src/app/services/activos/activo_celular/activo-celular.service';
+import { ActivoNotebookService } from 'src/app/services/activos/activo_notebook/activo-notebook.service';
 
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
-  styleUrls: ['./usuario.component.css']
+  styleUrls: ['./usuario.component.css'],
+  providers: [NgbModalConfig, NgbModal],
 })
 export class UsuarioComponent implements OnInit {
   p:number = 1;
   listadoUsuario : Usuario[]=[];
+  listadoActivoCelular : ActivoCelular[]=[];
+  listadoActivoNotebook : ActivoNotebook[]=[];
   //Buscar Usuario por nombre
   buscar_usuario="";
+
+  dropdownSettings: IDropdownSettings;
   // Variables Botones
   public btnGuardar = false;
   public btnEditar = false;
@@ -26,11 +36,23 @@ export class UsuarioComponent implements OnInit {
     private formBuilder : FormBuilder,
     private modalService: NgbModal,
     config: NgbModalConfig,
+    private servicioActivoCelular: ActivoCelularService,
+    private servicioActivoNotebook: ActivoNotebookService,
     private alertas: AlertService
   ) { }
 
   ngOnInit(): void {
     this.getUsuario();
+    this.getActivosTotales();
+    this.dropdownSettings= {
+      singleSelection: true,
+      idField: 'id',
+      textField: 'inventario',
+      itemsShowLimit: 5,
+      allowSearchFilter: true
+    };
+    this.formularioRegistro.controls['activo_celular'].setValue(null)
+    this.formularioRegistro.controls['activo_notebook'].setValue(null)
   }
 
   formularioRegistro=this.formBuilder.group({
@@ -39,6 +61,9 @@ export class UsuarioComponent implements OnInit {
     correo:['',[Validators.required]],
     area:['',[Validators.required]],
     posicion:['',[Validators.required]],
+    fecha_entrega:['',[Validators.required]],
+    activo_celular:[''],
+    activo_notebook:[''],
   })
 
    //Open funcion para abrir ventana modal
@@ -64,8 +89,28 @@ export class UsuarioComponent implements OnInit {
     )
   }
 
+  getActivosTotales(): void{
+    this.servicioActivoCelular.getActivoCelular().subscribe(
+      (res) => {
+        this.listadoActivoCelular = res;
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+    this.servicioActivoNotebook.getActivoNotebook().subscribe(
+      (res) => {
+        this.listadoActivoNotebook =res;
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+
+}
+
   registrarUsuario():void {
-    console.log(this.formularioRegistro.value)
+    this.asignarValoresFormulario();
     if(this.formularioRegistro.valid)
     {
       this.servicioUsuario.registrarUsuario(this.formularioRegistro.value).subscribe(
@@ -85,6 +130,7 @@ export class UsuarioComponent implements OnInit {
     }
   }
   UsuarioId(usuario:Usuario,content : any): void {
+    this.asignarValoresFormulario();
     this.btnEditar = false;
     this.btnGuardar = true;
     this.modalService.open(content,{size:'lg'});
@@ -96,6 +142,9 @@ export class UsuarioComponent implements OnInit {
           correo: res[0].correo,
           area: res[0].area,
           posicion: res[0].posicion,
+          fecha_entrega: res[0].fecha_entrega,
+          activo_celular: res[0].activo_celular,
+          activo_notebook: res[0].activo_notebook,
         });
       },
       (error) => {
@@ -105,6 +154,7 @@ export class UsuarioComponent implements OnInit {
   }
 
   editarUsuarioId() : void{
+    this.asignarValoresFormulario();
     this.servicioUsuario.editarUsuario(this.formularioRegistro.value, this.formularioRegistro.value.id).subscribe(
       (res) => {
         console.log(res)
@@ -176,7 +226,17 @@ cancelarbusquedaUsuario(): void {
   this.buscar_usuario = "";
 }
 
+asignarValoresFormulario(): void{
+    if(this.formularioRegistro.value.activo_celular != null)
+    {
+      this.formularioRegistro.controls['activo_celular'].setValue(this.formularioRegistro.value.activo_celular[0]['id'])
+    }
 
+    if(this.formularioRegistro.value.activo_notebook!= null)
+    {
+      this.formularioRegistro.controls['activo_notebook'].setValue(this.formularioRegistro.value.activo_notebook[0]['id'])
+    }
+}
 
 
 

@@ -22,7 +22,8 @@ urlpatterns = [
     path('',include('locacion.urls')),
     path('',include('locacion_productiva.urls')),
     path('',include('usuario.urls')),
-    path('',include('linea_telefonica.urls'))
+    path('',include('linea_telefonica.urls')),
+    path('',include('trazabilidad.urls'))
 
 
 ]

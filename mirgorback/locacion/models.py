@@ -8,6 +8,7 @@ class Locacion(models.Model):
     sitio = models.CharField(max_length=50)
     area = models.CharField(max_length=50)
     localizacion = models.CharField(max_length=50)
+    fecha = models.DateField(null=True, blank=True)
     
     #ForenKey
     activo_industrial = models.ForeignKey(ActivoIndustrial, on_delete=models.CASCADE, null=True)

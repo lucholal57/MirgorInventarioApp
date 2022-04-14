@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Ubicaion</title>
-
-
 </head>
 <body>
 
@@ -23,17 +21,20 @@
         <div class="modal-body">
           <div class="form-group">
             <div class="row">
-              <div class="col-sm-6" >
+              <div class="col-sm-6" *ngIf="hiddensMover">
+                <label style="color:black" for="activo">Inventario</label>
                <ng-multiselect-dropdown
                 [placeholder]="'Seleccione inventario Industrial'"
                 [settings]="dropdownSettings"
                 [data]="listadoActivoIndustrial"
                 formControlName="activo_industrial"
+                
                 >
 
               </ng-multiselect-dropdown>
               </div>
-              <div class="col-sm-6" >
+              <div class="col-sm-6" *ngIf="hiddensMover">
+                <label style="color:black" for="activo">Inventario</label>
                 <ng-multiselect-dropdown
                 [placeholder]="'Seleccione inventario Celular'"
                 [settings]="dropdownSettings"
@@ -43,8 +44,8 @@
 
               </ng-multiselect-dropdown>
               </div>
-              <div class="col-sm-6" >
-                <hr>
+              <div class="col-sm-6" *ngIf="hiddensMover">
+                <label style="color:black" for="activo">Inventario</label>
                 <ng-multiselect-dropdown
                 [placeholder]="'Seleccione inventario Notebook'"
                 [settings]="dropdownSettings"
@@ -54,8 +55,8 @@
               >
               </ng-multiselect-dropdown>
               </div>
-              <div class="col-sm-6" >
-                <hr>
+              <div class="col-sm-6" *ngIf="hiddensMover">
+                <label style="color:black" for="activo">Inventario</label>
                 <ng-multiselect-dropdown
                 [placeholder]="'Seleccione inventario General'"
                 [settings]="dropdownSettings"
@@ -64,8 +65,8 @@
               >
               </ng-multiselect-dropdown>
               </div>
-              <div class="col-sm-6" >
-                <hr>
+              <div class="col-sm-6" *ngIf="hiddensMover">
+                <label style="color:black" for="activo">Inventario</label>
                 <ng-multiselect-dropdown
                 [placeholder]="'Seleccione inventario Standar'"
                 [settings]="dropdownSettings"
@@ -75,16 +76,12 @@
               </ng-multiselect-dropdown>
               </div>
               <div class="col-sm-6">
-                <hr>
                 <label style="color:black" for="nombre">Sitio</label>
-              <input
-                type="text"
-                name="sitio"
-                id="sitio"
-                class="form-control"
-                formControlName="sitio"
-                required
-              />
+                <select class="form-control" name="sitio" id="sitio" formControlName="sitio" required >
+                  <option value="TDF 1">TDF 1</option>
+                  <option value="TDF 2">TDF 2</option>
+                  <option value="TDF 3">TDF 3</option>
+                </select>
             </div>
             <div class="col-sm-6">
               <label style="color:black" for="nombre">Area</label>
@@ -111,35 +108,44 @@
           />
         </div>
 
+        <div class="col-sm-6">
+          <label style="color:black" for="nombre">Fecha</label>
+          <input
+            type="date"
+            name="fecha"
+            id="fecha"
+            class="form-control"
+            formControlName="fecha"
+            required
+          />
+        </div>
+
         </div>
           </div>
             </div>
 
         <div class="modal-footer">
           <button type="submit" class="btn btn-outline-success" [hidden]="btnGuardar" (click)="registrarLocaciones()" >Guardar</button>
+          <button type="submit" class="btn btn-outline-success" [hidden]="btnMover" (click)="registrarMovimiento()" >Mover</button>
           <button type="button"  class="btn btn-outline-warning" [hidden]="btnEditar" (click)="editarLocacionId()">Editar</button>
           <button type="reset"  class="btn btn-outline-danger"  (click)="cancelar()" >Limpiar</button>
         </div>
       </ng-template>
 
 </form>
-<div class="container">
-  <div class="row">
 
-  </div>
-</div>
 
     <div class="container-fluid" id="contenedorTabla">
         <legend align="center"  style="color: aliceblue;" >UBICACIONES</legend>
         <hr>
 
             <div class="btn-group">
-              <button class="btn btn-outline-primary"  (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
+              <button class="btn btn-outline-primary"  (click)="open(content)" (click)="hiddensMover=true" style="margin-right: 5px;" >Registrar</button>
               <button class="btn btn-outline-primary"  (click)="busquedaLocacion()" style="margin-right: 5px;" >Buscar</button>
                 <button class="btn btn-outline-danger"   style="margin-left: 5px;" (click)="cancelarbusquedaLocacion()" >Cancelar</button>
             </div>
 
-            <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="LocacionFiltro">
+            <input type="text" class="form-control" name="LocacionFiltro" placeholder="Search..." [(ngModel)]="LocacionFiltro">
 
 
     <table class="table table-sm table-dark table-bordered table-striped table-responsive w-100 d-block d-md-table">
@@ -151,13 +157,13 @@
                 <th scope="col">Sitio</th>
                 <th scope="col">Area</th>
                 <th scope="col">localizacion</th>
-
+                <th scope="col">Fecha</th>
                 <th scope="col">Acciones</th>
 
             </tr>
         </thead>
         <tbody>
-            <tr class="text-center" *ngFor="let locacion of listadoLocaciones | filtroLocacion:LocacionFiltro | paginate: { itemsPerPage: 10, currentPage: p }">
+            <tr class="text-center" *ngFor="let locacion of listadoLocaciones  | paginate: { itemsPerPage: 10, currentPage: p }">
 
               <td scope="row" *ngIf="locacion.activo_celular != null" >
                 <ul>
@@ -194,8 +200,10 @@
                 <td scope="row">{{locacion.sitio}}</td>
                 <td scope="row">{{locacion.area}}</td>
                 <td scope="row">{{locacion.localizacion}}</td>
+                <td scope="row">{{locacion.fecha}}</td>
 
                 <td scope="">
+                  <button class="btn btn-outline-success" (click)="MoverActivo(locacion,content)">Mover</button>
                     <button class="btn btn-outline-warning" (click)="LocacionId(locacion,content)">Editar</button>
                     <button class="btn btn-outline-danger" (click)="eliminarLocacion(locacion)">Eliminar</button>
                 </td>

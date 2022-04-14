@@ -18,24 +18,24 @@ export class LocacionProductivaService {
 
   constructor(private http: HttpClient) { }
 
-  getLocacionesProductiva(): Observable<LocacionProductiva[]>{
+  getLocacionesProductivas(): Observable<LocacionProductiva[]>{
     return this.http.get<LocacionProductiva[]>(this.url + 'locacion_productiva' , httpOption)
   }
-  registrarLocacion(formularioregistro:any):Observable<LocacionProductiva[]>{
+  registrarLocacionProductiva(formularioregistro:any):Observable<LocacionProductiva[]>{
     return this.http.post<LocacionProductiva[]>(this.url + 'locacion_productiva', formularioregistro, httpOption)
   }
-  getLocacionId(busqueda_Locacion_productiva: LocacionProductiva): Observable<LocacionProductiva[]>{
+  getLocacionProductivaId(busqueda_Locacion_productiva: LocacionProductiva): Observable<LocacionProductiva[]>{
     return this.http.get<LocacionProductiva[]>(this.url + 'locacion_productiva/' + busqueda_Locacion_productiva.id,httpOption );
   }
 
-  editarLocacion(formularioregistro: any, id: number): Observable<LocacionProductiva[]>{
+  editarLocacionProductiva(formularioregistro: any, id: number): Observable<LocacionProductiva[]>{
     return this.http.put<LocacionProductiva[]>(this.url + 'locacion_productiva/' + id, formularioregistro, httpOption);
 
   }
-  eliminarLocacion(id: number): Observable<LocacionProductiva[]>{
+  eliminarLocacionProductiva(id: number): Observable<LocacionProductiva[]>{
     return this.http.delete<LocacionProductiva[]>(this.url + 'locacion_productiva/' + id, httpOption );
   }
-  busquedaLocacion(buscar_locacion:any): Observable<LocacionProductiva[]>{
-    return  this.http.get<LocacionProductiva[]>(this.url + 'locacion/buscar/' + buscar_locacion, httpOption );
+  busquedaLocacionProductiva(buscar_locacion_productiva:any): Observable<LocacionProductiva[]>{
+    return  this.http.get<LocacionProductiva[]>(this.url + 'locacion/buscar/' + buscar_locacion_productiva, httpOption );
   }
 }

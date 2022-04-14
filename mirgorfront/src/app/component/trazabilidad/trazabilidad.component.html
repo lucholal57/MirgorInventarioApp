@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trazabilidad</title>
+</head>
+<body>
+<app-inicio></app-inicio>
+
+<div class="container-fluid" id="contenedorTabla" *ngIf="TablaNoProductiva_Filtro">
+  <legend align="center"  style="color: aliceblue;" >TRAZABILIDAD NO PRODUCTIVA</legend>
+      <div class="btn-group">
+        <button class="btn btn-outline-primary"   style="margin-right: 5px;" >Buscar</button>
+          <button class="btn btn-outline-danger"   style="margin-left: 5px;"  >Cancelar</button>
+      </div>
+
+      <input type="text" class="form-control" name="LocacionFiltro" placeholder="Search..." >
+
+
+<table class="table table-sm table-dark table-bordered table-striped table-responsive w-100 d-block d-md-table">
+
+  <thead class="thead-light">
+
+      <tr class="text-center" style="color:black">
+          <th scope="col">Inventario/Marca</th>
+          <th scope="col">Sitio</th>
+          <th scope="col">Area</th>
+          <th scope="col">Localizacion</th>
+          <th scope="col">Fecha</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr class="text-center" *ngFor="let trazabilidad of listadoTrazabilidad  | paginate: { itemsPerPage: 10, currentPage: p }">
+
+        <td scope="row" *ngIf="trazabilidad.locacion!=null && trazabilidad.locacion.activo_industrial !=null">{{trazabilidad.locacion.activo_industrial.inventario}} {{trazabilidad.locacion.activo_industrial.marca}}</td>
+
+        <td scope="row" *ngIf="trazabilidad.locacion !=null && trazabilidad.locacion.activo_celular !=null">{{trazabilidad.locacion.activo_celular.inventario}} {{trazabilidad.locacion.activo_celular.marca}}</td>
+
+        <td scope="row" *ngIf="trazabilidad.locacion !=null && trazabilidad.locacion.activo_notebook !=null">{{trazabilidad.locacion.activo_notebook.inventario}} {{trazabilidad.locacion.activo_notebook.marca}}</td>
+
+        <td scope="row" *ngIf="trazabilidad.locacion !=null && trazabilidad.locacion.activo_standar !=null">{{trazabilidad.locacion.activo_standar.inventario}} {{trazabilidad.locacion.activo_standar.marca}}</td>
+
+        <td scope="row" *ngIf="trazabilidad.locacion !=null && trazabilidad.locacion.activo_general !=null">{{trazabilidad.locacion.activo_general.inventario}} {{trazabilidad.locacion.activo_general.marca}}</td>
+
+        <td scope="row" *ngIf="trazabilidad.locacion!=null">{{trazabilidad.locacion.sitio}}</td>
+
+        <td scope="row" *ngIf="trazabilidad.locacion!=null">{{trazabilidad.locacion.area}}</td>
+
+        <td scope="row" *ngIf="trazabilidad.locacion!=null">{{trazabilidad.locacion.localizacion}}</td>
+
+        <td scope="row" *ngIf="trazabilidad.locacion!=null">{{trazabilidad.locacion.fecha}}</td>
+
+      </tr>
+  </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event" class="my-pagination"></pagination-controls>
+</div>
+
+<div class="container-fluid" id="contenedorTabla" *ngIf="TablaProductiva_Filtro">
+  <legend align="center"  style="color: aliceblue;" >TRAZABILIDAD PRODUCTIVA</legend>
+      <div class="btn-group">
+        <button class="btn btn-outline-primary"   style="margin-right: 5px;" >Buscar</button>
+          <button class="btn btn-outline-danger"   style="margin-left: 5px;"  >Cancelar</button>
+      </div>
+
+      <input type="text" class="form-control" name="LocacionFiltro" placeholder="Search..." >
+
+
+<table class="table table-sm table-dark table-bordered table-striped table-responsive w-100 d-block d-md-table">
+
+  <thead class="thead-light">
+
+      <tr class="text-center" style="color:black">
+          <th scope="col">Inventario/Marca</th>
+          <th scope="col">Sitio</th>
+          <th scope="col">Linea</th>
+          <th scope="col">Puesto</th>
+          <th scope="col">Fecha</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr class="text-center" *ngFor="let trazabilidad of listadoTrazabilidad  | paginate: { itemsPerPage: 10, currentPage: p }">
+
+        <td scope="row" *ngIf="trazabilidad.locacion_productiva !=null && trazabilidad.     locacion_productiva.activo_industrial !=null">
+          {{trazabilidad.locacion_productiva.activo_industrial.inventario}}
+          {{trazabilidad.locacion_productiva.activo_industrial.marca}}</td>
+
+        <td scope="row" *ngIf="trazabilidad.locacion_productiva!=null">{{trazabilidad.locacion_productiva.sitio}}</td>
+
+        <td scope="row" *ngIf="trazabilidad.locacion_productiva!=null">{{trazabilidad.locacion_productiva.linea}}</td>
+
+        <td scope="row" *ngIf="trazabilidad.locacion_productiva!=null">{{trazabilidad.locacion_productiva.puesto}}</td>
+
+        <td scope="row" *ngIf="trazabilidad.locacion_productiva!=null">{{trazabilidad.locacion_productiva.fecha}}</td>
+
+
+      </tr>
+  </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event" class="my-pagination"></pagination-controls>
+</div>
+
+</body>
+</html>

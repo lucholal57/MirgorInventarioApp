@@ -7,7 +7,5 @@ export class LocacionProductiva {
   linea="";
   puesto="";
   activo_industrial: Activo;
-  activo_standar: ActivoStandar;
-  activo_general: ActivoGeneral;
-
+  fecha=new Date();
 }

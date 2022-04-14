@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'usuario',
     'linea_telefonica',
     'login',
+    'trazabilidad',
 ]
 
 MIDDLEWARE = [

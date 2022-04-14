@@ -27,6 +27,7 @@ import { LoginComponent } from './component/login/login.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { LocacionProductivaComponent } from './component/locacion-productiva/locacion-productiva.component';
 import { FiltroLocacionPipe } from './pipes/filtro-locacion.pipe';
+import { TrazabilidadComponent } from './component/trazabilidad/trazabilidad.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { FiltroLocacionPipe } from './pipes/filtro-locacion.pipe';
     LoginComponent,
     LocacionProductivaComponent,
     FiltroLocacionPipe,
+    TrazabilidadComponent,
 
   ],
   imports: [
