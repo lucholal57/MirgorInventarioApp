@@ -332,7 +332,7 @@ MoverActivo(locacion: Locacion, content : any): void{
   this.btnGuardar = true;
   this.hiddensMover=false;
   this.btnMover=false;
-  console.log(this.formularioRegistro.value.activo_industrial,"Este es el activo industrial")
+
   this.modalService.open(content,{size:'lg'});
   this.servicioLocacion.getLocacionId(locacion).subscribe(
     (res) => {
@@ -345,6 +345,7 @@ MoverActivo(locacion: Locacion, content : any): void{
         fecha: res[0].fecha,
         activo_celular: res[0].activo_celular,
       });
+      console.log(res)
     },
     (error) => {
       console.log();
