@@ -4,6 +4,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['192.168.52.230','192.168.52.0', 'mirgorit.com','www.mirgorit.com']
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 DATABASES ={
     'default':{
         'ENGINE' : 'django.db.backends.postgresql_psycopg2',
