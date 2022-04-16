@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-^ybd=69im*%rgviqxhjfcddw^c1p_l#^k#!=gjqoauu_p0%0*w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.52.230','192.168.52.225', 'mirgorit.com','www.mirgorit.com']
 
 CORS_ORIGIN_ALLOW_ALL = True
 

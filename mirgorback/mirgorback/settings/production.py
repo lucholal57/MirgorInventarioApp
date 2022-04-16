@@ -2,9 +2,7 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['192.168.52.230','192.168.52.225', 'mirgorit.com','www.mirgorit.com']
 
-CORS_ORIGIN_ALLOW_ALL = True
 
 DATABASES ={
     'default':{
