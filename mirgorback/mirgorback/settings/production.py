@@ -8,8 +8,8 @@ DATABASES ={
     'default':{
         'ENGINE' : 'django.db.backends.postgresql_psycopg2',
         'NAME' : 'it_inventario',
-        'USER' : 'mirgor',
-        'PASSWORD' : 'mirgor',
+        'USER' : 'postgres',
+        'PASSWORD' : 'postgres',
         'HOST' : 'localhost',
        'PORT' : '5432',
     }
