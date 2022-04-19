@@ -23,16 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-^ybd=69im*%rgviqxhjfcddw^c1p_l#^k#!=gjqoauu_p0%0*w'
 
-
-ALLOWED_HOSTS = ['192.168.52.230','192.168.52.225', 'mirgorit.com','www.mirgorit.com']
-
 CORS_ORIGIN_ALLOW_ALL = True
-
-CORS_ALLOWED_ORIGINS = [
-    "https://www.mirgorit.com",
-    "https://192.168.52.230:3000",
-    "http://localhost:8000"
-]
 
 
 # Application definition
