@@ -2,7 +2,7 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['192.168.52.235','www.mirgorit.com','mirgorit.com']
+ALLOWED_HOSTS = ['192.168.52.235','200.32.35.190','www.mirgorit.com','mirgorit.com']
 
 DATABASES ={
     'default':{
