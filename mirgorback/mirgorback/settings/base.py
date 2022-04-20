@@ -25,7 +25,6 @@ SECRET_KEY = 'django-insecure-^ybd=69im*%rgviqxhjfcddw^c1p_l#^k#!=gjqoauu_p0%0*w
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,9 +43,12 @@ INSTALLED_APPS = [
     'linea_telefonica',
     'login',
     'trazabilidad',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
