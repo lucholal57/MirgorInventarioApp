@@ -15,12 +15,12 @@ const httpOption = {
 })
 export class ActivoCelularService {
   private url = 'http://127.0.0.1:8000/'
-  private url_prod = 'http://192.168.52.60/'
+  private url_prod = 'http://192.168.52.235:3000/'
 
   constructor( private http : HttpClient) { }
 
   getActivoCelular(): Observable<ActivoCelular[]>{
-    return this.http.get<ActivoCelular[]>(this.url + 'celular' , httpOption)
+    return this.http.get<ActivoCelular[]>(this.url_prod + 'celular' , httpOption)
   }
   registrarActivoCelular(formularioregistro:any):Observable<ActivoCelular[]>{
     return this.http.post<ActivoCelular[]>(this.url + 'celular', formularioregistro, httpOption)
