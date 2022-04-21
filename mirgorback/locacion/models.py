@@ -11,9 +11,9 @@ class Locacion(models.Model):
     fecha = models.DateField(null=True, blank=True)
     
     #ForenKey
-    activo_industrial = models.ForeignKey(ActivoIndustrial, on_delete=models.CASCADE, null=True)
-    activo_celular = models.ForeignKey(ActivoCelular, on_delete=models.CASCADE, null=True)
-    activo_notebook = models.ForeignKey(ActivoNotebook, on_delete=models.CASCADE, null=True)
-    activo_general = models.ForeignKey(ActivoGeneral, on_delete=models.CASCADE, null=True)
-    activo_standar = models.ForeignKey(ActivoStandar, on_delete=models.CASCADE, null=True)
+    activo_industrial = models.ForeignKey(ActivoIndustrial, on_delete=models.CASCADE, null=True,blank=True)
+    activo_celular = models.ForeignKey(ActivoCelular, on_delete=models.CASCADE, null=True, blank=True)
+    activo_notebook = models.ForeignKey(ActivoNotebook, on_delete=models.CASCADE, null=True,blank=True)
+    activo_general = models.ForeignKey(ActivoGeneral, on_delete=models.CASCADE, null=True,blank=True)
+    activo_standar = models.ForeignKey(ActivoStandar, on_delete=models.CASCADE, null=True,blank=True)
     
