@@ -1,6 +1,7 @@
 from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+#Comentario de prueba para ver si funciona git
 
 ALLOWED_HOSTS = ['192.168.52.230','www.mirgorit.com','mirgorit.com']
 
