@@ -15,7 +15,8 @@ export class EstadisticaComponent implements OnInit {
   single: [];
   multi: [];
 
-  view: [number,number] = [407, 691];
+  view: [number,number] = [700, 691];
+  view2: [number,number] = [900, 691];
 
   // options
   showXAxis = true;
