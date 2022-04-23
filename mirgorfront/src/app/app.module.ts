@@ -29,7 +29,6 @@ import { LocacionProductivaComponent } from './component/locacion-productiva/loc
 import { FiltroLocacionPipe } from './pipes/filtro-locacion.pipe';
 import { TrazabilidadComponent } from './component/trazabilidad/trazabilidad.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,8 +61,7 @@ import { TrazabilidadComponent } from './component/trazabilidad/trazabilidad.com
     NgxChartsModule,
     BrowserAnimationsModule,
     AutocompleteLibModule,
-    NgSelectModule
-
+    NgSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

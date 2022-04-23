@@ -11,21 +11,18 @@
 <body>
   <app-inicio></app-inicio>
 
-
-    <div id="container-fuid">
-
-asdasd
-    <div class="d-flex p-2">
+    <div id="container-fluid">
+      <div class="d-flex p-2">
         <div class="row">
             <div class="col">
-                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data" [gradient]="gradient"
+                <ngx-charts-bar-vertical [view]="vertical" [scheme]="colorScheme" [results]="data" [gradient]="gradient"
                     [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
                     [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
                 </ngx-charts-bar-vertical>
 
             </div>
-            <div class="col">
-                <ngx-charts-advanced-pie-chart  [view]="view2"
+            <div class="col" id="ngx-c">
+                <ngx-charts-advanced-pie-chart  [view]="pie_advance"
                 [scheme]="colorScheme"
                 [results]="data2"
                 [gradient]="gradient">
@@ -37,28 +34,23 @@ asdasd
     <div class="d-flex p-2">
         <div class="row">
             <div class="col">
-                <ngx-charts-bar-horizontal [view]="view" [scheme]="colorScheme" [results]="data3" [gradient]="gradient"
+                <ngx-charts-bar-horizontal [view]="horizontal" [scheme]="colorScheme" [results]="data3" [gradient]="gradient"
                     [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
                     [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
                 </ngx-charts-bar-horizontal>
 
             </div>
             <div class="col">
-                <ngx-charts-pie-chart   [view]="view"
+                <ngx-charts-pie-grid   [view]="view"
                 [scheme]="colorScheme"
-                [results]="data4"
-                [gradient]="gradient"
-                [legend]="showLegend"
-                [labels]="showLabels"
-                [doughnut]="isDoughnut">
-                </ngx-charts-pie-chart>
+                [results]="data4">
+                </ngx-charts-pie-grid>
 
             </div>
         </div>
     </div>
 
-
-</div>
+    </div>
 </body>
 
 </html>

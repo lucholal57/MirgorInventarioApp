@@ -28,6 +28,7 @@
     "angular-ng-autocomplete": "^2.0.8",
     "bootstrap": "^4.6.1",
     "bootstrap-autocomplete": "^2.3.7",
+    "bootstrap-icons": "^1.8.1",
     "bootstrap-select": "^1.13.18",
     "bootstrap-typeahead": "^2.3.2",
     "http-proxy-middleware": "^2.0.3",

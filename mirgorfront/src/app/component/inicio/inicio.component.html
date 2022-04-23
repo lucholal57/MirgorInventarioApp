@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,8 @@
 
 </head>
 <body>
-
- <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+<!--
+   <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <div class="d-flex w-50 order-0">
           <h1 class="navbar-right" style="color: aliceblue;">MIRGOR IT</h1>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
@@ -112,7 +113,59 @@
         </div>
         <span class="navbar-text small text-truncate mt-1 w-50 text-right order-1 order-md-last"></span>
     </nav>
+-->
 
+<div id="wrapper">
+  <div class="overlay"></div>
+       <!-- Sidebar -->
+   <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+
+    <ul class="nav sidebar-nav">
+      <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <a href="#">Mirgor IT</a></div></div>
+
+        <li class="dropdown">
+          <a href="#works" class="dropdown-toggle"  data-toggle="dropdown">ACTIVOS <span class="caret"></span></a>
+        <ul class="dropdown-menu animated fadeInLeft" role="menu">
+         <div class="dropdown-header">CRUD ACTIVOS</div>
+         <li><a href="/activo_industrial">Industrial</a></li>
+         <li><a href="/activo_celular">Celular</a></li>
+         <li><a href="/activo_notebook">Notebook</a></li>
+         <li><a href="/activo_general">General</a></li>
+         <li><a href="/activo_standar">Standar</a></li>
+         </ul>
+         </li>
+
+      <li><a href="/usuario">USUARIOS</a></li>
+      <li><a href="/linea_telefonica">LINEAS TELEFONICAS</a></li>
+      <li><a href="/trazabilidad">TRAZABILIDAD</a></li>
+      <li><a href="/locacion">UBICACIONES</a></li>
+      <li><a href="/locacion_productiva">UBICACIONES PRODUCTIVAS</a></li>
+      <li><a href="/dashboard">DASHBOARD</a></li>
+
+
+     </ul>
+ </nav>
+       <!-- /#sidebar-wrapper -->
+
+       <!-- Page Content -->
+       <div id="page-content-wrapper">
+           <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+               <span class="hamb-top"></span>
+         <span class="hamb-middle"></span>
+       <span class="hamb-bottom"></span>
+           </button>
+           <div class="container">
+               <div class="row">
+
+               </div>
+           </div>
+       </div>
+       <!-- /#page-content-wrapper -->
+
+   </div>
+   <!-- /#wrapper -->
 </body>
 
 </html>

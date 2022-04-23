@@ -14,31 +14,31 @@ const httpOption = {
 })
 export class ActivoService {
   private url = 'http://127.0.0.1:8000/'
-  private url_prod = 'http://192.168.52.60/'
+  private url_prod = 'http://192.168.52.230:8080/'
 
   constructor( private http : HttpClient) { }
 
   getActivos(): Observable<Activo[]>{
-    return this.http.get<Activo[]>(this.url+ 'activo' , httpOption)
+    return this.http.get<Activo[]>(this.url_prod + 'activo' , httpOption)
   }
   getActivosPorPuestoLinea(fabricante:string): Observable<Activo[]>{
-    return this.http.get<Activo[]>(this.url+ 'activo/buscar/fabricante/' + fabricante  , httpOption)
+    return this.http.get<Activo[]>(this.url_prod + 'activo/buscar/fabricante/' + fabricante  , httpOption)
   }
   registrarActivo(formularioregistro:any):Observable<Activo[]>{
-    return this.http.post<Activo[]>(this.url+ 'activo', formularioregistro, httpOption)
+    return this.http.post<Activo[]>(this.url_prod + 'activo', formularioregistro, httpOption)
   }
   getActivoId(busqueda_activo: Activo): Observable<Activo[]>{
-    return this.http.get<Activo[]>(this.url+ 'activo/' + busqueda_activo.id,httpOption );
+    return this.http.get<Activo[]>(this.url_prod + 'activo/' + busqueda_activo.id,httpOption );
   }
 
   editarActivo(formularioregistro: any, id: number): Observable<Activo[]>{
-    return this.http.put<Activo[]>(this.url + 'activo/' + id, formularioregistro, httpOption);
+    return this.http.put<Activo[]>(this.url_prod + 'activo/' + id, formularioregistro, httpOption);
 
   }
   eliminarActivo(id: number): Observable<Activo[]>{
-    return this.http.delete<Activo[]>(this.url+ 'activo/' + id, httpOption );
+    return this.http.delete<Activo[]>(this.url_prod + 'activo/' + id, httpOption );
   }
   busquedaActivo(buscar_activo:string): Observable<Activo[]>{
-    return  this.http.get<Activo[]>(this.url + 'activo/buscar/' + buscar_activo, httpOption );
+    return  this.http.get<Activo[]>(this.url_prod + 'activo/buscar/' + buscar_activo, httpOption );
   }
 }

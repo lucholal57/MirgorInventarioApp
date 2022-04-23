@@ -15,8 +15,10 @@ export class EstadisticaComponent implements OnInit {
   single: [];
   multi: [];
 
-  view: [number,number] = [700, 691];
-  view2: [number,number] = [900, 691];
+  vertical: [number,number] = [900, 500];
+  pie_advance: [number,number] = [900, 400];
+  view: [number,number] = [950, 300];
+  horizontal: [number,number] = [800, 200];
 
   // options
   showXAxis = true;
@@ -27,17 +29,15 @@ export class EstadisticaComponent implements OnInit {
   xAxisLabel = 'EQUIPOS';
   showYAxisLabel = true;
   yAxisLabel = 'CANTIDAD';
-
-
   showLabels: boolean = true;
   isDoughnut: boolean = false;
-
 
   colorScheme = {
     name: 'vivid',
     selectable: true,
     group: ScaleType.Ordinal,
     domain: ['#01C965', '#01B7C9', '#C9AB01 ', '#65C901', '#AE01C9 '],
+
   };
   data=[
     {
@@ -96,6 +96,10 @@ export class EstadisticaComponent implements OnInit {
     {
       "name": "CELULARES",
       "value": 35
+    },
+    {
+      "name": "RADIOS",
+      "value": 10
     }
   ]
 
