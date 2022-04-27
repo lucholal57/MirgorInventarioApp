@@ -5,11 +5,10 @@ export class ActivoStandar {
   descripcion = "";
   marca = "";
   modelo = "";
-  serie=0;
+  serie="";
   hostname="";
   ip=0;
   mac="";
   area="";
-  costo = 0;
   estado = "";
 }

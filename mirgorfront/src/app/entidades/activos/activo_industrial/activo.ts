@@ -8,6 +8,5 @@ export class Activo {
     hostname = "";
     dpi =0;
     ip=0;
-    costo=0;
     estado = "";
 }

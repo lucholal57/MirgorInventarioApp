@@ -5,6 +5,5 @@ export class ActivoGeneral {
   marca="";
   modelo = "";
   serie = "";
-  costo = 0;
   estado = "";
 }

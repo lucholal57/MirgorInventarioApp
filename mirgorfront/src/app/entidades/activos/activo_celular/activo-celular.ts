@@ -4,7 +4,5 @@ export class ActivoCelular {
   imei = 0;
   marca = "";
   modelo = "";
-  tag = "";
-  costo = 0;
   estado = "";
 }

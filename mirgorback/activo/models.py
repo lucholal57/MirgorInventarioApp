@@ -11,7 +11,6 @@ class ActivoIndustrial(models.Model):
     hostname = models.CharField(max_length=50)
     dpi = models.CharField(max_length=20,blank=True, null=True)
     ip = models.CharField(max_length=20,blank=True, null=True)
-    costo = models.IntegerField()
     estado = models.CharField(max_length=50)
  
     def __str__(self):
@@ -23,8 +22,6 @@ class ActivoNotebook(models.Model):
     modelo = models.CharField(max_length=50)
     serie = models.CharField(max_length=50)
     hostname = models.CharField(max_length=50)
-    tag = models.CharField(max_length=100)
-    costo = models.IntegerField()
     estado = models.CharField(max_length=50)
 
     def __str__(self):
@@ -32,11 +29,9 @@ class ActivoNotebook(models.Model):
 
 class ActivoCelular(models.Model):
     inventario = models.IntegerField()
-    imei = models.IntegerField()
+    imei = models.CharField(max_length=50)
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
-    tag = models.CharField(max_length=100)
-    costo = models.IntegerField()
     estado = models.CharField(max_length=50)
 
     def __str__(self):
@@ -48,7 +43,6 @@ class ActivoGeneral(models.Model):
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
     serie = models.CharField(max_length=50)
-    costo = models.IntegerField()
     estado = models.CharField(max_length=50)
 
     def __str__(self):
@@ -62,10 +56,9 @@ class ActivoStandar(models.Model):
     modelo = models.CharField(max_length=50)
     serie = models.CharField(max_length=50)
     hostname = models.CharField(max_length=50)
-    ip = models.IntegerField()
+    ip = models.CharField(max_length=50)
     mac = models.CharField(max_length=50)
     area = models.CharField(max_length=50)
-    costo = models.IntegerField()
     estado = models.CharField(max_length=50)
 
     def __str__(self):

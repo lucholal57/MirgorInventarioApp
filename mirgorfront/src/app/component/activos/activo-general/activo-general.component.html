@@ -22,6 +22,17 @@
 
        <div class="form-group">
           <div class="row">
+            <div class="col-sm-6">
+              <label style="color:black" >Inventario</label>
+            <input
+              type="number"
+              name="inventario"
+              id="inventario"
+              class="form-control"
+              formControlName="inventario"
+              required
+            />
+          </div>
         <div class="col-sm-6">
           <label style="color:black" >Descripcion</label>
         <input
@@ -44,10 +55,19 @@
         required
       />
     </div>
+    <div class="col-sm-6">
+      <label style="color:black" >Serie</label>
+    <input
+      type="text"
+      name="serie"
+      id="serie"
+      class="form-control"
+      formControlName="serie"
+      required
+    />
+  </div>
       </div>
-        </div>
 
-        <div class="form-group">
           <div class="row">
         <div class="col-sm-6">
           <label style="color:black" >Modelo</label>
@@ -57,33 +77,6 @@
           id="modelo"
           class="form-control"
           formControlName="modelo"
-          required
-        />
-      </div>
-      <div class="col-sm-6">
-        <label style="color:black" >Serie</label>
-      <input
-        type="text"
-        name="serie"
-        id="serie"
-        class="form-control"
-        formControlName="serie"
-        required
-      />
-    </div>
-      </div>
-      </div>
-
-        <div class="form-group">
-          <div class="row">
-        <div class="col-sm-6">
-          <label style="color:black" >Costo</label>
-        <input
-          type="text"
-          name="costo"
-          id="costo"
-          class="form-control"
-          formControlName="costo"
           required
         />
       </div>
@@ -99,10 +92,12 @@
           <option value="RMA">RMA</option>
         </select>
     </div>
+
       </div>
       </div>
 
     </div>
+
 
     <div class="modal-footer">
       <button type="submit" class="btn btn-outline-success"  [hidden]="btnGuardar" (click)="registrarActivoGeneral()" >Guardar</button>
@@ -135,7 +130,6 @@
           <th   scope="col">Marca</th>
           <th   scope="col">Modelo</th>
           <th   scope="col">Serie</th>
-          <th   scope="col">Costo</th>
           <th   scope="col">Estado</th>
           <th scope="col">Acciones</th>
 
@@ -148,7 +142,6 @@
           <td scope="row">{{activo.marca}}</td>
           <td scope="row">{{activo.modelo}}</td>
           <td scope="row">{{activo.serie}}</td>
-          <td scope="row">{{activo.costo}}</td>
           <td scope="row">{{activo.estado}}</td>
           <td scope="">
               <button class="btn btn-outline-warning" (click)="ActivoGeneralId(activo,content)">Editar</button>

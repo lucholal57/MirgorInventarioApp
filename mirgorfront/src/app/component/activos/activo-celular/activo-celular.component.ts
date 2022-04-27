@@ -42,8 +42,6 @@ export class ActivoCelularComponent implements OnInit {
     imei:['',[Validators.required]],
     marca:['',[Validators.required]],
     modelo:['',[Validators.required]],
-    tag:['',[Validators.required]],
-    costo:['',[Validators.required]],
     estado:['',[Validators.required]],
   })
 
@@ -104,8 +102,6 @@ export class ActivoCelularComponent implements OnInit {
         imei: res[0].imei,
         marca: res[0].marca,
         modelo: res[0].modelo,
-        tag: res[0].tag,
-        costo: res[0].costo,
         estado: res[0].estado,
       });
     },

@@ -42,8 +42,6 @@ export class ActivoNotebookComponent implements OnInit {
     modelo:['',[Validators.required]],
     serie:['',[Validators.required]],
     hostname:['',[Validators.required]],
-    tag:['',[Validators.required]],
-    costo:['',[Validators.required]],
     estado:['',[Validators.required]],
   })
 
@@ -102,8 +100,6 @@ export class ActivoNotebookComponent implements OnInit {
         modelo: res[0].modelo,
         serie: res[0].serie,
         hostname: res[0].hostname,
-        tag: res[0].tag,
-        costo: res[0].costo,
         estado: res[0].estado,
       });
     },

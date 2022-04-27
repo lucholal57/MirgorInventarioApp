@@ -42,7 +42,6 @@ export class ActivoGeneralComponent implements OnInit {
     marca:['',[Validators.required]],
     modelo:['',[Validators.required]],
     serie:['',[Validators.required]],
-    costo:['',[Validators.required]],
     estado:['',[Validators.required]],
 
   })
@@ -103,7 +102,6 @@ export class ActivoGeneralComponent implements OnInit {
           marca: res[0].marca,
           modelo: res[0].modelo,
           serie: res[0].serie,
-          costo: res[0].costo,
           estado: res[0].estado,
         })
       },

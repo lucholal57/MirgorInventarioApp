@@ -26,7 +26,7 @@
             <div class="col-sm-6 offset-col-sm-2">
               <label style="color:black" for="nombre">Inventario</label>
             <input
-              type="text"
+              type="number"
               name="inventario"
               id="inventario"
               class="form-control"
@@ -112,7 +112,7 @@
           <div class="col-sm-6">
             <label style="color:black" for="nomber">IP</label>
           <input
-            type="text"
+            type="number"
             name="ip"
             id="ip"
             class="form-control"
@@ -149,17 +149,6 @@
             required
           />
         </div>
-        <div class="col-sm-6">
-          <label style="color:black" for="nomber">Costo</label>
-        <input
-          type="text"
-          name="costo"
-          id="costo"
-          class="form-control"
-          formControlName="costo"
-          required
-        />
-      </div>
       </div>
       </div>
 
@@ -219,7 +208,6 @@
             <th   scope="col">IP</th>
             <th   scope="col">MAC</th>
             <th   scope="col">Area</th>
-            <th   scope="col">Costo</th>
             <th   scope="col">Estado</th>
             <th scope="col">Acciones</th>
 
@@ -236,7 +224,6 @@
             <td scope="row">{{activo.ip}}</td>
             <td scope="row">{{activo.mac}}</td>
             <td scope="row">{{activo.area}}</td>
-            <td scope="row">{{activo.costo}}</td>
             <td scope="row">{{activo.estado}}</td>
             <td scope="">
                 <button class="btn btn-outline-warning" (click)="ActivoStandarId(activo,content)">Editar</button>

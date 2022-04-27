@@ -5,7 +5,5 @@ export class ActivoNotebook {
   modelo = "";
   serie = "";
   hostname = "";
-  tag = "";
-  costo=0;
   estado = "";
 }

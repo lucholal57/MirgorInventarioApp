@@ -47,7 +47,6 @@ export class ActivoStandarComponent implements OnInit {
     ip:['',[Validators.required]],
     mac:['',[Validators.required]],
     area:['',[Validators.required]],
-    costo:['',[Validators.required]],
     estado:['',[Validators.required]],
   })
 
@@ -112,7 +111,6 @@ export class ActivoStandarComponent implements OnInit {
           ip: res[0].ip,
           mac: res[0].mac,
           area: res[0].area,
-          costo: res[0].costo,
           estado: res[0].estado,
         });
       },

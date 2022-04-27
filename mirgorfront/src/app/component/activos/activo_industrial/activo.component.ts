@@ -50,7 +50,6 @@ export class ActivoComponent implements OnInit {
     hostname:['',[Validators.required]],
     dpi:[''],
     ip:[''],
-    costo:['',[Validators.required]],
     estado:['',[Validators.required]],
   })
 
@@ -116,7 +115,6 @@ export class ActivoComponent implements OnInit {
           hostname: res[0].hostname,
           dpi: res[0].dpi,
           ip: res[0].ip,
-          costo: res[0].costo,
           estado: res[0].estado,
         });
 

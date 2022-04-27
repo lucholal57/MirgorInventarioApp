@@ -1,5 +1,6 @@
 from django.db import models
 from activo.models import ActivoCelular,ActivoNotebook
+from linea_telefonica.models import LineaTelefonica
 
 # Create your models here.
 class Usuario(models.Model):
@@ -12,6 +13,7 @@ class Usuario(models.Model):
     #ForeignKey
     activo_celular = models.ForeignKey(ActivoCelular, on_delete=models.CASCADE, null=True)
     activo_notebook = models.ForeignKey(ActivoNotebook, on_delete=models.CASCADE, null=True)
+    linea_telefonica = models.ForeignKey(LineaTelefonica, on_delete=models.CASCADE, null=True)
 
 def __str__(self):
     return f'Usuario: {self.nombre} - {self.area} - {self.posicion}'
