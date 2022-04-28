@@ -3,7 +3,7 @@ from django.forms import IntegerField
 
 # Create your models here.
 class ActivoIndustrial(models.Model):
-    inventario = models.IntegerField()
+    inventario = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=100)
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
@@ -17,7 +17,7 @@ class ActivoIndustrial(models.Model):
         return f'Activo : {self.inventario} - {self.marca} - {self.modelo}'
 
 class ActivoNotebook(models.Model):
-    inventario = models.IntegerField()
+    inventario = models.CharField(max_length=50)
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
     serie = models.CharField(max_length=50)
@@ -28,7 +28,7 @@ class ActivoNotebook(models.Model):
         return f'Notebook: {self.inventario} - {self.marca} - {self.modelo} '
 
 class ActivoCelular(models.Model):
-    inventario = models.IntegerField()
+    inventario = models.CharField(max_length=50)
     imei = models.CharField(max_length=50)
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
@@ -38,7 +38,7 @@ class ActivoCelular(models.Model):
         return f'Celular: {self.imei} - {self.marca} - {self.modelo} - '
 
 class ActivoGeneral(models.Model):
-    inventario = models.IntegerField()
+    inventario = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=50)
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
@@ -50,7 +50,7 @@ class ActivoGeneral(models.Model):
 
 
 class ActivoStandar(models.Model):
-    inventario = models.IntegerField()
+    inventario = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=50)
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
