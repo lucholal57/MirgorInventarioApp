@@ -9,8 +9,8 @@ class ActivoIndustrial(models.Model):
     modelo = models.CharField(max_length=50)
     serie = models.CharField(max_length=50)
     hostname = models.CharField(max_length=50)
-    dpi = models.CharField(max_length=20,blank=True, null=True)
-    ip = models.CharField(max_length=20,blank=True, null=True)
+    dpi = models.CharField(max_length=20,blank=True)
+    ip = models.CharField(max_length=20,blank=True)
     estado = models.CharField(max_length=50)
  
     def __str__(self):
@@ -28,7 +28,6 @@ class ActivoNotebook(models.Model):
         return f'Notebook: {self.inventario} - {self.marca} - {self.modelo} '
 
 class ActivoCelular(models.Model):
-    inventario = models.CharField(max_length=50)
     imei = models.CharField(max_length=50)
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)

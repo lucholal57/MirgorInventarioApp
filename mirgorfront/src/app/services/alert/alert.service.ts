@@ -99,6 +99,18 @@ export class AlertService {
     Swal.fire('El stock es insuficiente')
   }
 
+  alertLogin(){
+    Swal.fire({
+      title: 'Error de Credenciales',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })
+  }
+
   /* Alert eliminar el
 
     Swal.fire({

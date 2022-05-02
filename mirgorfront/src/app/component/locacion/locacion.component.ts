@@ -47,9 +47,6 @@ export class LocacionComponent implements OnInit {
     public btnEditar = false;
     public btnCancelar = false;
     public btnMover = false;
-  //hiddens
-  hiddensMover:boolean = true;
-  encontro:any
 
     LocacionFiltro="";
 
@@ -79,7 +76,6 @@ export class LocacionComponent implements OnInit {
       allowSearchFilter: true,
       closeDropDownOnSelection: true
     };
-    this.hiddensMover=true;
     this.formularioRegistro.controls['activo_industrial'].setValue(null)
     this.formularioRegistro.controls['activo_celular'].setValue(null)
     this.formularioRegistro.controls['activo_notebook'].setValue(null)
@@ -110,6 +106,9 @@ export class LocacionComponent implements OnInit {
     this.btnEditar=true;
     this.btnMover=true;
   }
+
+
+
   // Funcion para cerrar ventana modal
   cerrarModal(): void{
     this.modalService.dismissAll();
@@ -173,7 +172,6 @@ export class LocacionComponent implements OnInit {
   }
 
   registrarLocaciones():void{
-  this.hiddensMover=true;
   this.asignarValoresFormulario();
     if(this.formularioRegistro.valid)
     {
@@ -206,8 +204,6 @@ export class LocacionComponent implements OnInit {
   LocacionId(locacion:Locacion, content : any): void {
     this.btnEditar = false;
     this.btnGuardar = true;
-    this.hiddensMover=true;
-    this.btnMover=true;
     this.modalService.open(content,{size:'lg'});
     this.servicioLocacion.getLocacionId(locacion).subscribe(
       (res) => {
@@ -327,52 +323,5 @@ asignarValoresFormulario(): void{
 
 }
 
-MoverActivo(locacion: Locacion, content : any): void{
-  this.btnEditar = true;
-  this.btnGuardar = true;
-  this.hiddensMover=false;
-  this.btnMover=false;
-
-  this.modalService.open(content,{size:'lg'});
-  this.servicioLocacion.getLocacionId(locacion).subscribe(
-    (res) => {
-      console.log(res[0].activo_celular,"Este es el activo industrial")
-      this.formularioRegistro.patchValue({
-        id: res[0].id,
-        sitio: res[0].sitio,
-        area: res[0].area,
-        localizacion: res[0].localizacion,
-        fecha: res[0].fecha,
-        activo_celular: res[0].activo_celular,
-      });
-      console.log(res)
-    },
-    (error) => {
-      console.log();
-    }
-  );
-}
-
-registrarMovimiento(): void{
-
-var objeto =new Object();
-console.log(this.formularioRegistro.value.id,"id de esta locacion")
- objeto=
-   {locacion:this.formularioRegistro.value.id,locacion_productiva:null }
-this.servicioTrazabilidad.registrarTrazabilidad(objeto)
-.subscribe(
-  (res) => {
-    this.editarLocacionId();
-    console.log(res)
-    this.alertas.alertedit();
-    this.getLocaciones();
-    this.cerrarModal();
-  },
-  (error) => {
-    console.log(error)
-    this.alertas.alerterror();
-  }
-);
-}
 
 }

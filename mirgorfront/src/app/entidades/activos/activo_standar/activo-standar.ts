@@ -1,7 +1,7 @@
 
 export class ActivoStandar {
   id=0;
-  inventario =0;
+  inventario ="";
   descripcion = "";
   marca = "";
   modelo = "";

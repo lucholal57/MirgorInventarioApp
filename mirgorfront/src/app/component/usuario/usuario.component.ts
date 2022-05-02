@@ -10,6 +10,8 @@ import { ActivoNotebook } from 'src/app/entidades/activos/activo_notebook/activo
 import { ActivoCelular } from 'src/app/entidades/activos/activo_celular/activo-celular';
 import { ActivoCelularService } from 'src/app/services/activos/activo_celular/activo-celular.service';
 import { ActivoNotebookService } from 'src/app/services/activos/activo_notebook/activo-notebook.service';
+import { LineaTelefonica } from 'src/app/entidades/linea_telefonica/linea-telefonica';
+import { LineaTelefonicaService } from 'src/app/services/linea_telefonica/linea-telefonica.service'
 
 @Component({
   selector: 'app-usuario',
@@ -22,10 +24,12 @@ export class UsuarioComponent implements OnInit {
   listadoUsuario : Usuario[]=[];
   listadoActivoCelular : ActivoCelular[]=[];
   listadoActivoNotebook : ActivoNotebook[]=[];
+  listadoLineaTelefonica : LineaTelefonica[]=[];
   //Buscar Usuario por nombre
   buscar_usuario="";
 
   dropdownSettings: IDropdownSettings;
+  dropdownSettingsLineaTelefonica: IDropdownSettings;
   // Variables Botones
   public btnGuardar = false;
   public btnEditar = false;
@@ -38,12 +42,14 @@ export class UsuarioComponent implements OnInit {
     config: NgbModalConfig,
     private servicioActivoCelular: ActivoCelularService,
     private servicioActivoNotebook: ActivoNotebookService,
+    private servicioLineaTelefonica: LineaTelefonicaService,
     private alertas: AlertService
   ) { }
 
   ngOnInit(): void {
     this.getUsuario();
     this.getActivosTotales();
+    this.getLineaTelefonicas();
     this.dropdownSettings= {
       singleSelection: true,
       idField: 'id',
@@ -51,8 +57,16 @@ export class UsuarioComponent implements OnInit {
       itemsShowLimit: 5,
       allowSearchFilter: true
     };
+    this.dropdownSettingsLineaTelefonica= {
+      singleSelection: true,
+      idField: 'id',
+      textField: 'numero',
+      itemsShowLimit: 5,
+      allowSearchFilter: true
+    };
     this.formularioRegistro.controls['activo_celular'].setValue(null)
     this.formularioRegistro.controls['activo_notebook'].setValue(null)
+    this.formularioRegistro.controls['linea_telefonica'].setValue(null)
   }
 
   formularioRegistro=this.formBuilder.group({
@@ -64,6 +78,8 @@ export class UsuarioComponent implements OnInit {
     fecha_entrega:['',[Validators.required]],
     activo_celular:[''],
     activo_notebook:[''],
+    linea_telefonica:['']
+
   })
 
    //Open funcion para abrir ventana modal
@@ -79,9 +95,22 @@ export class UsuarioComponent implements OnInit {
   }
 
   getUsuario():void {
+
     this.servicioUsuario.getUsuario().subscribe(
       (res) => {
         this.listadoUsuario = res;
+        console.log(this.listadoUsuario)
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+  }
+
+  getLineaTelefonicas():void{
+    this.servicioLineaTelefonica.getLineaTelefonica().subscribe(
+      (res) => {
+        this.listadoLineaTelefonica=res
       },
       (error) => {
         console.log(error)
@@ -145,6 +174,7 @@ export class UsuarioComponent implements OnInit {
           fecha_entrega: res[0].fecha_entrega,
           activo_celular: res[0].activo_celular,
           activo_notebook: res[0].activo_notebook,
+          linea_telefonica: res[0].linea_telefonica,
         });
       },
       (error) => {
@@ -236,6 +266,12 @@ asignarValoresFormulario(): void{
     {
       this.formularioRegistro.controls['activo_notebook'].setValue(this.formularioRegistro.value.activo_notebook[0]['id'])
     }
+
+    if(this.formularioRegistro.value.linea_telefonica!= null)
+    {
+      this.formularioRegistro.controls['linea_telefonica'].setValue(this.formularioRegistro.value.linea_telefonica[0]['id'])
+    }
+
 }
 
 

@@ -35,7 +35,13 @@ export class LoginComponent implements OnInit {
       }
     )
   }*/
-  this.router.navigateByUrl('dashboard')
+  if (this.username ==="admin" && this.password ==="admin")
+  {
+    this.router.navigateByUrl('dashboard')
+  }
+  else{this.alertas.alertLogin()}
+
 }
+
 
 }

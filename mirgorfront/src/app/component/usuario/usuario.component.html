@@ -34,6 +34,17 @@
         </ng-multiselect-dropdown>
         </div>
         <div class="col-sm-6" >
+          <label style="color:black" for="activo">Linea Telefonica</label>
+          <ng-multiselect-dropdown
+          [placeholder]="'Seleccione Linea Telefonica'"
+          [settings]="dropdownSettingsLineaTelefonica"
+          [data]="listadoLineaTelefonica"
+          formControlName="linea_telefonica"
+          >
+
+        </ng-multiselect-dropdown>
+        </div>
+        <div class="col-sm-6" >
           <label style="color:black" for="activo">Inventario</label>
           <ng-multiselect-dropdown
           [placeholder]="'Seleccione inventario Notebook'"
@@ -133,12 +144,14 @@
   <thead class="thead-light">
 
       <tr class="text-center" style="color:black">
-          <th scope="col">Inventario/Marca/Modelo</th>
+          <th scope="col">Celular</th>
+          <th scope="col">Notebook</th>
           <th scope="col">Nombre</th>
           <th scope="col">Correo</th>
           <th scope="col">Area</th>
           <th scope="col">Posicion</th>
           <th scope="col">Fecha Entrega</th>
+          <th scope="col">Linea Tel.</th>
           <th scope="col">Acciones</th>
 
       </tr>
@@ -152,8 +165,11 @@
               <li>{{usuario.activo_celular.modelo}}</li>
 
             </ul>
-
           </th>
+          <th scope="row" *ngIf="usuario.activo_celular == null">
+           N/A
+          </th>
+
           <th scope="row"  *ngIf="usuario.activo_notebook != null">
             <ul>
               <li>{{usuario.activo_notebook.inventario}}</li>
@@ -162,11 +178,16 @@
             </ul>
 
           </th>
+          <th scope="row" *ngIf="usuario.activo_notebook == null">
+            N/A
+          </th>
           <td scope="row">{{usuario.nombre}}</td>
           <td scope="row">{{usuario.correo}}</td>
           <td scope="row">{{usuario.area}}</td>
           <td scope="row">{{usuario.posicion}}</td>
           <td scope="row">{{usuario.fecha_entrega}}</td>
+          <td scope="row" *ngIf="usuario.linea_telefonica ==null">N/A</td>
+          <td scope="row" *ngIf="usuario.linea_telefonica !=null">{{usuario.linea_telefonica.numero}}</td>
           <td scope="">
               <button class="btn btn-outline-warning" (click)="UsuarioId(usuario,content)">Editar</button>
               <button class="btn btn-outline-danger"  (click)="eliminarUsuario(usuario)">Eliminar</button>

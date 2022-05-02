@@ -24,17 +24,6 @@
 
           <div class="form-group">
             <div class="row">
-            <div class="col-sm-6">
-              <label style="color:black" for="nombre">Inventario</label>
-            <input
-              type="number"
-              name="inventario"
-              id="inventario"
-              class="form-control"
-              formControlName="inventario"
-              required
-            />
-          </div>
           <div class="col-sm-6">
             <label style="color:black" for="apellido">IMEI</label>
           <input
@@ -46,22 +35,22 @@
             required
           />
         </div>
+        <div class="col-sm-6">
+          <label style="color:black" for="nomber">Marca</label>
+        <input
+          type="text"
+          name="marca"
+          id="marca"
+          class="form-control"
+          formControlName="marca"
+          required
+        />
+      </div>
         </div>
           </div>
 
           <div class="form-group">
             <div class="row">
-            <div class="col-sm-6">
-              <label style="color:black" for="nomber">Marca</label>
-            <input
-              type="text"
-              name="marca"
-              id="marca"
-              class="form-control"
-              formControlName="marca"
-              required
-            />
-          </div>
           <div class="col-sm-6">
             <label style="color:black" for="telefono">Modelo</label>
           <input
@@ -73,23 +62,24 @@
             required
           />
         </div>
+        <div class="col-sm-6">
+          <label style="color:black" for="nomber">Estado</label>
+          <select name="" id="" class="form-control" formControlName="estado">
+            <option value="">Seleccione un Estado</option>
+            <option value="Entregado">Entregado</option>
+            <option value="Reservado">Reservado</option>
+            <option value="Innecesario">Innecesario</option>
+            <option value="Scrap">Scrap</option>
+            <option value="Operativo">Operativo</option>
+            <option value="RMA">RMA</option>
+          </select>
+      </div>
         </div>
         </div>
 
           <div class="form-group">
             <div class="row">
-            <div class="col-sm-6">
-              <label style="color:black" for="nomber">Estado</label>
-              <select name="" id="" class="form-control" formControlName="estado">
-                <option value="">Seleccione un Estado</option>
-                <option value="Entregado">Entregado</option>
-                <option value="Reservado">Reservado</option>
-                <option value="Innecesario">Innecesario</option>
-                <option value="Scrap">Scrap</option>
-                <option value="Operativo">Operativo</option>
-                <option value="RMA">RMA</option>
-              </select>
-          </div>
+
         </div>
       </div>
 
@@ -121,7 +111,6 @@
     <thead class="thead-light">
 
         <tr class="text-center" style="color:black">
-            <th   scope="col">Inventario</th>
             <th   scope="col">IMEI</th>
             <th   scope="col">Marca</th>
             <th   scope="col">Modelo</th>
@@ -132,7 +121,6 @@
     </thead>
     <tbody>
         <tr class="text-center"*ngFor="let activo of listadoActivoCelular | paginate: { itemsPerPage: 10, currentPage: p }" >
-            <td scope="row">{{activo.inventario}}</td>
             <td scope="row">{{activo.imei}}</td>
             <td scope="row">{{activo.marca}}</td>
             <td scope="row">{{activo.modelo}}</td>

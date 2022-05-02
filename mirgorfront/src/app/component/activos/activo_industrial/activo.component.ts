@@ -5,7 +5,6 @@ import { ActivoService } from 'src/app/services/activos/activo_industrial/activo
 import { AlertService} from '../../../services/alert/alert.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
-import { Observable } from 'rxjs';
 
 // Funcion
 @Component({

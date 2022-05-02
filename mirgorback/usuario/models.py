@@ -11,9 +11,9 @@ class Usuario(models.Model):
     fecha_entrega = models.DateField(null=True)
 
     #ForeignKey
-    activo_celular = models.ForeignKey(ActivoCelular, on_delete=models.CASCADE, null=True)
-    activo_notebook = models.ForeignKey(ActivoNotebook, on_delete=models.CASCADE, null=True)
-    linea_telefonica = models.ForeignKey(LineaTelefonica, on_delete=models.CASCADE, null=True)
+    activo_celular = models.ForeignKey(ActivoCelular, on_delete=models.CASCADE, blank=True)
+    activo_notebook = models.ForeignKey(ActivoNotebook, on_delete=models.CASCADE, blank=True)
+    linea_telefonica = models.ForeignKey(LineaTelefonica, on_delete=models.CASCADE, blank=True)
 
 def __str__(self):
     return f'Usuario: {self.nombre} - {self.area} - {self.posicion}'

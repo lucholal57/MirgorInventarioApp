@@ -1,6 +1,6 @@
 export class ActivoNotebook {
   id=0;
-  inventario =0;
+  inventario ="";
   marca = "";
   modelo = "";
   serie = "";
