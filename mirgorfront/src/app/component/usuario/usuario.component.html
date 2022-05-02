@@ -160,7 +160,7 @@
       <tr class="text-center"*ngFor="let usuario of listadoUsuario | paginate: { itemsPerPage: 10, currentPage: p }" >
           <th scope="row"  *ngIf="usuario.activo_celular != null">
             <ul>
-              <li>{{usuario.activo_celular.inventario}}</li>
+              <li>{{usuario.activo_celular.imei}}</li>
               <li>{{usuario.activo_celular.marca}}</li>
               <li>{{usuario.activo_celular.modelo}}</li>
 

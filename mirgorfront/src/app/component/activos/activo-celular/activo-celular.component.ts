@@ -38,7 +38,6 @@ export class ActivoCelularComponent implements OnInit {
   //Formulario registro
   formularioRegistro= this.formBuilder.group({
     id:[''],
-    inventario:['',[Validators.required]],
     imei:['',[Validators.required]],
     marca:['',[Validators.required]],
     modelo:['',[Validators.required]],
@@ -98,7 +97,6 @@ export class ActivoCelularComponent implements OnInit {
     (res) =>{
       this.formularioRegistro.patchValue({
         id: res[0].id,
-        inventario: res[0].inventario,
         imei: res[0].imei,
         marca: res[0].marca,
         modelo: res[0].modelo,
