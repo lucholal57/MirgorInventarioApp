@@ -117,11 +117,11 @@ def ActivoCelularBuscarPorId(request, pk=None):
     #Validacion si no se encontro el ActivoIndustrial
     return Response({'message': 'No se encontro Celular'}, status=status.HTTP_400_BAD_REQUEST)
 
-    #Busqueda de ActivoCelular por inventario
+    #Busqueda de ActivoCelular por IMEI
 @api_view(['GET'])
 
-def BusquedaActivoCelularInventario(request, buscar_activo):
-    activo = ActivoCelular.objects.filter(inventario__icontains = buscar_activo)
+def BusquedaActivoCelularImei(request, buscar_activo):
+    activo = ActivoCelular.objects.filter(imei__icontains = buscar_activo)
     serializer = ActivoCelularSerializer(activo, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 

@@ -3,7 +3,7 @@ from .views import (ActivoIndustrialListado, ActivoIndustrialBuscarPorId,
 BusquedaActivoIndustrialInventario,BusquedaActivoNotebookInventario,
 ActivoCelularListado,ActivoCelularBuscarPorId,ActivoNotebookListado,
 ActivoNotebookBuscarPorId,ActivoGeneralListado,ActivoGeneralBuscarPorId,
-ActivoStandarListado,ActivoStandarBuscarPorId,BusquedaActivoCelularInventario,BusquedaActivoGeneralInventario,BusquedaActivoStandarInventario)
+ActivoStandarListado,ActivoStandarBuscarPorId,BusquedaActivoCelularImei,BusquedaActivoGeneralInventario,BusquedaActivoStandarInventario)
 
 urlpatterns = [
     #Rutas Activos industriales
@@ -13,7 +13,7 @@ urlpatterns = [
     #Rutas Activos Celulares
     path('celular', ActivoCelularListado),
     path('celular/<int:pk>',ActivoCelularBuscarPorId),
-    path('celular/buscar/<str:buscar_activo>',BusquedaActivoCelularInventario),
+    path('celular/buscar/<str:buscar_activo>',BusquedaActivoCelularImei),
     #Rutas para Activos Notebook
     path('notebook',ActivoNotebookListado),
     path('notebook/<int:pk>',ActivoNotebookBuscarPorId),
@@ -26,7 +26,5 @@ urlpatterns = [
     path('activo_standar',ActivoStandarListado),
     path('activo_standar/<int:pk>',ActivoStandarBuscarPorId),
     path('activo_standar/buscar/<str:buscar_activo>',BusquedaActivoStandarInventario)
-
-
     
 ]

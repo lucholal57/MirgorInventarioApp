@@ -53,7 +53,7 @@ export class UsuarioComponent implements OnInit {
     this.dropdownSettings= {
       singleSelection: true,
       idField: 'id',
-      textField: 'inventario',
+      textField: 'imei',
       itemsShowLimit: 5,
       allowSearchFilter: true
     };
