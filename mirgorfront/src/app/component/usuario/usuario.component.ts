@@ -29,6 +29,7 @@ export class UsuarioComponent implements OnInit {
   buscar_usuario="";
 
   dropdownSettings: IDropdownSettings;
+  dropdownSettingsNotebook: IDropdownSettings;
   dropdownSettingsLineaTelefonica: IDropdownSettings;
   // Variables Botones
   public btnGuardar = false;
@@ -54,6 +55,13 @@ export class UsuarioComponent implements OnInit {
       singleSelection: true,
       idField: 'id',
       textField: 'imei',
+      itemsShowLimit: 5,
+      allowSearchFilter: true
+    };
+    this.dropdownSettingsNotebook= {
+      singleSelection: true,
+      idField: 'id',
+      textField: 'inventario',
       itemsShowLimit: 5,
       allowSearchFilter: true
     };
