@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Ubicaion</title>
+
 </head>
 <body>
 
 <app-inicio></app-inicio>
+
 <form  [formGroup]="formularioRegistro" (submit)="registrarLocaciones()">
     <ng-template #content let-c="close" let-d="dismiss" >
 
@@ -25,7 +27,7 @@
                 <label style="color:black" for="activo">Inventario</label>
                <ng-multiselect-dropdown
                 [placeholder]="'Seleccione inventario Industrial'"
-                [settings]="dropdownSettings"
+                [settings]="dropdownSettingsActivos"
                 [data]="listadoActivoIndustrial"
                 formControlName="activo_industrial"
 
@@ -48,7 +50,7 @@
                 <label style="color:black" for="activo">Inventario</label>
                 <ng-multiselect-dropdown
                 [placeholder]="'Seleccione inventario Notebook'"
-                [settings]="dropdownSettings"
+                [settings]="dropdownSettingsActivos"
                 [data]="listadoActivoNotebook"
                 formControlName="activo_notebook"
 
@@ -59,7 +61,7 @@
                 <label style="color:black" for="activo">Inventario</label>
                 <ng-multiselect-dropdown
                 [placeholder]="'Seleccione inventario General'"
-                [settings]="dropdownSettings"
+                [settings]="dropdownSettingsActivos"
                 [data]="listadoActivoGeneral"
                 formControlName="activo_general"
               >
@@ -69,7 +71,7 @@
                 <label style="color:black" for="activo">Inventario</label>
                 <ng-multiselect-dropdown
                 [placeholder]="'Seleccione inventario Standar'"
-                [settings]="dropdownSettings"
+                [settings]="dropdownSettingsActivos"
                 [data]="listadoActivoStandar"
                 formControlName="activo_standar"
               >
@@ -140,6 +142,15 @@
 
             <div class="btn-group">
               <button class="btn btn-outline-primary"  (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
+              <select name="" id="" class="form-control" [(ngModel)]="filtro_busqueda" (change)="SelectorBusqueda()">
+                <option value="" disabled selected>Seleccione Filtro </option>
+                <option value="inventario">Inventario</option>
+                <option value="marca">Marca</option>
+                <option value="sitio">Sitio</option>
+                <option value="area">Area</option>
+                <option value="localizacion">Localizacion</option>
+              </select>
+              <input type="text" class="form-control" placeholder="Valor a Buscar" [(ngModel)]="valor_busqueda">
               <button class="btn btn-outline-primary"  (click)="busquedaLocacion()" style="margin-right: 5px;" >Buscar</button>
                 <button class="btn btn-outline-danger"   style="margin-left: 5px;" (click)="cancelarbusquedaLocacion()" >Cancelar</button>
             </div>

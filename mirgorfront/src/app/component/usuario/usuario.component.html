@@ -9,6 +9,7 @@
 <body>
 <app-inicio></app-inicio>
 
+
 <form [formGroup]="formularioRegistro">
 
   <ng-template #content let-c="close" let-d="dismiss" >
@@ -132,7 +133,7 @@
   <div class="btn-group">
     <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
     <button class="btn btn-outline-primary" (click)="busquedaUsuario()"   style="margin-right: 5px;" >Buscar</button>
-    <input type="text" placeholder="Nombre"
+    <input type="text" placeholder="Nombre" 
       class="form-control" [(ngModel)]="buscar_usuario">
       <button class="btn btn-outline-danger" (click)="cancelarbusquedaUsuario()" style="margin-left: 5px;" >Cancelar</button>
   </div>

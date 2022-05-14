@@ -181,5 +181,4 @@ cancelar(): void{
   this.formularioRegistro.reset();
 }
 
-
 }

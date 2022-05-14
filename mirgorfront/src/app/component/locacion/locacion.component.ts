@@ -40,7 +40,10 @@ export class LocacionComponent implements OnInit {
   listadoActivoGeneral : ActivoGeneral[]=[];
 
   dropdownSettings: IDropdownSettings;
+  dropdownSettingsActivos: IDropdownSettings;
   //Buscar
+  filtro_busqueda="";
+  valor_busqueda="";
   buscar_locacion = "";
     // Variables Botones
     public btnGuardar = false;
@@ -69,6 +72,14 @@ export class LocacionComponent implements OnInit {
     this.getLocaciones();
     this.getActivosTotales();
     this.dropdownSettings= {
+      singleSelection: true,
+      idField: 'id',
+      textField: 'imei',
+      itemsShowLimit: 5,
+      allowSearchFilter: true,
+      closeDropDownOnSelection: true
+    };
+    this.dropdownSettingsActivos= {
       singleSelection: true,
       idField: 'id',
       textField: 'inventario',
@@ -286,6 +297,16 @@ busquedaLocacion(): void{
         this.alertas.alerterror();
       }
     )
+  }
+}
+
+SelectorBusqueda(): void{
+  if(this.valor_busqueda != "" && this.filtro_busqueda != ""){
+    if(this.filtro_busqueda == "inventario")
+    {
+    
+    }
+
   }
 }
 

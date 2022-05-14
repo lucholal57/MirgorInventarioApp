@@ -181,7 +181,7 @@
     <div class="btn-group">
       <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 6px;" >Registrar</button>
       <button class="btn btn-outline-primary" (click)="busquedaActivo()"   style="margin-right: 6px;" >Buscar</button>
-      <input type="text" placeholder="N° Inventario"
+      <input type="text" placeholder="N° Inventario" (change)="p=1"
         class="form-control" [(ngModel)]="buscar_activo">
         <button class="btn btn-outline-danger"  (click)="cancelarbusquedaActivo()"  style="margin-left: 6px;">Cancelar</button>
     </div>
@@ -208,7 +208,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="text-center"*ngFor="let activo of listadoActivoStandar | paginate: { itemsPerPage: 10, currentPage: p }" >
+        <tr class="text-center"*ngFor="let activo of listadoActivoStandar | paginate: { itemsPerPage: 14, currentPage: p }" >
             <td scope="row">{{activo.inventario}}</td>
             <td scope="row">{{activo.descripcion}}</td>
             <td scope="row">{{activo.marca}}</td>

@@ -1,13 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
+import { Activo } from '../../entidades/activos/activo_industrial/activo';
+import { ActivoService } from 'src/app/services/activos/activo_industrial/activo.service';
+import { ActivoCelular } from 'src/app/entidades/activos/activo_celular/activo-celular';
+import { ActivoCelularService } from 'src/app/services/activos/activo_celular/activo-celular.service';
+import { ActivoNotebook } from 'src/app/entidades/activos/activo_notebook/activo-notebook';
+import { ActivoNotebookService } from 'src/app/services/activos/activo_notebook/activo-notebook.service';
+import { ActivoGeneral } from 'src/app/entidades/activos/activo_general/activo-general';
+import { ActivoGeneralService } from 'src/app/services/activos/activo_general/activo-general.service';
+import { ActivoStandar } from 'src/app/entidades/activos/activo_standar/activo-standar';
+import { ActivoStandarService } from 'src/app/services/activos/activo_standar/activo-standar.service';
 @Component({
   selector: 'app-estadistica',
   templateUrl: './estadistica.component.html',
   styleUrls: ['./estadistica.component.css']
 })
 export class EstadisticaComponent implements OnInit {
-
-  constructor() { }
+  //Arrays para la obtencion de los activos
+  listadoActivoIndustrial : Activo[] =[];
+  listadoActivoGeneral : ActivoGeneral[]=[];
+  listadoActivoStandar : ActivoStandar[] =[];
+  listadoActivoCelular : ActivoCelular[]=[];
+  listadoActivoNotebook : ActivoNotebook[]=[];
+  constructor(
+    private servicioActivoCelular: ActivoCelularService,
+    private servicioActivoNotebook: ActivoNotebookService,
+    private servicioActivoGeneral: ActivoGeneralService,
+    private servicioActivo : ActivoService,
+    private servicioActivoStandar : ActivoStandarService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -39,6 +60,14 @@ export class EstadisticaComponent implements OnInit {
     domain: ['#01C965', '#01B7C9', '#C9AB01 ', '#65C901', '#AE01C9 '],
 
   };
+
+  getActivosTotales() : void{
+    this.servicioActivo.getActivos().subscribe(
+      (res) => {
+        this.listadoActivoIndustrial  = res;
+      }
+    )
+  }
   data=[
     {
       "name": "IMEICHECK",
