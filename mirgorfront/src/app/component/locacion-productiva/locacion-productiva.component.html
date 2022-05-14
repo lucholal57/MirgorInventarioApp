@@ -122,7 +122,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="text-center" *ngFor="let locacion_productiva of listadoLocacionesProductivas  | paginate: { itemsPerPage: 10, currentPage: p }">
+            <tr class="text-center" *ngFor="let locacion_productiva of listadoLocacionesProductivas  | paginate: { itemsPerPage: 14, currentPage: p }">
 
               <td scope="row" *ngIf="locacion_productiva.activo_industrial != null">
                 <ul>
@@ -144,7 +144,7 @@
             </tr>
         </tbody>
     </table>
-    <pagination-controls (pageChange)="p = $event" class="my-pagination"></pagination-controls>
+    <pagination-controls style="color:white;" (pageChange)="p = $event" class="my-pagination"></pagination-controls>
 </div>
 
 </body>

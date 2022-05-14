@@ -133,7 +133,7 @@
   <div class="btn-group">
     <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
     <button class="btn btn-outline-primary" (click)="busquedaUsuario()"   style="margin-right: 5px;" >Buscar</button>
-    <input type="text" placeholder="Nombre" 
+    <input type="text" placeholder="Nombre"
       class="form-control" [(ngModel)]="buscar_usuario">
       <button class="btn btn-outline-danger" (click)="cancelarbusquedaUsuario()" style="margin-left: 5px;" >Cancelar</button>
   </div>
@@ -158,7 +158,7 @@
       </tr>
   </thead>
   <tbody>
-      <tr class="text-center"*ngFor="let usuario of listadoUsuario | paginate: { itemsPerPage: 10, currentPage: p }" >
+      <tr class="text-center"*ngFor="let usuario of listadoUsuario | paginate: { itemsPerPage: 14, currentPage: p }" >
           <th scope="row"  *ngIf="usuario.activo_celular != null">
             <ul>
               <li>{{usuario.activo_celular.imei}}</li>
@@ -198,7 +198,7 @@
   </tbody>
 
 </table>
-<pagination-controls (pageChange)="p = $event" class="my-pagination"></pagination-controls>
+<pagination-controls style="color:white;" (pageChange)="p = $event" class="my-pagination"></pagination-controls>
 </div>
 
 

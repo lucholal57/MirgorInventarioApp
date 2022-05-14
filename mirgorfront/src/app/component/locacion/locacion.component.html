@@ -170,7 +170,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="text-center" *ngFor="let locacion of listadoLocaciones  | paginate: { itemsPerPage: 10, currentPage: p }">
+            <tr class="text-center" *ngFor="let locacion of listadoLocaciones  | paginate: { itemsPerPage: 14, currentPage: p }">
 
               <td scope="row" *ngIf="locacion.activo_celular != null" >
                 <ul>
@@ -217,7 +217,7 @@
             </tr>
         </tbody>
     </table>
-    <pagination-controls (pageChange)="p = $event" class="my-pagination"></pagination-controls>
+    <pagination-controls style="color:white;" (pageChange)="p = $event" class="my-pagination"></pagination-controls>
 </div>
 </body>
 </html>
