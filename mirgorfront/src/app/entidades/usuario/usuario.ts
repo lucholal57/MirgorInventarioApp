@@ -4,6 +4,7 @@ import { LineaTelefonica } from "../linea_telefonica/linea-telefonica";
 
 export class Usuario {
   id=0;
+  legajo="";
   nombre="";
   correo="";
   area="";

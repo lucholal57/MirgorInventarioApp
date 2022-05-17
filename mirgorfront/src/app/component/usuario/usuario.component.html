@@ -24,7 +24,7 @@
     <div class="modal-body">
       <div class="row">
         <div class="col-sm-6" >
-          <label style="color:black" for="activo">Inventario</label>
+          <label style="color:black" for="activo">Celular</label>
           <ng-multiselect-dropdown
           [placeholder]="'Seleccione inventario Celular'"
           [settings]="dropdownSettings"
@@ -46,7 +46,7 @@
         </ng-multiselect-dropdown>
         </div>
         <div class="col-sm-6" >
-          <label style="color:black" for="activo">Inventario</label>
+          <label style="color:black" for="activo">Notebook</label>
           <ng-multiselect-dropdown
           [placeholder]="'Seleccione inventario Notebook'"
           [settings]="dropdownSettingsNotebook"
@@ -57,16 +57,28 @@
         </ng-multiselect-dropdown>
         </div>
           <div class="col-sm-6">
-            <label style="color:black" for="nombre">Nombre</label>
+            <label style="color:black" for="nombre">Legajo</label>
           <input
             type="text"
-            name="nombre"
-            id="nombre"
+            name="legajo"
+            id="legajo"
             class="form-control"
-            formControlName="nombre"
+            formControlName="legajo"
             required
           />
         </div>
+
+        <div class="col-sm-6">
+          <label style="color:black" for="nombre">Nombre</label>
+        <input
+          type="text"
+          name="nombre"
+          id="nombre"
+          class="form-control"
+          formControlName="nombre"
+          required
+        />
+      </div>
 
           <div class="col-sm-6">
           <label style="color:black" for="apellido">Correo</label>

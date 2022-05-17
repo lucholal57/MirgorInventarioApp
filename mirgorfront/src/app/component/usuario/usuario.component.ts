@@ -79,6 +79,7 @@ export class UsuarioComponent implements OnInit {
 
   formularioRegistro=this.formBuilder.group({
     id:[''],
+    legajo:['',[Validators.required]],
     nombre:['',[Validators.required]],
     correo:['',[Validators.required]],
     area:['',[Validators.required]],
@@ -175,6 +176,7 @@ export class UsuarioComponent implements OnInit {
       (res) => {
         this.formularioRegistro.patchValue({
           id: res[0].id,
+          length: res[0].legajo,
           nombre: res[0].nombre,
           correo: res[0].correo,
           area: res[0].area,
