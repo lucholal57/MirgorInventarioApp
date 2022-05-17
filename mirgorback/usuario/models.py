@@ -4,6 +4,7 @@ from linea_telefonica.models import LineaTelefonica
 
 # Create your models here.
 class Usuario(models.Model):
+    legajo = models.CharField(max_length=50)
     nombre = models.CharField(max_length=50)
     correo = models.CharField(max_length=50)
     area = models.CharField(max_length=50)
