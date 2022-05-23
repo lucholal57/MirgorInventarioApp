@@ -156,7 +156,8 @@
 
   <thead class="thead-light">
 
-      <tr class="text-center" style="color:black">
+      <tr class="text-center" >
+          <th scope="col">Legajo</th>
           <th scope="col">Celular</th>
           <th scope="col">Notebook</th>
           <th scope="col">Nombre</th>
@@ -170,7 +171,8 @@
       </tr>
   </thead>
   <tbody>
-      <tr class="text-center"*ngFor="let usuario of listadoUsuario | paginate: { itemsPerPage: 14, currentPage: p }" >
+      <tr class="text-center"*ngFor="let usuario of listadoUsuario | paginate: { itemsPerPage: 7, currentPage: p }" >
+        <th scope="row">{{usuario.legajo}}</th>
           <th scope="row"  *ngIf="usuario.activo_celular != null">
             <ul>
               <li>{{usuario.activo_celular.imei}}</li>

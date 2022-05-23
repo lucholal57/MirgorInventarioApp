@@ -28,6 +28,8 @@ export class UsuarioComponent implements OnInit {
   //Buscar Usuario por nombre
   buscar_usuario="";
 
+  existe=0;
+
   dropdownSettings: IDropdownSettings;
   dropdownSettingsNotebook: IDropdownSettings;
   dropdownSettingsLineaTelefonica: IDropdownSettings;
@@ -149,23 +151,23 @@ export class UsuarioComponent implements OnInit {
 
   registrarUsuario():void {
     this.asignarValoresFormulario();
-    if(this.formularioRegistro.valid)
-    {
-      this.servicioUsuario.registrarUsuario(this.formularioRegistro.value).subscribe(
-        (res) => {
-          console.log(res)
-          this.cerrarModal();
-          this.getUsuario();
-          this.alertas.alertsuccess();
-        },
-        (error) => {
-          console.log(error)
-          this.alertas.alerterror();
-        }
-      )
-    }else{
-      this.alertas.alertcampos()
-    }
+      if(this.formularioRegistro.valid)
+      {
+        this.servicioUsuario.registrarUsuario(this.formularioRegistro.value).subscribe(
+          (res) => {
+            console.log(res)
+            this.cerrarModal();
+            this.getUsuario();
+            this.alertas.alertsuccess();
+          },
+          (error) => {
+            console.log(error)
+            this.alertas.alerterror();
+          }
+        )
+      }else{
+        this.alertas.alertcampos()
+      }
   }
   UsuarioId(usuario:Usuario,content : any): void {
     this.asignarValoresFormulario();
@@ -176,7 +178,7 @@ export class UsuarioComponent implements OnInit {
       (res) => {
         this.formularioRegistro.patchValue({
           id: res[0].id,
-          length: res[0].legajo,
+          legajo: res[0].legajo,
           nombre: res[0].nombre,
           correo: res[0].correo,
           area: res[0].area,

@@ -28,6 +28,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { LocacionProductivaComponent } from './component/locacion-productiva/locacion-productiva.component';
 import { FiltroLocacionPipe } from './pipes/filtro-locacion.pipe';
 import { TrazabilidadComponent } from './component/trazabilidad/trazabilidad.component';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { TrazabilidadComponent } from './component/trazabilidad/trazabilidad.com
     BrowserAnimationsModule,
     AutocompleteLibModule,
     NgSelectModule,
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
