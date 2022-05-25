@@ -63,7 +63,7 @@ def BusquedaUsuarioPorNombre(request,buscar_usuario):
 @api_view(['GET'])
 
 def ValidacionPorLegajo(request,validar_legajo):
-    usuario = Usuario.objects.filter(legajo__icontains = validar_legajo)
+    usuario = Usuario.objects.filter(legajo__contains = validar_legajo)
     serializer = UsuarioSerializer(usuario, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
             
