@@ -20,10 +20,10 @@ export class UsuarioService {
   constructor( private http : HttpClient) { }
 
   getUsuario(): Observable<Usuario[]>{
-    return this.http.get<Usuario[]>(this.url_prod + 'usuario' , httpOption)
+    return this.http.get<Usuario[]>(this.url + 'usuario' , httpOption)
   }
   registrarUsuario(formularioregistro:any):Observable<Usuario[]>{
-    return this.http.post<Usuario[]>(this.url_prod + 'usuario', formularioregistro, httpOption)
+    return this.http.post<Usuario[]>(this.url + 'usuario', formularioregistro, httpOption)
   }
   getUsuarioId(usuario : Usuario): Observable<Usuario[]>{
     return this.http.get<Usuario[]>(this.url_prod + 'usuario/' + usuario.id,httpOption );
@@ -34,10 +34,14 @@ export class UsuarioService {
 
   }
   eliminarUsuario(id: number): Observable<Usuario[]>{
-    return this.http.delete<Usuario[]>(this.url_prod + 'usuario/' + id, httpOption );
+    return this.http.delete<Usuario[]>(this.url + 'usuario/' + id, httpOption );
   }
   busquedaUsuario(buscar_usuario:string): Observable<Usuario[]>{
     return  this.http.get<Usuario[]>(this.url_prod + 'usuario/buscar/' + buscar_usuario, httpOption );
+  }
+
+  validacionUsuario(validacion_legajo:string): Observable<Usuario[]>{
+    return this.http.get<Usuario[]>(this.url + 'usuario/validar/' + validacion_legajo, httpOption)
   }
 
 }

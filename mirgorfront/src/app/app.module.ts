@@ -28,7 +28,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { LocacionProductivaComponent } from './component/locacion-productiva/locacion-productiva.component';
 import { FiltroLocacionPipe } from './pipes/filtro-locacion.pipe';
 import { TrazabilidadComponent } from './component/trazabilidad/trazabilidad.component';
-import { MatSliderModule } from '@angular/material/slider';
+import { AngularMaterialModule} from '../app/angular-material.module'
+
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { MatSliderModule } from '@angular/material/slider';
     BrowserAnimationsModule,
     AutocompleteLibModule,
     NgSelectModule,
-    MatSliderModule,
+    AngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

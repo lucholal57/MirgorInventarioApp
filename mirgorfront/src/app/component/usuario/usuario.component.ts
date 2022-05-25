@@ -27,8 +27,8 @@ export class UsuarioComponent implements OnInit {
   listadoLineaTelefonica : LineaTelefonica[]=[];
   //Buscar Usuario por nombre
   buscar_usuario="";
-
-  existe=0;
+  //Variable para vilidar existencia
+  validacion=[];
 
   dropdownSettings: IDropdownSettings;
   dropdownSettingsNotebook: IDropdownSettings;
@@ -150,25 +150,42 @@ export class UsuarioComponent implements OnInit {
 }
 
   registrarUsuario():void {
-    this.asignarValoresFormulario();
-      if(this.formularioRegistro.valid)
-      {
-        this.servicioUsuario.registrarUsuario(this.formularioRegistro.value).subscribe(
-          (res) => {
-            console.log(res)
-            this.cerrarModal();
-            this.getUsuario();
-            this.alertas.alertsuccess();
-          },
-          (error) => {
-            console.log(error)
-            this.alertas.alerterror();
+    //Utilizamos la funcion del servicio para validar que el usuario no exista a travez del legajo, la funcion devuelve un resultado, si es igual a 0 quiere decir que no existe un valor con ese legajo y registra con exito, de lo contrario nos sale una alerta que nos detalla que no se puede registrar y nos blanquea el input para volver a ingresar el legajo y continuar con el registro
+    this.servicioUsuario.validacionUsuario(this.formularioRegistro.value.legajo).subscribe(
+      (res) => {
+        if(res.length==0)
+        {
+          this.asignarValoresFormulario();
+          if(this.formularioRegistro.valid)
+          {
+            this.servicioUsuario.registrarUsuario(this.formularioRegistro.value).subscribe(
+              (res) => {
+                console.log(res)
+                this.cerrarModal();
+                this.getUsuario();
+                this.alertas.alertsuccess();
+              },
+              (error) => {
+                console.log(error)
+                this.alertas.alerterror();
+              }
+            )
+          }else{
+            this.alertas.alertcampos()
           }
-        )
-      }else{
-        this.alertas.alertcampos()
+        }else{
+          //Si el legajo ya existe en bd no permite crear registro, y le pasamos el valor null al input
+          // de legajo para que lo blanque y obligue al usuario a poner otro y poder registrar con exito
+          this.alertas.alertActivoExistente();
+          this.formularioRegistro.controls['legajo'].reset();
+        }
+
       }
+    )
+
+
   }
+
   UsuarioId(usuario:Usuario,content : any): void {
     this.asignarValoresFormulario();
     this.btnEditar = false;
@@ -176,6 +193,7 @@ export class UsuarioComponent implements OnInit {
     this.modalService.open(content,{size:'lg'});
     this.servicioUsuario.getUsuarioId(usuario).subscribe(
       (res) => {
+
         this.formularioRegistro.patchValue({
           id: res[0].id,
           legajo: res[0].legajo,

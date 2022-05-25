@@ -15,7 +15,7 @@ export class AlertService {
   }
   // Alert asistencia
   alertActivoExistente() {
-    Swal.fire('"El Activo Existe en Base de Datos')
+    Swal.fire('El Registro ya Existe en Base de Datos')
   }
 
   // Alerta Edicion OK
@@ -61,54 +61,12 @@ export class AlertService {
     })
   }
 
-  alerteLogin(){
+  alertLogin(){
     Swal.fire(
       'Es un usuario valido?',
       'Verifique Usuario y Contraseña',
       'question'
     )
-  }
-  alertDescuentoCajaChicaOk(){
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Se registra compra y descuenta Saldo de CAJA CHICA',
-      showConfirmButton: false,
-      timer: 3000
-    })
-  }
-  alertDescuentoCajaChicaError(){
-    Swal.fire({
-      position: 'center',
-      icon: 'error',
-      title: 'El monto supera Saldo de Caja Chica',
-      showConfirmButton: false,
-      timer: 3000
-    })
-  }
-  alertDescuentoCajaChicaDevolucion(){
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Se devulve Saldo',
-      showConfirmButton: false,
-      timer: 3000
-    })
-  }
-  alertStock(){
-    Swal.fire('El stock es insuficiente')
-  }
-
-  alertLogin(){
-    Swal.fire({
-      title: 'Error de Credenciales',
-      showClass: {
-        popup: 'animate__animated animate__fadeInDown'
-      },
-      hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-      }
-    })
   }
 
   /* Alert eliminar el

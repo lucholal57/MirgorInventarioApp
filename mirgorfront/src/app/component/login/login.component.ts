@@ -39,7 +39,10 @@ export class LoginComponent implements OnInit {
   {
     this.router.navigateByUrl('dashboard')
   }
-  else{this.alertas.alertLogin()}
+  else{
+    this.alertas.alertLogin()
+    this.password=""
+    }
 
 }
 

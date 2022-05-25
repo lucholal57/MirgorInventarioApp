@@ -57,6 +57,7 @@
       <div class="col-sm-6">
         <label style="color:black" for="nombre">Puesto</label>
         <select class="form-control" name="puesto" id="puesto" formControlName="puesto">
+          <option value="REPARACION">REPARACION</option>
           <option value="VALIDACION">VALIDACION</option>
           <option value="OCV-MAIN">OCV-MAIN</option>
           <option value="CURRENT">CURRENT</option>
@@ -75,7 +76,7 @@
           <option value="AFIP">AFIP</option>
           <option value="BOXING">BOXING</option>
           <option value="MASTER">MASTER</option>
-          <option value="REPARACION">REPARACION</option>
+
         </select>
 
     </div>
@@ -107,7 +108,7 @@
 </div>
 
     <div class="container-fluid" id="contenedorTabla">
-        <h6 align="center"  style="color: aliceblue;" >UBICACIONES PRODUCTIVAS</h6>
+        <h4 align="center"  style="color: aliceblue;" >UBICACIONES PRODUCTIVAS</h4>
         <hr>
 
             <div class="btn-group">
@@ -131,7 +132,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="text-center" *ngFor="let locacion_productiva of listadoLocacionesProductivas  | paginate: { itemsPerPage: 14, currentPage: p }">
+            <tr class="text-center" *ngFor="let locacion_productiva of listadoLocacionesProductivas  | paginate: { itemsPerPage: 9, currentPage: p }">
 
               <td scope="row" *ngIf="locacion_productiva.activo_industrial != null">
                 <ul>
