@@ -41,4 +41,7 @@ export class ActivoService {
   busquedaActivo(buscar_activo:string): Observable<Activo[]>{
     return  this.http.get<Activo[]>(this.url_prod + 'activo/buscar/' + buscar_activo, httpOption );
   }
+  validacionInventario(validar_inventario:string): Observable<Activo[]>{
+    return this.http.get<Activo[]>(this.url_prod + 'activo/validar/' + validar_inventario, httpOption );
+  }
 }

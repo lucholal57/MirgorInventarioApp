@@ -75,24 +75,35 @@ export class ActivoComponent implements OnInit {
     )
   }
   registrarActivos():void{
-    if(this.formularioRegistro.valid)
-    {
-      this.servicioActivo.registrarActivo(this.formularioRegistro.value).subscribe(
-        (res) => {
-          console.log(res)
-          this.cerrarModal();
-          this.getActivos();
-          this.alertas.alertsuccess();
-        },
-        (error) => {
-          console.log(error)
-          this.alertas.alerterror();
+    this.servicioActivo.validacionInventario(this.formularioRegistro.value.inventario).subscribe(
+      (res) => {
+        if(res.length==0)
+        {
+          if(this.formularioRegistro.valid)
+          {
+            this.servicioActivo.registrarActivo(this.formularioRegistro.value).subscribe(
+              (res) => {
+                console.log(res)
+                this.cerrarModal();
+                this.getActivos();
+                this.alertas.alertsuccess();
+              },
+              (error) => {
+                console.log(error)
+                this.alertas.alerterror();
+              }
+            )
+          }
+          else{
+            this.alertas.alertcampos();
+          }
+        }else{
+          this.alertas.alertActivoExistente();
+          this.formularioRegistro.controls['inventario'].reset();
         }
-      )
-    }
-    else{
-      this.alertas.alertcampos();
-    }
+      }
+    )
+
 
   }
 

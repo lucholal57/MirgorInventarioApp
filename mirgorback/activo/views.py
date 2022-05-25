@@ -68,6 +68,13 @@ def BusquedaActivoIndustrialInventario(request, buscar_activo):
     serializer = ActivoIndustrialSerializer(activo, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+
+def ValidacionPorInventarioIndustrial(request,validar_inventario):
+    activo_industrial = ActivoIndustrial.objects.filter(inventario = validar_inventario)
+    serializer = ActivoIndustrialSerializer(activo_industrial, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 # VIEW DE Activo Celular
 @api_view(['GET' , 'POST'])
@@ -123,6 +130,13 @@ def ActivoCelularBuscarPorId(request, pk=None):
 def BusquedaActivoCelularImei(request, buscar_activo):
     activo = ActivoCelular.objects.filter(imei__icontains = buscar_activo)
     serializer = ActivoCelularSerializer(activo, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+
+def ValidacionPorInventarioCelular(request,validar_inventario):
+    activo_celular = ActivoCelular.objects.filter(inventario = validar_inventario)
+    serializer = ActivoCelularSerializer(activo_celular, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
@@ -182,6 +196,13 @@ def BusquedaActivoNotebookInventario(request, buscar_activo):
     serializer = ActivoNotebookSerializer(activo, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+
+def ValidacionPorInventarioNotebook(request,validar_inventario):
+    activo_notebook = ActivoNotebook.objects.filter(inventario = validar_inventario)
+    serializer = ActivoNotebookSerializer(activo_notebook, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
       
 # VIEW DE Activo General
 @api_view(['GET' , 'POST'])
@@ -239,6 +260,13 @@ def BusquedaActivoGeneralInventario(request, buscar_activo):
     serializer = ActivoGeneralSerializer(activo, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+
+def ValidacionPorInventarioGeneral(request,validar_inventario):
+    activo_general = ActivoGeneral.objects.filter(inventario = validar_inventario)
+    serializer = ActivoGeneralSerializer(activo_general, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
 # VIEW DE Activo Standar
 @api_view(['GET' , 'POST'])
 
@@ -293,6 +321,13 @@ def ActivoStandarBuscarPorId(request, pk=None):
 def BusquedaActivoStandarInventario(request, buscar_activo):
     activo = ActivoStandar.objects.filter(inventario__icontains = buscar_activo)
     serializer = ActivoStandarSerializer(activo, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+
+def ValidacionPorInventarioStandar(request,validar_inventario):
+    activo_standar = ActivoStandar.objects.filter(inventario = validar_inventario)
+    serializer = ActivoStandarSerializer(activo_standar, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
