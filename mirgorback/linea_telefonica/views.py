@@ -61,3 +61,9 @@ def BusquedaLineaTelefonicaNumero(request, buscar_linea_telefonica):
     locacion = LineaTelefonica.objects.filter(numero__icontains = buscar_linea_telefonica)
     serializer = LineaTelefonicaSerializer(locacion, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def ValidacionLineaTelefonica(request, validar_linea_telefonica):
+    linea_telefonica= LineaTelefonica.objects.filter(numero= validar_linea_telefonica)
+    serializer = LineaTelefonicaSerializer(linea_telefonica, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)

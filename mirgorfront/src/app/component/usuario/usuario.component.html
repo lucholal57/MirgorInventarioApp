@@ -145,7 +145,7 @@
   <div class="btn-group">
     <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
     <button class="btn btn-outline-primary" (click)="busquedaUsuario()"   style="margin-right: 5px;" >Buscar</button>
-    <input type="text" placeholder="Nombre"
+    <input type="text" placeholder="Nombre" (change)="p=1"
       class="form-control" [(ngModel)]="buscar_usuario">
       <button class="btn btn-outline-danger" (click)="cancelarbusquedaUsuario()" style="margin-left: 5px;" >Cancelar</button>
   </div>
@@ -157,6 +157,7 @@
   <thead class="thead-light">
 
       <tr class="text-center" >
+          <th scope="col">ID</th>
           <th scope="col">Legajo</th>
           <th scope="col">Celular</th>
           <th scope="col">Notebook</th>
@@ -172,6 +173,7 @@
   </thead>
   <tbody>
       <tr class="text-center"*ngFor="let usuario of listadoUsuario | paginate: { itemsPerPage: 7, currentPage: p }" >
+        <td scope="row">{{usuario.id}}</td>
         <th scope="row">{{usuario.legajo}}</th>
           <th scope="row"  *ngIf="usuario.activo_celular != null">
             <ul>

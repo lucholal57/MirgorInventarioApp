@@ -65,26 +65,37 @@ export class LineaTelefonicaComponent implements OnInit {
   }
 
   registrarLineaTelefonica(): void{
-    if (this.formularioRegistro.valid)
-    {
-      this.servicioLineaTelefonica.registrarLineaTelefonica(this.formularioRegistro.value).subscribe(
-        (res) => {
-          console.log(res)
-          this.cerrarModal();
-          this.getLineaTelefonica();
-          this.alertas.alertsuccess();
-        },
-        (error) => {
-          console.log(error)
-          this.alertas.alerterror();
+    this.servicioLineaTelefonica.validacionLineaTelefonica(this.formularioRegistro.value.numero).subscribe(
+      (res) => {
+        if(res.length==0){
+          if (this.formularioRegistro.valid)
+          {
+            this.servicioLineaTelefonica.registrarLineaTelefonica(this.formularioRegistro.value).subscribe(
+              (res) => {
+                console.log(res)
+                this.cerrarModal();
+                this.getLineaTelefonica();
+                this.alertas.alertsuccess();
+              },
+              (error) => {
+                console.log(error)
+                this.alertas.alerterror();
+              }
+            )
+          }else{
+            this.alertas.alertcampos();
+          }
+        }else{
+          this.alertas.alertActivoExistente();
+          this.formularioRegistro.controls['numero'].reset();
         }
-      )
-    }else{
-      this.alertas.alertcampos();
-    }
+      }
+    )
+
   }
 
   LineaTelefonicaId(linea_telefonica: LineaTelefonica, content : any): void {
+    this.formularioRegistro.controls['numero'].disable();
     this.btnEditar = false;
     this.btnGuardar = true;
     this.modalService.open(content,{size:'lg'});
@@ -103,18 +114,19 @@ export class LineaTelefonicaComponent implements OnInit {
   }
 
   editarLineaTelefonicaId(): void{
-    this.servicioLineaTelefonica.editarLineaTelefonica(this.formularioRegistro.value, this.formularioRegistro.value.id).subscribe(
-      (res) => {
-        console.log(res)
-        this.alertas.alertedit();
-        this.getLineaTelefonica();
-        this.cerrarModal();
-      },
-      (error) => {
-        console.log(error)
-        this.alertas.alerterror();
-      }
-    );
+    this.formularioRegistro.controls['numero'].enable();
+     this.servicioLineaTelefonica.editarLineaTelefonica(this.formularioRegistro.value, this.formularioRegistro.value.id).subscribe(
+       (res) => {
+         console.log(res)
+         this.alertas.alertedit();
+         this.getLineaTelefonica();
+         this.cerrarModal();
+         },
+        (error) => {
+          console.log(error)
+          this.alertas.alerterror();
+            }
+          );
   }
 
    // Eliminar alumno enviado por id

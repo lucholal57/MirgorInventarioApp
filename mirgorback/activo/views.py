@@ -135,7 +135,7 @@ def BusquedaActivoCelularImei(request, buscar_activo):
 @api_view(['GET'])
 
 def ValidacionPorInventarioCelular(request,validar_inventario):
-    activo_celular = ActivoCelular.objects.filter(inventario = validar_inventario)
+    activo_celular = ActivoCelular.objects.filter(imei = validar_inventario)
     serializer = ActivoCelularSerializer(activo_celular, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 

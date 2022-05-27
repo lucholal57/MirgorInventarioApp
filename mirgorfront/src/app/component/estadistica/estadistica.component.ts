@@ -10,6 +10,8 @@ import { ActivoGeneral } from 'src/app/entidades/activos/activo_general/activo-g
 import { ActivoGeneralService } from 'src/app/services/activos/activo_general/activo-general.service';
 import { ActivoStandar } from 'src/app/entidades/activos/activo_standar/activo-standar';
 import { ActivoStandarService } from 'src/app/services/activos/activo_standar/activo-standar.service';
+import { LineaTelefonica } from 'src/app/entidades/linea_telefonica/linea-telefonica';
+import { LineaTelefonicaService } from 'src/app/services/linea_telefonica/linea-telefonica.service';
 @Component({
   selector: 'app-estadistica',
   templateUrl: './estadistica.component.html',
@@ -22,15 +24,19 @@ export class EstadisticaComponent implements OnInit {
   listadoActivoStandar : ActivoStandar[] =[];
   listadoActivoCelular : ActivoCelular[]=[];
   listadoActivoNotebook : ActivoNotebook[]=[];
+  listadoLineaTelefonica : LineaTelefonica[] =[];
+  activos=[];
   constructor(
     private servicioActivoCelular: ActivoCelularService,
     private servicioActivoNotebook: ActivoNotebookService,
     private servicioActivoGeneral: ActivoGeneralService,
     private servicioActivo : ActivoService,
-    private servicioActivoStandar : ActivoStandarService
+    private servicioActivoStandar : ActivoStandarService,
+    private servicioLineaTelefonica: LineaTelefonicaService,
   ) { }
 
   ngOnInit(): void {
+    this.getActivosTotales();
   }
 
   single: [];
@@ -65,9 +71,53 @@ export class EstadisticaComponent implements OnInit {
     this.servicioActivo.getActivos().subscribe(
       (res) => {
         this.listadoActivoIndustrial  = res;
+        this.activos.push(new Object({name:'ACTIVO INDUSTRIAL' , value: this.listadoActivoIndustrial.length}));
+        this.activos=[...this.activos]
+        console.log(this.activos)
       }
     )
-  }
+    this.servicioActivoCelular.getActivoCelular().subscribe(
+      (res) => {
+        this.listadoActivoCelular  = res;
+        this.activos.push(new Object({name:'ACTIVO CELULAR' , value: this.listadoActivoCelular.length}));
+        this.activos=[...this.activos]
+        console.log(this.activos)
+      }
+    )
+    this.servicioActivoNotebook.getActivoNotebook().subscribe(
+      (res) => {
+        this.listadoActivoNotebook = res;
+        this.activos.push(new Object({name:'ACTIVO NOTEBOOK' , value: this.listadoActivoNotebook.length}));
+        this.activos=[...this.activos]
+        console.log(this.activos)
+      }
+    )
+    this.servicioActivoGeneral.getActivoGeneral().subscribe(
+      (res) => {
+        this.listadoActivoGeneral = res;
+        this.activos.push(new Object({name:'ACTIVO GENERAL' , value: this.listadoActivoGeneral.length}));
+        this.activos=[...this.activos]
+        console.log(this.activos)
+      }
+    )
+    this.servicioActivoStandar.getActivoStandar().subscribe(
+      (res) => {
+        this.listadoActivoStandar = res;
+        this.activos.push(new Object({name:'ACTIVO STANDAR' , value: this.listadoActivoStandar.length}));
+        this.activos=[...this.activos]
+        console.log(this.activos)
+      }
+    )
+
+  this.servicioLineaTelefonica.getLineaTelefonica().subscribe(
+    (res) => {
+      this.listadoLineaTelefonica = res;
+      this.activos.push(new Object({name:'LINEA TEL.' , value: this.listadoLineaTelefonica.length}));
+      this.activos=[...this.activos]
+      console.log(this.activos)
+    }
+  )
+}
   data=[
     {
       "name": "IMEICHECK",

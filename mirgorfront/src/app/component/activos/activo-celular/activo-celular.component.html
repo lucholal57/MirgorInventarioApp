@@ -105,6 +105,7 @@
     <thead class="thead-light">
 
         <tr class="text-center">
+            <th scope="col">ID</th>
             <th   scope="col">IMEI</th>
             <th   scope="col">Marca</th>
             <th   scope="col">Modelo</th>
@@ -115,6 +116,7 @@
     </thead>
     <tbody>
         <tr class="text-center"*ngFor="let activo of listadoActivoCelular | paginate: { itemsPerPage: 14, currentPage: p }" >
+            <td scope="row">{{activo.id}}</td>
             <td scope="row">{{activo.imei}}</td>
             <td scope="row">{{activo.marca}}</td>
             <td scope="row">{{activo.modelo}}</td>

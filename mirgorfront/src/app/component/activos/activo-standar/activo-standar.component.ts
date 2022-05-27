@@ -1,103 +1,112 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AlertService} from '../../../services/alert/alert.service';
+import { AlertService } from '../../../services/alert/alert.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { ActivoStandar } from 'src/app/entidades/activos/activo_standar/activo-standar';
 import { ActivoStandarService } from 'src/app/services/activos/activo_standar/activo-standar.service';
 
-
 @Component({
   selector: 'app-activo-standar',
   templateUrl: './activo-standar.component.html',
-  styleUrls: ['./activo-standar.component.css']
+  styleUrls: ['./activo-standar.component.css'],
 })
 export class ActivoStandarComponent implements OnInit {
-  p:number = 1;
+  p: number = 1;
   //Array de activos celulares
   listadoActivoStandar: ActivoStandar[] = [];
   //Buscar activo
-  buscar_activo = "";
+  buscar_activo = '';
   // Variables Botones
   public btnGuardar = false;
   public btnEditar = false;
   public btnCancelar = false;
 
   constructor(
-    private servicioActivoStandar : ActivoStandarService,
+    private servicioActivoStandar: ActivoStandarService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     config: NgbModalConfig,
-    private alertas : AlertService,
-  ) { }
+    private alertas: AlertService
+  ) {}
 
   ngOnInit(): void {
     this.getActivoStandar();
   }
 
   //Formulario reactivo para el registro de datos+
-  formularioRegistro= this.formBuilder.group({
-    id:[''],
-    inventario:['',[Validators.required]],
-    descripcion:['',[Validators.required]],
-    marca:['',[Validators.required]],
-    modelo:['',[Validators.required]],
-    serie:['',[Validators.required]],
-    hostname:['',[Validators.required]],
-    ip:['',[Validators.required]],
-    mac:['',[Validators.required]],
-    area:['',[Validators.required]],
-    estado:['',[Validators.required]],
-  })
+  formularioRegistro = this.formBuilder.group({
+    id: [''],
+    inventario: ['', [Validators.required]],
+    descripcion: ['', [Validators.required]],
+    marca: ['', [Validators.required]],
+    modelo: ['', [Validators.required]],
+    serie: ['', [Validators.required]],
+    hostname: ['', [Validators.required]],
+    ip: ['', [Validators.required]],
+    mac: ['', [Validators.required]],
+    area: ['', [Validators.required]],
+    estado: ['', [Validators.required]],
+  });
 
   //Open funcion para abrir ventana modal
-  open(content:any) {
-    this.modalService.open(content,{size:'lg',backdrop: 'static'});
-    this.btnGuardar=false;
-    this.btnEditar=true;
+  open(content: any) {
+    this.modalService.open(content, { size: 'lg', backdrop: 'static' });
+    this.btnGuardar = false;
+    this.btnEditar = true;
   }
   // Funcion para cerrar ventana modal
-  cerrarModal(): void{
+  cerrarModal(): void {
     this.modalService.dismissAll();
     this.formularioRegistro.reset();
   }
 
   //Get Activos Standar
-  getActivoStandar():void {
+  getActivoStandar(): void {
     this.servicioActivoStandar.getActivoStandar().subscribe(
       (res) => {
         this.listadoActivoStandar = res;
       },
       (error) => {
-        console.log(error)
+        console.log(error);
       }
-    )
+    );
   }
 
   registrarActivoStandar(): void {
-    console.log(this.formularioRegistro.value)
-    if(this.formularioRegistro.valid)
-    {
-      this.servicioActivoStandar.registrarActivoStandar(this.formularioRegistro.value).subscribe(
-        (res) => {
-          console.log(res)
-          this.cerrarModal();
-          this.getActivoStandar();
-          this.alertas.alertsuccess();
-        },
-        (error) => {
-          console.log(error)
+    this.servicioActivoStandar
+      .validacionInventario(this.formularioRegistro.value.inventario)
+      .subscribe((res) => {
+        if (res.length == 0) {
+          if (this.formularioRegistro.valid) {
+            this.servicioActivoStandar
+              .registrarActivoStandar(this.formularioRegistro.value)
+              .subscribe(
+                (res) => {
+                  console.log(res);
+                  this.cerrarModal();
+                  this.getActivoStandar();
+                  this.alertas.alertsuccess();
+                },
+                (error) => {
+                  console.log(error);
+                }
+              );
+          } else {
+            this.alertas.alertcampos();
+          }
+        } else {
+          this.alertas.alertActivoExistente();
+          this.formularioRegistro.controls['inventario'].reset();
         }
-      )
-    }else {
-      this.alertas.alertcampos();
-    }
+      });
   }
 
-  ActivoStandarId(activo_standar: ActivoStandar, content : any): void {
+  ActivoStandarId(activo_standar: ActivoStandar, content: any): void {
+    this.formularioRegistro.controls['inventario'].disable();
     this.btnEditar = false;
     this.btnGuardar = true;
-    this.modalService.open(content,{size:'lg'});
+    this.modalService.open(content, { size: 'lg' });
     this.servicioActivoStandar.getActivoStandarId(activo_standar).subscribe(
       (res) => {
         this.formularioRegistro.patchValue({
@@ -115,28 +124,32 @@ export class ActivoStandarComponent implements OnInit {
         });
       },
       (error) => {
-        console.log(error)
+        console.log(error);
       }
-    )
+    );
   }
 
   editarActivoStandar(): void {
-    this.servicioActivoStandar.editarActivoStandar(this.formularioRegistro.value, this.formularioRegistro.value.id).subscribe(
-      (res) => {
-        console.log(res)
-        this.alertas.alertedit();
-        this.getActivoStandar();
-        this.cerrarModal();
-      },
-      (error) => {
-        console.log(error)
-        this.alertas.alerterror();
-      }
-    )
-
+    this.formularioRegistro.controls['inventario'].enable();
+    this.servicioActivoStandar
+      .editarActivoStandar(
+        this.formularioRegistro.value,
+        this.formularioRegistro.value.id
+      )
+      .subscribe(
+        (res) => {
+          this.alertas.alertedit();
+          this.getActivoStandar();
+          this.cerrarModal();
+        },
+        (error) => {
+          console.log(error);
+          this.alertas.alerterror();
+        }
+      );
   }
 
-  eliminarActivoStandar(activo_standar:ActivoStandar): void {
+  eliminarActivoStandar(activo_standar: ActivoStandar): void {
     Swal.fire({
       title: 'Esta seguro de eliminar??',
       text: 'No podra revertir el cambio!',
@@ -147,47 +160,46 @@ export class ActivoStandarComponent implements OnInit {
       confirmButtonText: 'Si, Eliminar!',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.servicioActivoStandar.eliminarActivoStandar(activo_standar.id).subscribe(
-          (res) => {
-          this.getActivoStandar();
-    });
+        this.servicioActivoStandar
+          .eliminarActivoStandar(activo_standar.id)
+          .subscribe((res) => {
+            this.getActivoStandar();
+          });
         Swal.fire('Eliminado!', 'Se eleccion ha sido eliminada.', 'success');
       }
-
     });
   }
 
   // Funcion cancelar solo para borrar los valores de formulario reactivo
-cancelar(): void{
-  this.formularioRegistro.reset();
-}
-
-// Busqueda de acompañantes por alumno
-busquedaActivo(): void{
-  if (this.buscar_activo== ""){
-    this.alertas.alertcampos();
-  }else{
-    this.servicioActivoStandar.busquedaActivo(this.buscar_activo).subscribe(
-      (res) => {
-        console.log(res)
-        if (res.length != 0){
-          this.alertas.alertLoading();
-        }else{
-          this.alertas.alertLoadingError();
-        }
-        this.listadoActivoStandar= res;
-      },
-      (error) => {
-        this.alertas.alerterror();
-      }
-    )
+  cancelar(): void {
+    this.formularioRegistro.reset();
   }
-}
 
-// Funcion para cancelar busqueda por alumno
-cancelarbusquedaActivo(): void {
-  this.getActivoStandar();
-  this.buscar_activo = "";
-}
+  // Busqueda de acompañantes por alumno
+  busquedaActivo(): void {
+    if (this.buscar_activo == '') {
+      this.alertas.alertcampos();
+    } else {
+      this.servicioActivoStandar.busquedaActivo(this.buscar_activo).subscribe(
+        (res) => {
+          console.log(res);
+          if (res.length != 0) {
+            this.alertas.alertLoading();
+          } else {
+            this.alertas.alertLoadingError();
+          }
+          this.listadoActivoStandar = res;
+        },
+        (error) => {
+          this.alertas.alerterror();
+        }
+      );
+    }
+  }
 
+  // Funcion para cancelar busqueda por alumno
+  cancelarbusquedaActivo(): void {
+    this.getActivoStandar();
+    this.buscar_activo = '';
+  }
 }

@@ -39,4 +39,7 @@ export class ActivoGeneralService {
   busquedaActivo(buscar_activo:string): Observable<ActivoGeneral[]>{
     return  this.http.get<ActivoGeneral[]>(this.url_prod + 'activo_general/buscar/' + buscar_activo, httpOption );
   }
+  validacionInventario(validar_inventario:string): Observable<ActivoGeneral[]>{
+    return this.http.get<ActivoGeneral[]>(this.url_prod + 'activo_general/validar/' + validar_inventario, httpOption );
+  }
 }

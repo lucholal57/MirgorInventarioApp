@@ -38,6 +38,7 @@ export class ActivoStandarService {
   busquedaActivo(buscar_activo:string): Observable<ActivoStandar[]>{
     return  this.http.get<ActivoStandar[]>(this.url_prod + 'activo_standar/buscar/' + buscar_activo, httpOption );
   }
-
-
+  validacionInventario(validar_inventario:string): Observable<ActivoStandar[]>{
+    return this.http.get<ActivoStandar[]>(this.url_prod + 'activo_standar/validar/' + validar_inventario, httpOption );
+  }
 }

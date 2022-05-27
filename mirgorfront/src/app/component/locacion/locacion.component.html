@@ -160,6 +160,7 @@
         <thead class="thead-light">
 
             <tr class="text-center">
+                <th scope="col">ID</th>
                 <th scope="col">Inventario/Marca</th>
                 <th scope="col">Sitio</th>
                 <th scope="col">Area</th>
@@ -171,7 +172,7 @@
         </thead>
         <tbody>
             <tr class="text-center" *ngFor="let locacion of listadoLocaciones  | paginate: { itemsPerPage: 14, currentPage: p }">
-
+              <td scope="row">{{locacion.id}}</td>
               <td scope="row" *ngIf="locacion.activo_celular != null" >
                 <ul>
                   <li> {{locacion.activo_celular.imei}} </li>

@@ -39,5 +39,8 @@ export class LineaTelefonicaService {
   busquedaLineaTelefonica(buscar_linea_telefonica:string): Observable<LineaTelefonica[]>{
     return  this.http.get<LineaTelefonica[]>(this.url_prod + 'linea_telefonica/buscar/' + buscar_linea_telefonica, httpOption );
   }
+  validacionLineaTelefonica(validar_linea_telefonica:string): Observable<LineaTelefonica[]>{
+    return  this.http.get<LineaTelefonica[]>(this.url_prod + 'linea_telefonica/validar/' + validar_linea_telefonica, httpOption)
+  }
 
 }

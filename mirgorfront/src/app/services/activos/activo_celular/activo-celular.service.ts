@@ -39,6 +39,10 @@ export class ActivoCelularService {
   busquedaActivo(buscar_activo:string): Observable<ActivoCelular[]>{
     return  this.http.get<ActivoCelular[]>(this.url_prod + 'celular/buscar/' + buscar_activo, httpOption );
   }
+  validacionInventario(validar_inventario:string): Observable<ActivoCelular[]>{
+    return this.http.get<ActivoCelular[]>(this.url_prod + 'celular/validar/' + validar_inventario, httpOption );
+  }
+
 
 }
 

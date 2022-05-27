@@ -112,7 +112,7 @@
           <div class="col-sm-6">
             <label style="color:black" for="nomber">IP</label>
           <input
-            type="number"
+            type="text"
             name="ip"
             id="ip"
             class="form-control"
@@ -193,6 +193,7 @@
     <thead class="thead-light">
 
         <tr class="text-center">
+            <th scope="col">ID</th>
             <th   scope="col">Inventario</th>
             <th   scope="col">Descripcion</th>
             <th   scope="col">Marca</th>
@@ -209,6 +210,7 @@
     </thead>
     <tbody>
         <tr class="text-center"*ngFor="let activo of listadoActivoStandar | paginate: { itemsPerPage: 14, currentPage: p }" >
+            <td scope="row">{{activo.id}}</td>
             <td scope="row">{{activo.inventario}}</td>
             <td scope="row">{{activo.descripcion}}</td>
             <td scope="row">{{activo.marca}}</td>

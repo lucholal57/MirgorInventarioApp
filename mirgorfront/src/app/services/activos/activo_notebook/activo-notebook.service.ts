@@ -38,4 +38,7 @@ export class ActivoNotebookService {
   busquedaActivo(buscar_activo:string): Observable<ActivoNotebook[]>{
     return  this.http.get<ActivoNotebook[]>(this.url_prod + 'notebook/buscar/' + buscar_activo, httpOption );
   }
+  validacionInventario(validar_inventario:string): Observable<ActivoNotebook[]>{
+    return this.http.get<ActivoNotebook[]>(this.url_prod + 'notebook/validar/' + validar_inventario, httpOption );
+  }
 }

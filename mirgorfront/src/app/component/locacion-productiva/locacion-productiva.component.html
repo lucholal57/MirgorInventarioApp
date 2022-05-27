@@ -122,6 +122,7 @@
         <thead class="thead-light">
 
             <tr class="text-center">
+                <th scope="col">ID</th>
                 <th scope="col">Inventario/Marca</th>
                 <th scope="col">Sitio</th>
                 <th scope="col">Linea</th>
@@ -133,7 +134,7 @@
         </thead>
         <tbody>
             <tr class="text-center" *ngFor="let locacion_productiva of listadoLocacionesProductivas  | paginate: { itemsPerPage: 9, currentPage: p }">
-
+              <td scope="row">{{locacion_productiva.id}}</td>
               <td scope="row" *ngIf="locacion_productiva.activo_industrial != null">
                 <ul>
                   <li>{{locacion_productiva.activo_industrial.inventario}}</li>

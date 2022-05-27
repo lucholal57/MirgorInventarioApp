@@ -14,7 +14,7 @@
       <div class="d-flex p-2">
         <div class="row">
             <div class="col">
-                <ngx-charts-bar-vertical [view]="vertical" [scheme]="colorScheme" [results]="data" [gradient]="gradient"
+                <ngx-charts-bar-vertical [view]="vertical" [scheme]="colorScheme" [results]="activos" [gradient]="gradient"
                     [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
                     [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
                 </ngx-charts-bar-vertical>
@@ -23,7 +23,7 @@
             <div class="col" id="ngx-c">
                 <ngx-charts-advanced-pie-chart  [view]="pie_advance"
                 [scheme]="colorScheme"
-                [results]="data2"
+                [results]="activos"
                 [gradient]="gradient">
                 </ngx-charts-advanced-pie-chart>
 
@@ -33,7 +33,7 @@
     <div class="d-flex p-2">
         <div class="row">
             <div class="col">
-                <ngx-charts-bar-horizontal [view]="horizontal" [scheme]="colorScheme" [results]="data3" [gradient]="gradient"
+                <ngx-charts-bar-horizontal [view]="horizontal" [scheme]="colorScheme" [results]="activos" [gradient]="gradient"
                     [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
                     [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
                 </ngx-charts-bar-horizontal>
@@ -42,7 +42,7 @@
             <div class="col">
                 <ngx-charts-pie-grid   [view]="view"
                 [scheme]="colorScheme"
-                [results]="data4">
+                [results]="activos">
                 </ngx-charts-pie-grid>
 
             </div>
