@@ -19,7 +19,7 @@ export class UsuarioService {
   constructor( private http : HttpClient) { }
 
   getUsuario(): Observable<Usuario[]>{
-    return this.http.get<Usuario[]>(this.url + 'usuario' , httpOption)
+    return this.http.get<Usuario[]>(this.url_prod + 'usuario' , httpOption)
   }
   registrarUsuario(formularioregistro:any):Observable<Usuario[]>{
     return this.http.post<Usuario[]>(this.url_prod + 'usuario', formularioregistro, httpOption)

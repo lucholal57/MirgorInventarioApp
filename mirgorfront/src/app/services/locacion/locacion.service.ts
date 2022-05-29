@@ -6,7 +6,7 @@ import { Locacion } from 'src/app/entidades/locacion/locacion';
 // Constante de los headers para los encabezados
 const httpOption = {
   headers: new HttpHeaders({ 'content-type' : 'application/json',
-                              }),
+                              'Authorization' : 'Token' +" "+ localStorage.getItem('token')}),
 }
 
 @Injectable({

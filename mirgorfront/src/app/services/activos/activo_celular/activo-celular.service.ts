@@ -6,7 +6,7 @@ import {ActivoCelular} from 'src/app/entidades/activos/activo_celular/activo-cel
 // Constante de los headers para los encabezados
 const httpOption = {
   headers: new HttpHeaders({ 'content-type' : 'application/json',
-                              }),
+                              'Authorization' : 'Token' +" "+ localStorage.getItem('token')}),
 }
 
 

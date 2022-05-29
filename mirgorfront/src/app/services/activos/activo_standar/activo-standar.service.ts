@@ -6,7 +6,7 @@ import { ActivoStandar } from '../../../entidades/activos/activo_standar/activo-
 // Constante de los headers para los encabezados
 const httpOption = {
   headers: new HttpHeaders({ 'content-type' : 'application/json',
-                              }),
+                              'Authorization' : 'Token' +" "+ localStorage.getItem('token')}),
 }
 
 @Injectable({
