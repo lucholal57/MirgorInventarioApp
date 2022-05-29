@@ -7,9 +7,8 @@ from locacion_productiva.models import LocacionProductiva
 from locacion_productiva.serializer import LocacionProductivaSerializer,LocacionProductivaPostPutSerializer
 
 # Create your views here.
-
-@api_view(['GET','POST'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET','POST'])
 def LocacionProductivaListado(request):
     #Listado
     if request.method == 'GET':
@@ -27,8 +26,8 @@ def LocacionProductivaListado(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #Busqueda por id para la edicion y eliminacion
-@api_view(['GET','PUT','DELETE'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET','PUT','DELETE'])
 def LocacionProductivaBuscarPorId(request, pk=None):
     #Busqueda sin FIRST
     locacion_productiva = LocacionProductiva.objects.filter(id=pk)

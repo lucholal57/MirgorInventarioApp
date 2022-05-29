@@ -8,9 +8,8 @@ from locacion.serializer import LocacionSerializer,LocacionPostPutSerializer
  
 
 # Create your views here.
-
-@api_view(['GET','POST'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET','POST'])
 def LocacionListado(request):
     #List
     if request.method == 'GET':
@@ -27,8 +26,8 @@ def LocacionListado(request):
          else:
              return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 #Busqueda por id para la edicion y eliminacion
-@api_view(['GET','PUT','DELETE'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET','PUT','DELETE'])
 def LocacionBuscarPorId(request,pk=None):
     #Busqueda sin FIRST
     locacion = Locacion.objects.filter(id=pk)
@@ -54,9 +53,8 @@ def LocacionBuscarPorId(request,pk=None):
     #Si El objeto no existe retornamos un mensaje
     return Response({'message' : 'No se ha encontrado un locacion con esos datos'},status=status.HTTP_400_BAD_REQUEST)
 
-    
+@permission_classes((IsAuthenticated, ))    
 @api_view(['GET'])
-@permission_classes((IsAuthenticated, ))
 def BusquedaLocacionArea(request, buscar_locacion):
     locacion = Locacion.objects.filter(area__icontains = buscar_locacion)
     serializer = LocacionSerializer(locacion, many = True)

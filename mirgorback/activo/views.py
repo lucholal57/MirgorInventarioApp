@@ -13,8 +13,8 @@ ActivoStandarSerializer)
 # Create your views here.
 
 # VIEW DE Activo insdustrial
-@api_view(['GET' , 'POST'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET' , 'POST'])
 def ActivoIndustrialListado(request):
     #Listado
     if request.method == 'GET':
@@ -32,8 +32,8 @@ def ActivoIndustrialListado(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #Funciones para la edicion y eliminacion, pasando el ID
-@api_view(['GET','PUT','DELETE'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET','PUT','DELETE'])
 def ActivoIndustrialBuscarPorId(request, pk=None):
     
     #Consulta para obtener el listado sin FIRST
@@ -60,16 +60,16 @@ def ActivoIndustrialBuscarPorId(request, pk=None):
     #Validacion si no se encontro el ActivoIndustrial
     return Response({'message': 'No se encontro ActivoIndustrial'}, status=status.HTTP_400_BAD_REQUEST)
 
-    #Busqueda de ActivoIndustrial por inventario
-@api_view(['GET'])
+#Busqueda de ActivoIndustrial por inventario
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET'])
 def BusquedaActivoIndustrialInventario(request, buscar_activo):
     activo = ActivoIndustrial.objects.filter(inventario__icontains = buscar_activo)
     serializer = ActivoIndustrialSerializer(activo, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-@api_view(['GET'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET'])
 def ValidacionPorInventarioIndustrial(request,validar_inventario):
     activo_industrial = ActivoIndustrial.objects.filter(inventario = validar_inventario)
     serializer = ActivoIndustrialSerializer(activo_industrial, many = True)
@@ -77,8 +77,8 @@ def ValidacionPorInventarioIndustrial(request,validar_inventario):
 
 
 # VIEW DE Activo Celular
-@api_view(['GET' , 'POST'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET' , 'POST'])
 def ActivoCelularListado(request):
     #Listado
     if request.method == 'GET':
@@ -96,8 +96,8 @@ def ActivoCelularListado(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #Funciones para la edicion y eliminacion, pasando el ID
-@api_view(['GET','PUT','DELETE'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET','PUT','DELETE'])
 def ActivoCelularBuscarPorId(request, pk=None):
     
     #Consulta para obtener el listado sin FIRST
@@ -125,15 +125,15 @@ def ActivoCelularBuscarPorId(request, pk=None):
     return Response({'message': 'No se encontro Celular'}, status=status.HTTP_400_BAD_REQUEST)
 
     #Busqueda de ActivoCelular por IMEI
-@api_view(['GET'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET'])
 def BusquedaActivoCelularImei(request, buscar_activo):
     activo = ActivoCelular.objects.filter(imei__icontains = buscar_activo)
     serializer = ActivoCelularSerializer(activo, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-@api_view(['GET'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET'])
 def ValidacionPorInventarioCelular(request,validar_inventario):
     activo_celular = ActivoCelular.objects.filter(imei = validar_inventario)
     serializer = ActivoCelularSerializer(activo_celular, many = True)
@@ -141,8 +141,8 @@ def ValidacionPorInventarioCelular(request,validar_inventario):
 
 
 # VIEW DE Activo Notebook
-@api_view(['GET' , 'POST'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET' , 'POST'])
 def ActivoNotebookListado(request):
     #Listado
     if request.method == 'GET':
@@ -160,8 +160,8 @@ def ActivoNotebookListado(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #Funciones para la edicion y eliminacion, pasando el ID
-@api_view(['GET','PUT','DELETE'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET','PUT','DELETE'])
 def ActivoNotebookBuscarPorId(request, pk=None):
     
     #Consulta para obtener el listado sin FIRST
@@ -189,15 +189,15 @@ def ActivoNotebookBuscarPorId(request, pk=None):
     return Response({'message': 'No se encontro Notebook'}, status=status.HTTP_400_BAD_REQUEST)
 
      #Busqueda de ActivoNotebook por inventario
-@api_view(['GET'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET'])
 def BusquedaActivoNotebookInventario(request, buscar_activo):
     activo = ActivoNotebook.objects.filter(inventario__icontains = buscar_activo)
     serializer = ActivoNotebookSerializer(activo, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-@api_view(['GET'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET'])
 def ValidacionPorInventarioNotebook(request,validar_inventario):
     activo_notebook = ActivoNotebook.objects.filter(inventario = validar_inventario)
     serializer = ActivoNotebookSerializer(activo_notebook, many = True)
@@ -205,8 +205,8 @@ def ValidacionPorInventarioNotebook(request,validar_inventario):
 
       
 # VIEW DE Activo General
-@api_view(['GET' , 'POST'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET' , 'POST'])
 def ActivoGeneralListado(request):
     #Listado
     if request.method == 'GET':
@@ -224,8 +224,8 @@ def ActivoGeneralListado(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #Funciones para la edicion y eliminacion, pasando el ID
-@api_view(['GET','PUT','DELETE'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET','PUT','DELETE'])
 def ActivoGeneralBuscarPorId(request, pk=None):
     
     #Consulta para obtener el listado sin FIRST
@@ -253,23 +253,23 @@ def ActivoGeneralBuscarPorId(request, pk=None):
     return Response({'message': 'No se encontro Activo'}, status=status.HTTP_400_BAD_REQUEST)
 
     #Busqueda de ActivoGeneral por inventario
-@api_view(['GET'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET'])
 def BusquedaActivoGeneralInventario(request, buscar_activo):
     activo = ActivoGeneral.objects.filter(inventario__icontains = buscar_activo)
     serializer = ActivoGeneralSerializer(activo, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-@api_view(['GET'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET'])
 def ValidacionPorInventarioGeneral(request,validar_inventario):
     activo_general = ActivoGeneral.objects.filter(inventario = validar_inventario)
     serializer = ActivoGeneralSerializer(activo_general, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 # VIEW DE Activo Standar
-@api_view(['GET' , 'POST'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET' , 'POST'])
 def ActivoStandarListado(request):
     #Listado
     if request.method == 'GET':
@@ -287,8 +287,8 @@ def ActivoStandarListado(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #Funciones para la edicion y eliminacion, pasando el ID
-@api_view(['GET','PUT','DELETE'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET','PUT','DELETE'])
 def ActivoStandarBuscarPorId(request, pk=None):
     
     #Consulta para obtener el listado sin FIRST
@@ -316,15 +316,15 @@ def ActivoStandarBuscarPorId(request, pk=None):
     return Response({'message': 'No se encontro Activo'}, status=status.HTTP_400_BAD_REQUEST)
 
       #Busqueda de ActivoStandar por inventario
-@api_view(['GET'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET'])
 def BusquedaActivoStandarInventario(request, buscar_activo):
     activo = ActivoStandar.objects.filter(inventario__icontains = buscar_activo)
     serializer = ActivoStandarSerializer(activo, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-@api_view(['GET'])
 @permission_classes((IsAuthenticated, ))
+@api_view(['GET'])
 def ValidacionPorInventarioStandar(request,validar_inventario):
     activo_standar = ActivoStandar.objects.filter(inventario = validar_inventario)
     serializer = ActivoStandarSerializer(activo_standar, many = True)
