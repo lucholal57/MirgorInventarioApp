@@ -9,8 +9,8 @@ from trazabilidad.models import Trazabilidad
 from trazabilidad.serializer import TrazabilidadSerializer,TrazabilidadPostPutSerializer
 
 # Create your views here.
-@permission_classes((IsAuthenticated, ))
 @api_view(['GET','POST'])
+@permission_classes((IsAuthenticated, ))
 # Get and Create
 def TrazabilidadListado(request):
     #List
@@ -29,8 +29,8 @@ def TrazabilidadListado(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #Search your Id: Get, Update, Delete
-@permission_classes((IsAuthenticated, ))
 @api_view(['GET','PUT','DELETE'])
+@permission_classes((IsAuthenticated, ))
 def TrazabilidadBuscarPorId(request, pk=None):
     #Search not First
     trazabilidad = Trazabilidad.objects.filter(id=pk)

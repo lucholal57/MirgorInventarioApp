@@ -8,8 +8,8 @@ from usuario.models import Usuario
 from usuario.serializer import UsuarioSerializer,UsuarioPostPutSerializer
 
 # Create your views here.
-@permission_classes((IsAuthenticated, ))
 @api_view(['GET','POST'])
+@permission_classes((IsAuthenticated,))
 def UsuarioListado(request):
     #List
     if request.method == 'GET':
@@ -27,8 +27,8 @@ def UsuarioListado(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #Funciones de edicion y eliminacion pasando el ID
-@permission_classes((IsAuthenticated, ))
 @api_view(['GET','PUT','DELETE'])
+@permission_classes((IsAuthenticated, ))
 def UsuarioBuscarPorId(request, pk=None):
     #Consulta para tener el listado sin FIRST
     usuario = Usuario.objects.filter(id=pk)
@@ -54,15 +54,15 @@ def UsuarioBuscarPorId(request, pk=None):
  #Validacion si no se encontro el ActivoIndustrial
     return Response({'message': 'No se encontro ActivoIndustrial'}, status=status.HTTP_400_BAD_REQUEST)
 
-@permission_classes((IsAuthenticated, ))
 @api_view(['GET'])
+@permission_classes((IsAuthenticated, ))
 def BusquedaUsuarioPorNombre(request,buscar_usuario):
     usuario = Usuario.objects.filter(nombre__icontains = buscar_usuario)
     serializer = UsuarioSerializer(usuario, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-@permission_classes((IsAuthenticated, ))
 @api_view(['GET'])
+@permission_classes((IsAuthenticated, ))
 def ValidacionPorLegajo(request,validar_legajo):
     usuario = Usuario.objects.filter(legajo = validar_legajo)
     serializer = UsuarioSerializer(usuario, many = True)
