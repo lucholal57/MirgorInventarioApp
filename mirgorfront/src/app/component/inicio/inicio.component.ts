@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -8,7 +9,7 @@ import * as $ from 'jquery';
 })
 export class InicioComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
     $(document).ready(function () {
@@ -41,6 +42,12 @@ export class InicioComponent implements OnInit {
     });
 
   }
+  logout(): void {
+    console.log(localStorage)
+    localStorage.removeItem("token")
+    this.router.navigateByUrl('')
+  }
+
 
 
 

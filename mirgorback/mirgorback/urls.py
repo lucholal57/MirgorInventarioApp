@@ -23,7 +23,9 @@ urlpatterns = [
     path('',include('locacion_productiva.urls')),
     path('',include('usuario.urls')),
     path('',include('linea_telefonica.urls')),
-    path('',include('trazabilidad.urls'))
+    path('',include('trazabilidad.urls')),
+    #Path para administrar las URLS de app login, login logout etc
+    path('',include('login.urls')),
 
 
 ]

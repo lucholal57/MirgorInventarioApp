@@ -63,11 +63,19 @@ export class AlertService {
 
   alertLogin(){
     Swal.fire(
-      'Es un usuario valido?',
+      'Es un usuario valido???',
       'Verifique Usuario y Contraseña',
       'question'
     )
   }
+  alertToken(){
+    Swal.fire(
+      'Usted no Inicio Sesion en el Sistema',
+      'Por Favor Ingrese Usuario y Contraseña',
+      'question'
+    )
+  }
+
 
   /* Alert eliminar el
 

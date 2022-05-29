@@ -12,6 +12,7 @@ import { ActivoCelularService } from 'src/app/services/activos/activo_celular/ac
 import { ActivoNotebookService } from 'src/app/services/activos/activo_notebook/activo-notebook.service';
 import { LineaTelefonica } from 'src/app/entidades/linea_telefonica/linea-telefonica';
 import { LineaTelefonicaService } from 'src/app/services/linea_telefonica/linea-telefonica.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
@@ -46,10 +47,14 @@ export class UsuarioComponent implements OnInit {
     private servicioActivoCelular: ActivoCelularService,
     private servicioActivoNotebook: ActivoNotebookService,
     private servicioLineaTelefonica: LineaTelefonicaService,
-    private alertas: AlertService
+    private alertas: AlertService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
+    //Validamos que al iniciar o recargar la pagina nos devuelva el token, con length validamos cantidad, si es distinto de 0 nos rederegira al componente con exito, de ser igual a 0 nos redirigira al componente login diciendo que no iniciamos sesion.
+    if(localStorage.length!=0)
+    {
     this.getUsuario();
     this.getActivosTotales();
     this.getLineaTelefonicas();
@@ -77,7 +82,11 @@ export class UsuarioComponent implements OnInit {
     this.formularioRegistro.controls['activo_celular'].setValue(null);
     this.formularioRegistro.controls['activo_notebook'].setValue(null);
     this.formularioRegistro.controls['linea_telefonica'].setValue(null);
+  }else{
+    this.alertas.alertToken();
+    this.router.navigate(['']);
   }
+}
 
   formularioRegistro = this.formBuilder.group({
     id: [''],

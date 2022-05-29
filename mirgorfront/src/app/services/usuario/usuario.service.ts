@@ -6,9 +6,8 @@ import {Usuario} from '../../entidades/usuario/usuario';
 // Constante de los headers para los encabezados
 const httpOption = {
   headers: new HttpHeaders({ 'content-type' : 'application/json',
-                              }),
+                              'Authorization' : 'Token' +" "+ localStorage.getItem('token')}),
 }
-
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +19,7 @@ export class UsuarioService {
   constructor( private http : HttpClient) { }
 
   getUsuario(): Observable<Usuario[]>{
-    return this.http.get<Usuario[]>(this.url_prod + 'usuario' , httpOption)
+    return this.http.get<Usuario[]>(this.url + 'usuario' , httpOption)
   }
   registrarUsuario(formularioregistro:any):Observable<Usuario[]>{
     return this.http.post<Usuario[]>(this.url_prod + 'usuario', formularioregistro, httpOption)

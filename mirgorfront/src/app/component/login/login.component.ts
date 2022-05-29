@@ -23,18 +23,19 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    /*
     const user =  {username:this.username, password:this.password}
     this.servicioLogin.login(user).subscribe(
       (res) => {
+        console.log(res.token)
         localStorage.setItem("token", res.token )
-        this.router.navigateByUrl('inicio')
+        this.router.navigateByUrl('dashboard')
       },
       (error) => {
-        this.alertas.alerteLogin()
+        this.alertas.alertLogin()
       }
     )
-  }*/
+  }
+  /*
   if (this.username ==="admin" && this.password ==="admin")
   {
     this.router.navigateByUrl('dashboard')
@@ -43,8 +44,7 @@ export class LoginComponent implements OnInit {
     this.alertas.alertLogin()
     this.password=""
     }
+    */
 
 }
 
-
-}

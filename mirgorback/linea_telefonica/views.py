@@ -11,7 +11,7 @@ from .serializer import LineaTelefonicaSerializer
 # Create your views here.
 
 @api_view(['GET','POST'])
-
+@permission_classes((IsAuthenticated, ))
 def LineaTelefonicaListado(request):
     #List
     if request.method == 'GET':
@@ -30,6 +30,7 @@ def LineaTelefonicaListado(request):
 
 #Funciones para la edicion y eliminacion pasando el ID
 @api_view(['GET','PUT','DELETE'])
+@permission_classes((IsAuthenticated, ))
 def LineaTelefonicaBuscarPorId(request,pk=None):
     #Consulta para obtener objeto del listado pasando ID sin First
     linea_telefonica = LineaTelefonica.objects.filter(id=pk)
@@ -57,12 +58,14 @@ def LineaTelefonicaBuscarPorId(request,pk=None):
     return Response({'message':'No se encontro linea telefonica'},status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated, ))
 def BusquedaLineaTelefonicaNumero(request, buscar_linea_telefonica):
     locacion = LineaTelefonica.objects.filter(numero__icontains = buscar_linea_telefonica)
     serializer = LineaTelefonicaSerializer(locacion, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated, ))
 def ValidacionLineaTelefonica(request, validar_linea_telefonica):
     linea_telefonica= LineaTelefonica.objects.filter(numero= validar_linea_telefonica)
     serializer = LineaTelefonicaSerializer(linea_telefonica, many = True)

@@ -10,7 +10,7 @@ from trazabilidad.serializer import TrazabilidadSerializer,TrazabilidadPostPutSe
 
 # Create your views here.
 @api_view(['GET','POST'])
-
+@permission_classes((IsAuthenticated, ))
 # Get and Create
 def TrazabilidadListado(request):
     #List
@@ -30,7 +30,7 @@ def TrazabilidadListado(request):
 
 #Search your Id: Get, Update, Delete
 @api_view(['GET','PUT','DELETE'])
-
+@permission_classes((IsAuthenticated, ))
 def TrazabilidadBuscarPorId(request, pk=None):
     #Search not First
     trazabilidad = Trazabilidad.objects.filter(id=pk)

@@ -16,16 +16,14 @@ const httpOption = {
 export class LoginService {
    // Variable para la url
    private url = 'http://127.0.0.1:8000/';
-   private url_prod = 'http://192.168.52.60/'
+   private url_prod = 'http://192.168.52.230:8080/'
 
   constructor(
     private http: HttpClient,
   ) { }
 
   login(user:any): Observable<any> {
-    return this.http.post(this.url_prod + 'login/' , user)
+    return this.http.post(this.url + 'login/' , user)
   }
-  logout(user:any): Observable<any> {
-    return this.http.post(this.url_prod + 'logout/' , user)
-  }
+ 
 }
