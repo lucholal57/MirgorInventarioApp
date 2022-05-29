@@ -5,6 +5,7 @@ import { ActivoService } from 'src/app/services/activos/activo_industrial/activo
 import { AlertService } from '../../../services/alert/alert.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
+import {Router} from '@angular/router';
 
 // Funcion
 @Component({
@@ -32,11 +33,18 @@ export class ActivoComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     config: NgbModalConfig,
-    private alertas: AlertService
+    private alertas: AlertService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
-    this.getActivos();
+    if(localStorage.length!=0){
+      this.getActivos();
+    }else{
+      this.alertas.alertToken();
+      setTimeout(() => {this.router.navigate(['']);},2000)
+    }
+
   }
   //Formulario Registro
   formularioRegistro = this.formBuilder.group({

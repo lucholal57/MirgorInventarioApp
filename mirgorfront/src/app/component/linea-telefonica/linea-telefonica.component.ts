@@ -5,6 +5,7 @@ import { LineaTelefonicaService } from 'src/app/services/linea_telefonica/linea-
 import { AlertService} from '../../services/alert/alert.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-linea-telefonica',
@@ -27,11 +28,17 @@ export class LineaTelefonicaComponent implements OnInit {
     private formBuilder : FormBuilder,
     private modalService: NgbModal,
     config: NgbModalConfig,
-    private alertas : AlertService
+    private alertas : AlertService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
-    this.getLineaTelefonica();
+   if(localStorage.length!=0){
+     this.getLineaTelefonica();
+    }else{
+      this.alertas.alertToken();
+      setTimeout(() => {this.router.navigate(['']);},2000)
+    }
   }
 
   //Formulario Registro Reactivo

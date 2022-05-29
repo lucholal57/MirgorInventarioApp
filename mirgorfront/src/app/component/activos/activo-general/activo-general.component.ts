@@ -5,6 +5,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { ActivoGeneral } from 'src/app/entidades/activos/activo_general/activo-general';
 import { ActivoGeneralService } from 'src/app/services/activos/activo_general/activo-general.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-activo-general',
@@ -27,11 +28,17 @@ export class ActivoGeneralComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     config: NgbModalConfig,
-    private alertas: AlertService
+    private alertas: AlertService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
-    this.getActivoGeneral();
+    if(localStorage.length!=0){
+      this.getActivoGeneral();
+    }else{
+      this.alertas.alertToken();
+      setTimeout(() => {this.router.navigate(['']);},2000)
+    }
   }
 
   //Formulario Reactivo para el registro de activos generales

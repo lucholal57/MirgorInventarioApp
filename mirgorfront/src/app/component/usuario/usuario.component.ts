@@ -84,7 +84,7 @@ export class UsuarioComponent implements OnInit {
     this.formularioRegistro.controls['linea_telefonica'].setValue(null);
   }else{
     this.alertas.alertToken();
-    this.router.navigate(['']);
+      setTimeout(() => {this.router.navigate(['']);},2000)
   }
 }
 

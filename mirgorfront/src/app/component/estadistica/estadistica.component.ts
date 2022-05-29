@@ -12,6 +12,9 @@ import { ActivoStandar } from 'src/app/entidades/activos/activo_standar/activo-s
 import { ActivoStandarService } from 'src/app/services/activos/activo_standar/activo-standar.service';
 import { LineaTelefonica } from 'src/app/entidades/linea_telefonica/linea-telefonica';
 import { LineaTelefonicaService } from 'src/app/services/linea_telefonica/linea-telefonica.service';
+import { AlertService } from 'src/app/services/alert/alert.service';
+import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-estadistica',
   templateUrl: './estadistica.component.html',
@@ -33,10 +36,17 @@ export class EstadisticaComponent implements OnInit {
     private servicioActivo : ActivoService,
     private servicioActivoStandar : ActivoStandarService,
     private servicioLineaTelefonica: LineaTelefonicaService,
+    private alertas : AlertService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
+  if(localStorage.length!=0){
     this.getActivosTotales();
+    }else{
+      this.alertas.alertToken();
+      setTimeout(() => {this.router.navigate(['']);},2000)
+    }
   }
 
   single: [];

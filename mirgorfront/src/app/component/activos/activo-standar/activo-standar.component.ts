@@ -5,6 +5,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { ActivoStandar } from 'src/app/entidades/activos/activo_standar/activo-standar';
 import { ActivoStandarService } from 'src/app/services/activos/activo_standar/activo-standar.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-activo-standar',
@@ -27,11 +28,17 @@ export class ActivoStandarComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     config: NgbModalConfig,
-    private alertas: AlertService
+    private alertas: AlertService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
-    this.getActivoStandar();
+    if(localStorage.length!=0){
+      this.getActivoStandar();
+    }else{
+      this.alertas.alertToken();
+      setTimeout(() => {this.router.navigate(['']);},2000)
+    }
   }
 
   //Formulario reactivo para el registro de datos+

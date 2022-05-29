@@ -4,6 +4,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { TrazabilidadService } from 'src/app/services/trazabilidad/trazabilidad.service';
 import { Trazabilidad } from '../../entidades/trazabilidad/trazabilidad';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trazabilidad',
@@ -20,11 +21,18 @@ export class TrazabilidadComponent implements OnInit {
   TablaProductiva_Filtro:boolean = true;
 
   constructor(
-    private servicioTrazabilidad : TrazabilidadService
+    private servicioTrazabilidad : TrazabilidadService,
+    private alertas: AlertService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
-  this.getTrazabilidad();
+  if(localStorage.length!=0){
+    this.getTrazabilidad();
+      }else{
+        this.alertas.alertToken();
+        setTimeout(() => {this.router.navigate(['']);},2000)
+      }
  }
 
 getTrazabilidad(): void{
@@ -35,6 +43,5 @@ getTrazabilidad(): void{
   )
   console.log(this.listadoTrazabilidad)
 }
-
 
 }

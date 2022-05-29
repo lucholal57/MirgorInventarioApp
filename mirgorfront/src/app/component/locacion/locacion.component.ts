@@ -18,9 +18,7 @@ import { ActivoNotebookService } from 'src/app/services/activos/activo_notebook/
 import { ActivoGeneralService } from 'src/app/services/activos/activo_general/activo-general.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown'
 import { TrazabilidadService } from 'src/app/services/trazabilidad/trazabilidad.service';
-
-
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-Locacion',
@@ -66,9 +64,11 @@ export class LocacionComponent implements OnInit {
     config: NgbModalConfig,
     private alertas : AlertService,
     private servicioTrazabilidad : TrazabilidadService,
+    private router:Router
     ) { }
 
   ngOnInit(): void {
+   if(localStorage.length!=0){
     this.getLocaciones();
     this.getActivosTotales();
     this.dropdownSettings= {
@@ -92,7 +92,10 @@ export class LocacionComponent implements OnInit {
     this.formularioRegistro.controls['activo_notebook'].setValue(null)
     this.formularioRegistro.controls['activo_general'].setValue(null)
     this.formularioRegistro.controls['activo_standar'].setValue(null)
-
+  }else{
+    this.alertas.alertToken();
+    setTimeout(() => {this.router.navigate(['']);},2000)
+  }
   }
 
 
@@ -304,7 +307,7 @@ SelectorBusqueda(): void{
   if(this.valor_busqueda != "" && this.filtro_busqueda != ""){
     if(this.filtro_busqueda == "inventario")
     {
-    
+
     }
 
   }

@@ -69,11 +69,13 @@ export class AlertService {
     )
   }
   alertToken(){
-    Swal.fire(
-      'Usted no Inicio Sesion en el Sistema',
-      'Por Favor Ingrese Usuario y Contraseña',
-      'question'
-    )
+    Swal.fire({
+      position: 'center',
+      icon: 'warning',
+      title: 'No inicio Sesion, Redirigiendo',
+      showConfirmButton: false,
+      timer: 2000
+    })
   }
 
 

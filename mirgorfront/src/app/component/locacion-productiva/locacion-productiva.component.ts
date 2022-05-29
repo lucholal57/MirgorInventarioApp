@@ -13,6 +13,7 @@ import { ActivoService } from 'src/app/services/activos/activo_industrial/activo
 import { ActivoStandarService } from 'src/app/services/activos/activo_standar/activo-standar.service';
 import { ActivoGeneralService } from 'src/app/services/activos/activo_general/activo-general.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown'
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-locacion-productiva',
@@ -48,10 +49,12 @@ export class LocacionProductivaComponent implements OnInit {
     private formBuilder : FormBuilder,
     private modalService: NgbModal,
     config: NgbModalConfig,
-    private alertas : AlertService
+    private alertas : AlertService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
+    if(localStorage.length!=0){
     this.getLocacionesProductivas();
     this.getActivosTotales();
     this.dropdownSettings= {
@@ -65,6 +68,10 @@ export class LocacionProductivaComponent implements OnInit {
     this.formularioRegistro.controls['activo_industrial'].setValue(null)
     this.formularioRegistro.controls['activo_general'].setValue(null)
     this.formularioRegistro.controls['activo_standar'].setValue(null)
+  }else{
+    this.alertas.alertToken();
+    setTimeout(() => {this.router.navigate(['']);},2000)
+  }
   }
 
   //Formulario Registro

@@ -24,6 +24,7 @@
     "@ng-bootstrap/ng-bootstrap": "^11.0.1",
     "@ng-select/ng-select": "^8.1.1",
     "@popperjs/core": "^2.11.5",
+    "@sweetalert2/themes": "^5.0.11",
     "@swimlane/ngx-charts": "^20.1.0",
     "angular-animations": "^0.11.0",
     "angular-ng-autocomplete": "^2.0.8",

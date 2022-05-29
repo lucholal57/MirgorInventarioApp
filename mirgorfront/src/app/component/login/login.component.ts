@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   public username = "";
   public password = "";
 
+  public logueado_nombre="";
+
   constructor(
     private servicioLogin : LoginService,
     private alertas : AlertService,
@@ -26,7 +28,7 @@ export class LoginComponent implements OnInit {
     const user =  {username:this.username, password:this.password}
     this.servicioLogin.login(user).subscribe(
       (res) => {
-        console.log(res.token)
+        console.log(res+"no trae un carajo")
         localStorage.setItem("token", res.token )
         this.router.navigateByUrl('dashboard')
       },
