@@ -186,6 +186,10 @@ export class ActivoGeneralComponent implements OnInit {
             this.alertas.alertLoading();
           } else {
             this.alertas.alertLoadingError();
+             //Si no encuentra datos se limpia el input y despues del msj de sin coincidencia en busqueda trar todos los usuarios nuevamente, evitando tener que apretar cancelar para volver a listar
+             this.buscar_activo="";
+             //Funcion para setear funcion despues de cierto intervalo
+             setTimeout(() => {this.getActivoGeneral()},1800)
           }
           this.listadoActivoGeneral = res;
         },

@@ -176,6 +176,10 @@ busquedaLineaTelefonica(): void{
           this.alertas.alertLoading();
         }else{
           this.alertas.alertLoadingError();
+           //Si no encuentra datos se limpia el input y despues del msj de sin coincidencia en busqueda trar todos los usuarios nuevamente, evitando tener que apretar cancelar para volver a listar
+           this.buscar_linea_telefonica="";
+           //Funcion para setear funcion despues de cierto intervalo
+           setTimeout(() => {this.getLineaTelefonica()},1800)
         }
         this.listadoLineaTelefonica= res;
       },
