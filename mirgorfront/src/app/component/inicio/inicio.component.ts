@@ -43,7 +43,6 @@ export class InicioComponent implements OnInit {
 
   }
   logout(): void {
-    console.log(localStorage)
     localStorage.removeItem("token")
     this.router.navigateByUrl('')
   }

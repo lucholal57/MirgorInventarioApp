@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Activo } from 'src/app/entidades/activos/activo_industrial/activo';
 import { ActivoService } from 'src/app/services/activos/activo_industrial/activo.service';
 import { AlertService } from '../../../services/alert/alert.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
+import { debounceTime, map, Observable, startWith } from 'rxjs';
 
 // Funcion
 @Component({
@@ -44,11 +45,12 @@ export class ActivoComponent implements OnInit {
       this.alertas.alertToken();
       setTimeout(() => {this.router.navigate(['']);},2000)
     }
-
   }
+
   //Formulario Registro
   formularioRegistro = this.formBuilder.group({
     id: [''],
+    data: [''],
     inventario: ['', [Validators.required]],
     descripcion: ['', [Validators.required]],
     marca: ['', [Validators.required]],

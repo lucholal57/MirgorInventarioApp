@@ -28,25 +28,18 @@ export class LoginComponent implements OnInit {
     const user =  {username:this.username, password:this.password}
     this.servicioLogin.login(user).subscribe(
       (res) => {
-        console.log(res+"no trae un carajo")
+        console.log(res.token + "Este es el TOKEN QUE TRAE cuando manda el ususario")
         localStorage.setItem("token", res.token )
-        this.router.navigateByUrl('dashboard')
+        //Despues de setear y almacenar el token a localstorage, con router nos redirigimos a la pagina dhasboard y recargamos una ves dentro por que si no recargamos no detecta el TOKEN.
+        this.router.navigateByUrl('dashboard').then(() =>{
+          window.location.reload();
+        })
       },
       (error) => {
         this.alertas.alertLogin()
       }
     )
   }
-  /*
-  if (this.username ==="admin" && this.password ==="admin")
-  {
-    this.router.navigateByUrl('dashboard')
-  }
-  else{
-    this.alertas.alertLogin()
-    this.password=""
-    }
-    */
 
 }
 
