@@ -7,8 +7,8 @@ class LocacionProductiva(models.Model):
     linea = models.CharField(max_length=10)
     puesto = models.CharField(max_length=20)
     fecha = models.DateField(null=True, blank=True)
-    unidad_negocio = models.CharField(max_length=50)
-    nave = models.CharField(max_length=50)
+    unidad_negocio = models.CharField(max_length=50,null=True, blank=True)
+    nave = models.CharField(max_length=50,null=True, blank=True)
 
     #ForeignKey
     activo_industrial = models.ForeignKey(ActivoIndustrial, on_delete=models.CASCADE, null=True)
