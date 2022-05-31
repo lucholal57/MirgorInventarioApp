@@ -24,6 +24,7 @@ class ActivoNotebook(models.Model):
     hostname = models.CharField(max_length=50)
     estado = models.CharField(max_length=50)
 
+
     def __str__(self):
         return f'Notebook: {self.inventario} - {self.marca} - {self.modelo} '
 

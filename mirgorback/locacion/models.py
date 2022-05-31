@@ -8,6 +8,8 @@ class Locacion(models.Model):
     sitio = models.CharField(max_length=50)
     area = models.CharField(max_length=50)
     localizacion = models.CharField(max_length=50)
+    unidad_negocio = models.CharField(max_length=50)
+    nave = models.CharField(max_length=50)
     fecha = models.DateField(null=True, blank=True)
     
     #ForenKey
