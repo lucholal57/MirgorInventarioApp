@@ -19,18 +19,18 @@ export class TrazabilidadService {
   constructor(private http: HttpClient){}
 
   getTrazabilidad(): Observable<Trazabilidad[]> {
-    return this.http.get<Trazabilidad[]>(this.url + 'trazabilidad',httpOption)
+    return this.http.get<Trazabilidad[]>(this.url_prod + 'trazabilidad',httpOption)
   }
   registrarTrazabilidad(formularioregistro: any): Observable<Trazabilidad[]> {
-    return this.http.post<Trazabilidad[]>(this.url + 'trazabilidad', formularioregistro, httpOption)
+    return this.http.post<Trazabilidad[]>(this.url_prod + 'trazabilidad', formularioregistro, httpOption)
   }
   getTrazabilidadId(busqueda_trazabilidad: Trazabilidad): Observable<Trazabilidad[]> {
-    return this.http.get<Trazabilidad[]>(this.url + 'trazabilidad/'+ busqueda_trazabilidad.id,httpOption)
+    return this.http.get<Trazabilidad[]>(this.url_prod + 'trazabilidad/'+ busqueda_trazabilidad.id,httpOption)
   }
   editarTrazabilidad(formularioregistro: any, id:number):Observable<Trazabilidad[]> {
-    return this.http.put<Trazabilidad[]>(this.url + 'trazabilidad/' + id, formularioregistro, httpOption)
+    return this.http.put<Trazabilidad[]>(this.url_prod + 'trazabilidad/' + id, formularioregistro, httpOption)
   }
   eliminarTrazabildad(id:number): Observable<Trazabilidad[]> {
-    return this.http.delete<Trazabilidad[]>(this.url + 'trazabilidad/' + id, httpOption)
+    return this.http.delete<Trazabilidad[]>(this.url_prod + 'trazabilidad/' + id, httpOption)
   }
 }

@@ -26,6 +26,4 @@ urlpatterns = [
     path('',include('trazabilidad.urls')),
     #Path para administrar las URLS de app login, login logout etc
     path('',include('login.urls')),
-
-
 ]

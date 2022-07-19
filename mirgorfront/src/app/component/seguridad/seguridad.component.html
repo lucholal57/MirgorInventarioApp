@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<app-inicio></app-inicio>
+
+<legend align="center"  style="font-size:25px; color:white; font-weight:bold">SEGURIDAD PATRIMONIAL</legend>
+<div class="container">
+  <div class="row">
+      <div class="col">
+
+        <div class="form-check form-switch">
+          <input autofocus class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="item" (change)="obtenerPlaceholder()" >
+          <label class="form-check-label" for="flexSwitchCheckDefault" style="color:aliceblue">LEGAJO</label>
+        </div>
+      </div>
+  </div>
+
+
+</div>
+
+<form [formGroup]="formularioBusqueda">
+<div class="container"  >
+  <div class="row">
+    <div class="col col-sm-3">
+      <div class="input-group mb-2">
+        <input type="text" autofocus class="form-control" placeholder="{{placeholder}}"  formControlName="busqueda">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2" (click)=" getUsuarioImei()" >BUSCAR</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-group">
+<div class="card border-info mb-3" style="background-color:#ffffff00;">
+      <mat-icon style="color:white">supervised_user_circle</mat-icon>
+      <div class="card-body" align="center" >
+        <h1  style="font-size:25px; color:white; font-weight:bold" ><u>USUARIO</u></h1>
+        <h2 style="font-size:40px; color:white; font-weight:bold" class="card-text" *ngFor="let usuario of listadoUsuario">{{usuario.nombre}}</h2>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<div class="container"  >
+<div class="card-group">
+  <div class="card border-info mb-3" style="background-color:#ffffff00;;">
+    <mat-icon style="color:white">phone</mat-icon>
+    <div class="card-body" align="center" >
+      <h1 style="font-size:25px; color:white; font-weight:bold" class="card-title"><u>CELULAR</u></h1>
+      <hr>
+      <h2 style="font-size:40px; color:white; font-weight:bold" class="card-text" *ngFor="let usuario of listadoUsuario">{{usuario.activo_celular.imei}}</h2>
+      <h1 class="card-text"><small class="text-muted" *ngFor="let usuario of listadoUsuario">{{usuario.activo_celular.modelo}}</small></h1>
+    </div>
+  </div>
+  <div class="card border-info mb-3" style="background-color:#ffffff00;">
+    <mat-icon style="color:white">computer</mat-icon>
+    <div class="card-body" align="center" >
+      <h1 style="font-size:25px; color:white; font-weight:bold" class="card-title"><u>NOTEBOOK</u></h1>
+      <hr>
+      <h2 style="font-size:40px; color:white; font-weight:bold" class="card-text" *ngFor="let usuario of listadoUsuario">{{usuario.activo_notebook.inventario}}</h2>
+      <h1 class="card-text"><small class="text-muted" *ngFor="let usuario of listadoUsuario">{{usuario.activo_notebook.modelo}}</small></h1>
+    </div>
+  </div>
+  <div class="card border-info mb-3" style="background-color:#ffffff00;">
+    <mat-icon style="color:white">record_voice_over</mat-icon>
+    <div class="card-body" align="center">
+      <h1 style="font-size:25px; color:white; font-weight:bold" class="card-title"><u>RADIO</u></h1>
+      <hr>
+      <h2 style="font-size:40px; color:white; font-weight:bold" class="card-text">13155</h2>
+      <h1 class="card-text"><small class="text-muted">PERMITIDO</small></h1>
+    </div>
+  </div>
+</div>
+</div>
+
+</form>
+</body>
+</html>

@@ -115,15 +115,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="text-center"*ngFor="let activo of listadoActivoCelular | paginate: { itemsPerPage: 14, currentPage: p }" >
+        <tr class="text-center"*ngFor="let activo of listadoActivoCelular | paginate: { itemsPerPage: 17, currentPage: p }" >
             <td scope="row">{{activo.id}}</td>
             <td scope="row">{{activo.imei}}</td>
             <td scope="row">{{activo.marca}}</td>
             <td scope="row">{{activo.modelo}}</td>
             <td scope="row">{{activo.estado}}</td>
             <td scope="">
-                <button class="btn btn-outline-warning" (click)="ActivoCelularId(activo,content)">Editar</button>
-                <button class="btn btn-outline-danger"  (click)="eliminarActivoCelular(activo)">Eliminar</button>
+                <a (click)="ActivoCelularId(activo,content)"><mat-icon style="color:skyblue; margin-right: 15px;"> edit </mat-icon></a>
+                <a (click)="eliminarActivoCelular(activo)" ><mat-icon style="color:red;" > delete </mat-icon></a>
             </td>
 
         </tr>

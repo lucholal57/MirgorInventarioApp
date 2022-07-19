@@ -88,13 +88,13 @@
       </tr>
   </thead>
   <tbody>
-      <tr class="text-center"*ngFor="let linea_telefonica of listadoLineaTelefonica | paginate: { itemsPerPage: 14, currentPage: p }" >
+      <tr class="text-center"*ngFor="let linea_telefonica of listadoLineaTelefonica | paginate: { itemsPerPage: 17, currentPage: p }" >
           <th scope="row">{{linea_telefonica.id}}</th>
           <td scope="row">{{linea_telefonica.numero}}</td>
           <td scope="row">{{linea_telefonica.plan}}</td>
           <td scope="">
-              <button class="btn btn-outline-warning" (click)="LineaTelefonicaId(linea_telefonica,content)">Editar</button>
-              <button class="btn btn-outline-danger"  (click)="eliminarLineaTelefonica(linea_telefonica)">Eliminar</button>
+              <a (click)="LineaTelefonicaId(linea_telefonica,content)"><mat-icon style="color:skyblue ; margin-right:10px;"> edit </mat-icon></a>
+              <a (click)="eliminarLineaTelefonica(linea_telefonica)"><mat-icon style="color:red;"> delete </mat-icon></a>
           </td>
 
       </tr>

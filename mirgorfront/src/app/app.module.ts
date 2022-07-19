@@ -28,7 +28,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { LocacionProductivaComponent } from './component/locacion-productiva/locacion-productiva.component';
 import { FiltroLocacionPipe } from './pipes/filtro-locacion.pipe';
 import { TrazabilidadComponent } from './component/trazabilidad/trazabilidad.component';
-import { AngularMaterialModule} from '../app/angular-material.module'
+import { AngularMaterialModule} from '../app/angular-material.module';
+import { SeguridadComponent } from '../app/component/seguridad/seguridad.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { AngularMaterialModule} from '../app/angular-material.module'
     LocacionProductivaComponent,
     FiltroLocacionPipe,
     TrazabilidadComponent,
+    SeguridadComponent,
 
   ],
   imports: [

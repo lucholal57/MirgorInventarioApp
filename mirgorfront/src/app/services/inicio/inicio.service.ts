@@ -14,6 +14,6 @@ export class InicioService {
   constructor(private http: HttpClient) { }
 
   logout(user:any): Observable<any> {
-    return this.http.post(this.url + 'logout/' , user)
+    return this.http.post(this.url_prod + 'logout/' , user)
   }
 }

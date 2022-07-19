@@ -23,60 +23,86 @@
         <div class="modal-body">
           <div class="form-group">
             <div class="row">
-              <div class="col-sm-6">
-                <label style="color:black" for="activo">Inventario</label>
+              <div class="col-sm-12" >
+                <label style="color:black" for="activo">INDUSTRIAL</label>
                <ng-multiselect-dropdown
-                [placeholder]="'Seleccione inventario Industrial'"
+                [placeholder]="'Inventario'"
                 [settings]="dropdownSettingsActivos"
                 [data]="listadoActivoIndustrial"
                 formControlName="activo_industrial"
-
                 >
-
               </ng-multiselect-dropdown>
-              </div>
-              <div class="col-sm-6">
-                <label style="color:black" for="activo">Inventario</label>
+          
+
+              <hr>
+
+                <label style="color:black" for="activo">CELULAR</label>
                 <ng-multiselect-dropdown
-                [placeholder]="'Seleccione inventario Celular'"
+                [placeholder]="'Imei'"
                 [settings]="dropdownSettings"
                 [data]="listadoActivoCelular"
                 formControlName="activo_celular"
                 >
-
               </ng-multiselect-dropdown>
-              </div>
-              <div class="col-sm-6">
-                <label style="color:black" for="activo">Inventario</label>
+
+              <hr>
+                <label style="color:black" for="activo">NOTEBOOK</label>
                 <ng-multiselect-dropdown
-                [placeholder]="'Seleccione inventario Notebook'"
+                [placeholder]="'Inventario'"
                 [settings]="dropdownSettingsActivos"
                 [data]="listadoActivoNotebook"
                 formControlName="activo_notebook"
-
               >
               </ng-multiselect-dropdown>
-              </div>
-              <div class="col-sm-6">
-                <label style="color:black" for="activo">Inventario</label>
+
+              <hr>
+
+                <label style="color:black" for="activo">GENERAL</label>
                 <ng-multiselect-dropdown
-                [placeholder]="'Seleccione inventario General'"
+                [placeholder]="'Inventario'"
                 [settings]="dropdownSettingsActivos"
                 [data]="listadoActivoGeneral"
                 formControlName="activo_general"
               >
               </ng-multiselect-dropdown>
-              </div>
-              <div class="col-sm-6">
-                <label style="color:black" for="activo">Inventario</label>
+
+                <label style="color:black" for="activo">STANDAR</label>
                 <ng-multiselect-dropdown
-                [placeholder]="'Seleccione inventario Standar'"
+                [placeholder]="'Inventario'"
                 [settings]="dropdownSettingsActivos"
                 [data]="listadoActivoStandar"
                 formControlName="activo_standar"
               >
               </ng-multiselect-dropdown>
+
               </div>
+
+
+              <div class="col-sm-6">
+                <label style="color:black" for="nombre">Unidad Negocio</label>
+              <input
+                type="text"
+                name="unidad_negocio"
+                id="unidad_negocio"
+                class="form-control"
+                formControlName="unidad_negocio"
+                required
+              />
+            </div>
+
+            <div class="col-sm-6">
+              <label style="color:black" for="nombre">Nave</label>
+            <input
+              type="text"
+              name="nave"
+              id="nave"
+              class="form-control"
+              formControlName="nave"
+              required
+            />
+          </div>
+
+
               <div class="col-sm-6">
                 <label style="color:black" for="nombre">Sitio</label>
                 <select class="form-control" name="sitio" id="sitio" formControlName="sitio" required >
@@ -110,6 +136,7 @@
           />
         </div>
 
+
         <div class="col-sm-6">
           <label style="color:black" for="nombre">Fecha</label>
           <input
@@ -122,11 +149,14 @@
           />
         </div>
 
+
+
         </div>
           </div>
             </div>
 
         <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-success" [hidden]="btnMover" (click)="moverActivo()" >Mover</button>
           <button type="submit" class="btn btn-outline-success" [hidden]="btnGuardar" (click)="registrarLocaciones()" >Guardar</button>
           <button type="button"  class="btn btn-outline-warning" [hidden]="btnEditar" (click)="editarLocacionId()">Editar</button>
           <button type="reset"  class="btn btn-outline-danger"  (click)="cancelar()" >Limpiar</button>
@@ -135,14 +165,13 @@
 
 </form>
 
-
     <div class="container-fluid" id="contenedorTabla">
         <h4 align="center"  style="color: aliceblue;" >UBICACIONES</h4>
         <hr>
 
             <div class="btn-group">
               <button class="btn btn-outline-primary"  (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
-              <select name="" id="" class="form-control" [(ngModel)]="filtro_busqueda" (change)="SelectorBusqueda()">
+              <select name="" id="" class="form-control" [(ngModel)]="filtro_busqueda" >
                 <option value="" disabled selected>Seleccione Filtro </option>
                 <option value="inventario">Inventario</option>
                 <option value="marca">Marca</option>
@@ -162,6 +191,8 @@
             <tr class="text-center">
                 <th scope="col">ID</th>
                 <th scope="col">Inventario/Marca</th>
+                <th class="col">Unidad Negocio</th>
+                <th class="col">Nave</th>
                 <th scope="col">Sitio</th>
                 <th scope="col">Area</th>
                 <th scope="col">localizacion</th>
@@ -205,16 +236,19 @@
                   <li>{{locacion.activo_standar.marca}}</li>
                 </ul>
                  </td>
+                 <td scope="row">{{locacion.unidad_negocio}}</td>
+                <td scope="row">{{locacion.nave}}</td>
                 <td scope="row">{{locacion.sitio}}</td>
                 <td scope="row">{{locacion.area}}</td>
                 <td scope="row">{{locacion.localizacion}}</td>
                 <td scope="row">{{locacion.fecha}}</td>
 
                 <td scope="">
-                    <button class="btn btn-outline-warning" (click)="LocacionId(locacion,content)">Editar</button>
-                    <button class="btn btn-outline-danger" (click)="eliminarLocacion(locacion)">Eliminar</button>
+                    <a (click)="moverEdicionActivo(locacion,content)" ><mat-icon style="color:green ; margin-right: 10px;"> swap_horizontal_circle </mat-icon></a>
+                    <a (click)="LocacionId(locacion,content)"><mat-icon style="color:skyblue ;  margin-right: 10px;"> edit </mat-icon></a>
+                    <a (click)="eliminarLocacion(locacion)"><mat-icon style="color:red ;"> delete </mat-icon></a>
                 </td>
-
+                
             </tr>
         </tbody>
     </table>

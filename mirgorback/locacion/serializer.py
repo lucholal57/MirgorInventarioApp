@@ -21,4 +21,5 @@ class LocacionPostPutSerializer(serializers.ModelSerializer):
     class Meta:
         model = Locacion
         fields = '__all__'
+      
         

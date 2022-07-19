@@ -172,7 +172,7 @@
       </tr>
   </thead>
   <tbody>
-      <tr class="text-center"*ngFor="let usuario of listadoUsuario | paginate: { itemsPerPage: 7, currentPage: p }" >
+      <tr class="text-center"*ngFor="let usuario of listadoUsuario | paginate: { itemsPerPage: 17, currentPage: p }" >
         <td scope="row">{{usuario.id}}</td>
         <th scope="row">{{usuario.legajo}}</th>
           <th scope="row"  *ngIf="usuario.activo_celular != null">
@@ -206,8 +206,8 @@
           <td scope="row" *ngIf="usuario.linea_telefonica ==null">N/A</td>
           <td scope="row" *ngIf="usuario.linea_telefonica !=null">{{usuario.linea_telefonica.numero}}</td>
           <td scope="">
-              <button class="btn btn-outline-warning" (click)="UsuarioId(usuario,content)">Editar</button>
-              <button class="btn btn-outline-danger"  (click)="eliminarUsuario(usuario)">Eliminar</button>
+              <a (click)="UsuarioId(usuario,content)"><mat-icon style="color:skyblue ; margin-right:10px;"> edit </mat-icon></a>
+              <a  (click)="eliminarUsuario(usuario)"><mat-icon style="color:red ;"> delete </mat-icon></a>
           </td>
 
       </tr>

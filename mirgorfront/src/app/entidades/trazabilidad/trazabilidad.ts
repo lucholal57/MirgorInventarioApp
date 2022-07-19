@@ -5,4 +5,10 @@ export class Trazabilidad {
   id=0;
   locacion:Locacion;
   locacion_productiva:LocacionProductiva;
+  sitio = "";
+  area = "";
+  localizacion = "";
+  unidad_negocio = "";
+  nave = "";
+  fecha = new Date();
 }

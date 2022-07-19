@@ -148,8 +148,8 @@
                 <td scope="row">{{locacion_productiva.fecha}}</td>
 
                 <td scope="">
-                    <button class="btn btn-outline-warning" (click)="LocacionProductivaId(locacion_productiva,content)">Editar</button>
-                    <button class="btn btn-outline-danger" (click)="eliminarLocacionProductiva(locacion_productiva)">Eliminar</button>
+                    <a (click)="LocacionProductivaId(locacion_productiva,content)"><mat-icon style="color:skyblue ; margin-right:10px;"> edit </mat-icon></a>
+                    <a (click)="eliminarLocacionProductiva(locacion_productiva)"><mat-icon style="color:red; margin-right:10px;"> delete </mat-icon></a>
                 </td>
 
             </tr>

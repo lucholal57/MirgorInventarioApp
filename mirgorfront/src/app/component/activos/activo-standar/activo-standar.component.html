@@ -209,7 +209,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="text-center"*ngFor="let activo of listadoActivoStandar | paginate: { itemsPerPage: 14, currentPage: p }" >
+        <tr class="text-center"*ngFor="let activo of listadoActivoStandar | paginate: { itemsPerPage: 17, currentPage: p }" >
             <td scope="row">{{activo.id}}</td>
             <td scope="row">{{activo.inventario}}</td>
             <td scope="row">{{activo.descripcion}}</td>
@@ -222,8 +222,8 @@
             <td scope="row">{{activo.area}}</td>
             <td scope="row">{{activo.estado}}</td>
             <td scope="">
-                <button class="btn btn-outline-warning" (click)="ActivoStandarId(activo,content)">Editar</button>
-                <button class="btn btn-outline-danger"  (click)="eliminarActivoStandar(activo)">Eliminar</button>
+                <a (click)="ActivoStandarId(activo,content)"><mat-icon style="color:skyblue ; margin-right:10px;"> edit </mat-icon></a>
+                <a  (click)="eliminarActivoStandar(activo)"><mat-icon style="color:red ;"> delete </mat-icon></a>
             </td>
 
         </tr>

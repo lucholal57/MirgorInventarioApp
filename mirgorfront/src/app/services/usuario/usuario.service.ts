@@ -43,4 +43,8 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(this.url_prod + 'usuario/validar/' + validar_legajo, httpOption)
   }
 
+  ValidacionImeiUsuario(validar_imei:string): Observable<Usuario[]>{
+    return this.http.get<Usuario[]>(this.url_prod + 'usuario/validar_imei/' + validar_imei, httpOption)
+  }
+
 }

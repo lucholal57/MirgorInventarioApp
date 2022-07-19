@@ -9,6 +9,7 @@ export class Usuario {
   correo="";
   area="";
   posicion="";
+  foto=new Image();
   fecha_entrega =new Date();
   activo_celular: ActivoCelular;
   activo_notebook: ActivoNotebook;

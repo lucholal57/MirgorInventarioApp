@@ -10,6 +10,7 @@ class Usuario(models.Model):
     area = models.CharField(max_length=50)
     posicion = models.CharField(max_length=50)
     fecha_entrega = models.DateField(null=True)
+    foto = models.ImageField(blank=True)
 
     #ForeignKey
     activo_celular = models.ForeignKey(ActivoCelular, on_delete=models.CASCADE, blank=True,null=True)

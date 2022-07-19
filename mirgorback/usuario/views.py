@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from activo.models import ActivoCelular
 from usuario.models import Usuario
 from usuario.serializer import UsuarioSerializer,UsuarioPostPutSerializer
 
@@ -65,6 +66,14 @@ def BusquedaUsuarioPorNombre(request,buscar_usuario):
 @permission_classes((IsAuthenticated, ))
 def ValidacionPorLegajo(request,validar_legajo):
     usuario = Usuario.objects.filter(legajo = validar_legajo)
+    serializer = UsuarioSerializer(usuario, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+@permission_classes((IsAuthenticated, ))
+def BusquedaImeiPorUsuario(request,validar_imei):
+    celular = ActivoCelular.objects.filter(imei__icontains = validar_imei)
+    usuario = Usuario.objects.filter(activo_celular__in=celular)
     serializer = UsuarioSerializer(usuario, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
             

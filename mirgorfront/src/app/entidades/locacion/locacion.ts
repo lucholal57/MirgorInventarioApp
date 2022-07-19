@@ -14,5 +14,7 @@ export class Locacion {
     activo_general: ActivoGeneral;
     activo_notebook: ActivoNotebook;
     activo_celular: ActivoCelular;
+    unidad_negocio="";
+    nave="";
     fecha=new Date();
 }

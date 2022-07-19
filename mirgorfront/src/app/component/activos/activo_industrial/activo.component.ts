@@ -23,6 +23,8 @@ export class ActivoComponent implements OnInit {
   listadoActivosExistente: Activo[] = [];
   //Buscar activo
   buscar_activo = '';
+  //Variable de check
+  checked = false;
 
   // Variables Botones
   public btnGuardar = false;

@@ -52,10 +52,10 @@ export class EstadisticaComponent implements OnInit {
   single: [];
   multi: [];
 
-  vertical: [number,number] = [900, 500];
-  pie_advance: [number,number] = [900, 400];
+  vertical: [number,number] = [700, 400];
+  pie_advance: [number,number] = [900, 300];
   view: [number,number] = [950, 300];
-  horizontal: [number,number] = [800, 200];
+  horizontal: [number,number] = [700, 300];
 
   // options
   showXAxis = true;

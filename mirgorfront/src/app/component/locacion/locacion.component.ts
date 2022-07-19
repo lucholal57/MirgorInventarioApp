@@ -20,6 +20,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown'
 import { TrazabilidadService } from 'src/app/services/trazabilidad/trazabilidad.service';
 import {Router} from '@angular/router';
 
+
 @Component({
   selector: 'app-Locacion',
   templateUrl: './Locacion.component.html',
@@ -48,9 +49,16 @@ export class LocacionComponent implements OnInit {
     public btnEditar = false;
     public btnCancelar = false;
     public btnMover = false;
+    //Variablepara ocualta los select en el formulario, en el momento que movemos un activo de ubicacion
+    public hidenMover:boolean = true;
 
     LocacionFiltro="";
-
+    //Arrays para poder hacer el patchvalue con libreria ngdropdown
+    industrial:Activo[]=[];
+    general=[];
+    standar=[];
+    celular=[];
+    notebook=[];
 
   constructor(
     private servicioLocacion: LocacionService,
@@ -87,17 +95,20 @@ export class LocacionComponent implements OnInit {
       allowSearchFilter: true,
       closeDropDownOnSelection: true
     };
-    this.formularioRegistro.controls['activo_industrial'].setValue(null)
-    this.formularioRegistro.controls['activo_celular'].setValue(null)
-    this.formularioRegistro.controls['activo_notebook'].setValue(null)
-    this.formularioRegistro.controls['activo_general'].setValue(null)
-    this.formularioRegistro.controls['activo_standar'].setValue(null)
+
+  //Seteamos de inicio los select de Dropdown.
+  this.formularioRegistro.controls['activo_industrial'].setValue("")
+  this.formularioRegistro.controls['activo_general'].setValue("")
+  this.formularioRegistro.controls['activo_standar'].setValue("")
+  this.formularioRegistro.controls['activo_notebook'].setValue("")
+  this.formularioRegistro.controls['activo_celular'].setValue("")
+  console.log(this.formularioRegistro.value)
   }else{
     this.alertas.alertToken();
     setTimeout(() => {this.router.navigate(['']);},2000)
   }
-  }
 
+  }
 
   //Formulario Registro
   formularioRegistro= this.formBuilder.group({
@@ -110,6 +121,8 @@ export class LocacionComponent implements OnInit {
     activo_general:[''],
     activo_standar:[''],
     activo_industrial:[''],
+    unidad_negocio:['', [Validators.required]],
+    nave: ['', [Validators.required]],
     fecha:['',[Validators.required]],
   })
 
@@ -120,8 +133,6 @@ export class LocacionComponent implements OnInit {
     this.btnEditar=true;
     this.btnMover=true;
   }
-
-
 
   // Funcion para cerrar ventana modal
   cerrarModal(): void{
@@ -186,20 +197,14 @@ export class LocacionComponent implements OnInit {
   }
 
   registrarLocaciones():void{
-  this.asignarValoresFormulario();
+    this.asignarValoresFormulario();
     if(this.formularioRegistro.valid)
     {
       this.servicioLocacion.registrarLocacion(this.formularioRegistro.value).subscribe(
         (res) => {
-          console.log(res)
           this.cerrarModal();
           this.getLocaciones();
           this.alertas.alertsuccess();
-          this.servicioTrazabilidad.registrarTrazabilidad(this.formularioRegistro.value.locacion).subscribe(
-            (result) => {
-              console.log("Se registra trazabilidad con exito", result)
-            }
-          )
         },
         (error) => {
           console.log(error)
@@ -211,30 +216,41 @@ export class LocacionComponent implements OnInit {
     else{
       this.alertas.alertcampos();
     }
-
   }
 
   // Obtener Locacion por id para mostrar los campos en los input para su proxima edicion
   LocacionId(locacion:Locacion, content : any): void {
+    this.asignarValoresFormulario();
+    this.industrial=[];
+    this.general=[];
+    this.standar=[];
+    this.celular=[];
+    this.notebook = [];
+    this.btnMover=true;
     this.btnEditar = false;
     this.btnGuardar = true;
     this.modalService.open(content,{size:'lg'});
     this.servicioLocacion.getLocacionId(locacion).subscribe(
       (res) => {
-        console.log(res[0].activo_celular,"res")
+        this.industrial.push(res[0].activo_industrial);
+        this.standar.push(res[0].activo_standar);
+        this.general.push(res[0].activo_general);
+        this.notebook.push(res[0].activo_notebook);
+        this.celular.push(res[0].activo_celular);
         this.formularioRegistro.patchValue({
           id: res[0].id,
           sitio: res[0].sitio,
           area: res[0].area,
           localizacion: res[0].localizacion,
-          activo_industrial: res[0].activo_industrial,
-          activo_standar: res[0].activo_standar,
-          activo_general: res[0].activo_general,
-          activo_notebook: res[0].activo_notebook,
-          activo_celular: res[0].activo_celular,
+          activo_industrial: this.industrial,
+          activo_standar: this.standar,
+          activo_general: this.general,
+          activo_notebook: this.notebook,
+          activo_celular: this.celular,
+          unidad_negocio: res[0].unidad_negocio,
+          nave: res[0].nave,
           fecha: res[0].fecha,
         });
-
       },
       (error) => {
         console.log();
@@ -245,7 +261,8 @@ export class LocacionComponent implements OnInit {
   // Editar Locacion ya obtenido por el ID
   editarLocacionId(): void {
     this.asignarValoresFormulario()
-      this.servicioLocacion.editarLocacion(this.formularioRegistro.value, this.formularioRegistro.value.id)
+    console.log("Estop manda al editar ",this.formularioRegistro.value)
+    this.servicioLocacion.editarLocacion(this.formularioRegistro.value, this.formularioRegistro.value.id)
       .subscribe(
         (res) => {
           console.log(res)
@@ -303,49 +320,102 @@ busquedaLocacion(): void{
   }
 }
 
-SelectorBusqueda(): void{
-  if(this.valor_busqueda != "" && this.filtro_busqueda != ""){
-    if(this.filtro_busqueda == "inventario")
-    {
-
-    }
-
-  }
-}
-
 // Funcion para cancelar busqueda por alumno
 cancelarbusquedaLocacion(): void {
   this.getLocaciones();
   this.buscar_locacion = "";
 }
-
- // Funcion cancelar solo para borrar los valores de formulario reLocacion
- cancelar(): void{
+// Funcion cancelar solo para borrar los valores de formulario reLocacion
+cancelar(): void{
   this.formularioRegistro.reset();
 }
+
+//Asignacion de formulario ya que con la libreria ng dropdown de angular, nustro array se convierte en objeto entonces tenemos que setear el id para que pueda mandarlo a la api
 asignarValoresFormulario(): void{
-  if(this.formularioRegistro.value.activo_industrial != null)
-    {
-      this.formularioRegistro.controls['activo_industrial'].setValue(this.formularioRegistro.value.activo_industrial[0]['id'])
-    }
-    if(this.formularioRegistro.value.activo_celular != null)
-    {
+  var arraynull=[null]
+    if(this.formularioRegistro.value.activo_industrial != "" )
+      {
+        this.formularioRegistro.controls['activo_industrial'].setValue(this.formularioRegistro.value.activo_industrial[0]['id'])
+      }
+    if(this.formularioRegistro.get('activo_celular').value !="")
+    {console.log("valor formulario", this.formularioRegistro.get('activo_celular').value)
+     console.log("array null",arraynull)
       this.formularioRegistro.controls['activo_celular'].setValue(this.formularioRegistro.value.activo_celular[0]['id'])
     }
-    if(this.formularioRegistro.value.activo_general!= null)
+    if(this.formularioRegistro.value.activo_general != "")
     {
       this.formularioRegistro.controls['activo_general'].setValue(this.formularioRegistro.value.activo_general[0]['id'])
     }
-    if(this.formularioRegistro.value.activo_notebook!= null)
+    if(this.formularioRegistro.value.activo_notebook != "")
     {
       this.formularioRegistro.controls['activo_notebook'].setValue(this.formularioRegistro.value.activo_notebook[0]['id'])
     }
-    if(this.formularioRegistro.value.activo_standar!= null)
+    if(this.formularioRegistro.value.activo_standar != "")
     {
       this.formularioRegistro.controls['activo_standar'].setValue(this.formularioRegistro.value.activo_standar[0]['id'])
     }
+}
+
+moverEdicionActivo(locacion:Locacion, content : any): void{
+  var industrial=[];
+  var general=[];
+  var standar=[];
+  var celular=[];
+  var notebook = [];
+  this.btnEditar = true;
+    this.btnGuardar = true;
+    this.btnMover = false;
+    this.modalService.open(content,{size:'lg'});
+    this.servicioLocacion.getLocacionId(locacion).subscribe(
+      (res) => {
+        industrial.push(res[0].activo_industrial);
+        general.push(res[0].activo_general);
+        standar.push(res[0].activo_standar);
+        notebook.push(res[0].activo_notebook);
+        celular.push(res[0].activo_celular);
+        this.formularioRegistro.patchValue({
+          id: res[0].id,
+          sitio: res[0].sitio,
+          area: res[0].area,
+          localizacion: res[0].localizacion,
+          activo_industrial: res[0].activo_industrial,
+          activo_standar: res[0].activo_standar,
+          activo_general: res[0].activo_general,
+          activo_notebook: res[0].activo_notebook,
+          activo_celular: res[0].activo_celular,
+          unidad_negocio: res[0].unidad_negocio,
+          nave: res[0].nave,
+          fecha: res[0].fecha,
+        });
+      },
+      (error) => {
+      }
+    );
+}
+
+//Se crea un objeto con las caracteristicas de trazavilidad solo para tener un registro.
+moverActivo(): void{
+  this.editarLocacionId();
+  var trazabilidad={
+    "locacion":this.formularioRegistro.value.id,
+    "locacion_productiva":null,
+    "sitio": this.formularioRegistro.value.sitio,
+    "unidad_negocio": this.formularioRegistro.value.unidad_negocio,
+    "area": this.formularioRegistro.value.area,
+    "localizacion":this.formularioRegistro.value.localizacion,
+    "nave":this.formularioRegistro.value.nave,
+    "fecha":this.formularioRegistro.value.fecha
+  }
+  console.log("valores trazabilidad",trazabilidad)
+  this.servicioTrazabilidad.registrarTrazabilidad(trazabilidad).subscribe(
+    (res) => {
+      console.log(this.formularioRegistro.value)
+      console.log(res)
+      alert("Exito al registrar")
+    }
+  )
 
 }
 
-
 }
+

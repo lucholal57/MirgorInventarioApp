@@ -34,7 +34,7 @@ def LocacionBuscarPorId(request,pk=None):
     #Validacion
     if locacion:
         if request.method == 'GET':
-            serializer = LocacionPostPutSerializer(locacion,many=True)
+            serializer = LocacionSerializer(locacion,many=True)
             return Response(serializer.data,status=status.HTTP_200_OK)
         #Update
         elif request.method == 'PUT':

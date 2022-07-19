@@ -7,7 +7,6 @@
     <title>Registrar Activos Industrial</title>
 </head>
 <body>
-  
 <app-inicio></app-inicio>
 <form  [formGroup]="formularioRegistro" (submit)="registrarActivos()">
     <ng-template #content let-c="close" let-d="dismiss" >
@@ -18,6 +17,16 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+
+       
+
+<select data-live-search="true" data-live-search-style="startsWith" class="selectpicker">
+  <option value="4444">4444</option>
+  <option value="Fedex">Fedex</option>
+  <option value="Elite">Elite</option>
+  <option value="Interp">Interp</option>
+  <option value="Test">Test</option>
+</select>
 
         <div class="modal-body">
             <div class="form-group">
@@ -71,7 +80,7 @@
 
               <div class="row">
               <div class="col-sm-6">
-                <label style="color:black" for="nomber">Serie</label>
+                <label style="color:black" for="nomber">Serie </label>
               <input
                 type="text"
                 name="serie"
@@ -147,6 +156,7 @@
 
 
     <div class="container-fluid" id="contenedorTabla">
+      
         <h4 align="center" style="color: aliceblue;" >INDUSTRIALES</h4>
         <hr>
         <div class="btn-group">
@@ -179,7 +189,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="text-center"*ngFor="let activo of listadoActivos | paginate: { itemsPerPage: 14, currentPage: p  }" >
+            <tr class="text-center"*ngFor="let activo of listadoActivos | paginate: { itemsPerPage: 17, currentPage: p  }" >
                 <td scope="row">{{activo.id}}</td>
                 <td scope="row">{{activo.inventario}}</td>
                 <td scope="row">{{activo.descripcion}}</td>
@@ -191,8 +201,8 @@
                 <td scope="row">{{activo.dpi}}</td>
                 <td scope="row">{{activo.ip}}</td>
                 <td scope="">
-                    <button class="btn btn-outline-warning" (click)="ActivoId(activo,content)">Editar</button>
-                    <button class="btn btn-outline-danger"  (click)="eliminarActivo(activo)">Eliminar</button>
+                    <a (click)="ActivoId(activo,content)"><mat-icon style="color:skyblue ; margin-right:15px;"> edit </mat-icon></a>
+                    <a (click)="eliminarActivo(activo)"><mat-icon style="color:red ; "> delete </mat-icon></a>
                 </td>
 
             </tr>

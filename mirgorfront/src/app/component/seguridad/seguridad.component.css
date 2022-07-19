@@ -7,3 +7,7 @@ body{
   min-height: 100vh;
 
 }
+
+.modal-xl {
+  max-width: 1000px;
+}

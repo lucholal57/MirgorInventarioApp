@@ -20,7 +20,7 @@ export class ActivoCelularService {
   constructor( private http : HttpClient) { }
 
   getActivoCelular(): Observable<ActivoCelular[]>{
-    return this.http.get<ActivoCelular[]>(this.url_prod + 'celular' , httpOption)
+    return this.http.get<ActivoCelular[]>(this.url_prod+ 'celular' , httpOption)
   }
   registrarActivoCelular(formularioregistro:any):Observable<ActivoCelular[]>{
     return this.http.post<ActivoCelular[]>(this.url_prod + 'celular', formularioregistro, httpOption)

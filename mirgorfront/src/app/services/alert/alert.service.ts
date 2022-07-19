@@ -28,6 +28,30 @@ export class AlertService {
       timer: 1700,
     });
   }
+
+  //Alerta encontro resultados
+  alertSeguridadOk() {
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'EXITO',
+      showConfirmButton: false,
+      timer: 550,
+    });
+  }
+
+    //Alerta encontro resultados
+    alertSeguridadNoOk() {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'SIN DATOS!!',
+        showConfirmButton: false,
+        timer: 550,
+      });
+    }
+
+
   // Alert error
   alerterror() {
     Swal.fire({

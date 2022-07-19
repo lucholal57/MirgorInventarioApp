@@ -15,7 +15,8 @@ from trazabilidad.serializer import TrazabilidadSerializer,TrazabilidadPostPutSe
 def TrazabilidadListado(request):
     #List
     if request.method == 'GET':
-        trazabilidad = Trazabilidad.objects.all().order_by('id')
+        #-fecha Ordena de la fecha mas actual hacia abajo
+        trazabilidad = Trazabilidad.objects.all().order_by('-fecha')
         serializer = TrazabilidadSerializer(trazabilidad, many = True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     #Register
