@@ -13,14 +13,14 @@
     <div id="container-fluid">
       <div class="d-flex p-2">
         <div class="row">
-            <div class="col">
+            <div class="col" style="background-color:azurere; border-radius: 10px; margin-left: 10px;">
                 <ngx-charts-bar-vertical [view]="vertical" [scheme]="colorScheme" [results]="activos" [gradient]="gradient"
                     [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
                     [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
                 </ngx-charts-bar-vertical>
 
             </div>
-            <div class="col" id="ngx-c">
+            <div class="col" style="background-color:lightblue; border-radius: 10px; margin-left: 10px;">
                 <ngx-charts-advanced-pie-chart  [view]="pie_advance"
                 [scheme]="colorScheme"
                 [results]="activos"
@@ -32,14 +32,14 @@
     </div>
     <div class="d-flex p-2">
         <div class="row">
-            <div class="col">
+            <div class="col" style="background-color:lightblue; border-radius: 10px; margin-left: 10px;">
                 <ngx-charts-bar-horizontal [view]="horizontal" [scheme]="colorScheme" [results]="activos" [gradient]="gradient"
                     [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
                     [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
                 </ngx-charts-bar-horizontal>
 
             </div>
-            <div class="col">
+            <div class="col" style="background-color:lightblue; border-radius: 10px; margin-left: 10px;">
                 <ngx-charts-pie-grid   [view]="view"
                 [scheme]="colorScheme"
                 [results]="activos">

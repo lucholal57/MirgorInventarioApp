@@ -68,6 +68,8 @@ export class EstadisticaComponent implements OnInit {
   yAxisLabel = 'CANTIDAD';
   showLabels: boolean = true;
   isDoughnut: boolean = false;
+  responsive='true';
+ 
 
   colorScheme = {
     name: 'vivid',

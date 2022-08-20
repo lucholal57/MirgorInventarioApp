@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<app-inicio></app-inicio>
+
+<form>
+<div class="container-fluid" >
+<div class="card-group">
+
+  <div class="card border-info" style="background-color:#ffffff00; max-height: 160px;">
+    <h5 align="center" style="color:white ;">Registro de Falla</h5> 
+    <select class="form-select form-select-sm" name="" id="" style="margin-top: -2%; margin-right: 100%;">
+      <option value="0">Seleccione Falla/Asistencia</option>
+      <option value="Faltante">Faltante</option>
+      <option value="Pantalla">Pantalla</option>
+      <option value="Pantalla">AA IMK</option>
+    </select>
+      <select class="form-select form-select-sm" name="" id="" style="margin-top: 2%;">
+        <option value="0">Seleccione Sub Falla/Asistencia</option>
+        <option value="Faltante">Tecla</option>
+        <option value="Pantalla">Speaker</option>
+        <option value="Pantalla">Tornillos</option>
+      </select>
+      <input type="text" style="margin-top: 2%;" placeholder="Ingrese IMEI">
+    
+  </div>
+
+  <div class="card border-info" style="background-color:#ffffff00; max-height: 160px;">
+
+    <p align="center" style="color:white;">{{fechaActual | date}} {{hora | date:'hh:mm:ss a'}}</p>
+    <h1 align="center" style="color:white;">EAP01</h1>
+    <h1 class="card-title" style="color:white ;" align="center">SM-908-E-D-R-M-ARO</h1>
+
+  </div>
+  
+  <div class="card border-info" style="background-color:#ffffff00; max-height: 160px;">
+    <div class="card-body" align="center" >
+      <!-- Se guarda grafico por las dudas que lo nececite mas adelante es de progreso-->
+      <circle-progress
+      [percent]="75"
+      [radius]="50"
+      [outerStrokeWidth]="10"
+      [outerStrokeColor]="'#36DE00 '"
+      [innerStrokeColor]="'F6F6F6'"
+      [animation]="true"
+      [animationDuration]="500"
+      [title]="'TOP 1'"
+      [titleColor]="'#F6F6F6'"
+      [titleFontSize]="'15'"
+      ></circle-progress>
+    </div>
+  </div>
+
+<div class="card border-info" style="background-color:#ffffff00; max-height: 160px;">
+
+<div style="text-align:center">
+  <img src="../../../assets/fotos/s22.png"  alt="..." style="max-width: 105px;">
+</div>
+
+</div>
+</div>
+
+<div class="card-group col-md-12">
+
+  <div class="card border-info md-3" style="background-color:#ffffff00; height:370px;">
+    <div class="card-body" align="center">
+
+      <div class="card text-white bg-dark mb-3">
+      <table class="table table-sm table-dark table-striped">
+        <thead align="center" style="color:#ff0000 ;">
+        <tr>
+            <th scope="col">TOP FALLAS</th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr>
+            <td align="center">Faltante Camara</td>
+          </tr>
+          <tr>
+            <td align="center">Faltante Teclas</td>
+          </tr>
+          <tr>
+            <td align="center">Faltante Speaker </td>
+          </tr>
+          <tr>
+            <td align="center">Faltante Tornillo</td>
+          </tr>
+          <tr>
+            <td align="center">Tornillo Rodado</td>
+          </tr>
+          <tr>
+            <td align="center">Pantalla Dañana</td>
+          </tr>
+          <tr>
+            <td align="center">No impacta SIM</td>
+          </tr>
+          <tr>
+            <td align="center">Film dañado</td>
+          </tr>
+          <tr>
+            <td align="center">Tapa Dañada</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card border-info mb-3" style="background-color:#ffffff00; height:370px; ">
+    
+    <div class="card-body" align="center">
+      <div class="card text-white bg-dark mb-3 ">
+      <!-- <div class="card-body">
+          <h1 class="card-title" style="color:yellow;">ACCIONES</h1>
+            <hr>
+            <h4>Capacitacion </h4>
+            <hr>
+            <h4>Soporte IMK</h4>
+            <hr>
+            <h4>No impacta SIM</h4>
+            <hr>
+            <h4>Limpieza LCIA</h4>
+            <hr>
+            <h4>Cambio Punta Atornilladora</h4>
+        </div> -->
+
+        <table class="table table-sm table-dark table-striped">
+          <thead align="center" style="color:yellow ;">
+            <tr>
+              <th scope="col">ACCIONES</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td align="center">Reposicion Faltantes</td>
+            </tr>
+            <tr>
+              <td align="center">Soporte AA IMK</td>
+            </tr>
+            <tr>
+              <td align="center">PLR Pantallas</td>
+            </tr>
+            <tr>
+              <td align="center">Soporte ATP</td>
+            </tr>
+            <tr>
+              <td align="center">Soporte AA IMK</td>
+            </tr>
+            <tr>
+              <td align="center">Reinicio Servicio SIM</td>
+            </tr>
+            <tr>
+              <td align="center">Capacitacion P.19</td>
+            </tr>
+            <tr>
+              <td align="center">Reinicio Servicio SIM</td>
+            </tr>
+            <tr>
+              <td align="center">PLR Tornillos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="card border-info mb-3" style="background-color:#ffffff00; height:370px;">
+    <div class="card-body" align="center">
+      <div class="card text-white bg-dark mb-3 ">
+        <canvas id="myChart2" width="370" height="435" ></canvas>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card border-info mb-3" style="background-color:#ffffff00; height:370px;">
+    <div class="card-body" align="center">
+      <div class="card text-white bg-dark mb-3 ">
+        <canvas id="myChart" width="370" height="435" ></canvas>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</div>
+</form>
+
+</body>
+</html>

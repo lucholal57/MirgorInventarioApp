@@ -30,6 +30,10 @@ import { FiltroLocacionPipe } from './pipes/filtro-locacion.pipe';
 import { TrazabilidadComponent } from './component/trazabilidad/trazabilidad.component';
 import { AngularMaterialModule} from '../app/angular-material.module';
 import { SeguridadComponent } from '../app/component/seguridad/seguridad.component';
+import { ReparacionComponent } from './component/parte_linea/reparacion.component';
+
+// Import ng-circle-progress
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
 @NgModule({
@@ -50,6 +54,7 @@ import { SeguridadComponent } from '../app/component/seguridad/seguridad.compone
     FiltroLocacionPipe,
     TrazabilidadComponent,
     SeguridadComponent,
+    ReparacionComponent
 
   ],
   imports: [
@@ -66,7 +71,18 @@ import { SeguridadComponent } from '../app/component/seguridad/seguridad.compone
     BrowserAnimationsModule,
     AutocompleteLibModule,
     NgSelectModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+
+     // Specify ng-circle-progress as an import
+     NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

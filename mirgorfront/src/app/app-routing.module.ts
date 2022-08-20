@@ -11,6 +11,7 @@ import { LineaTelefonicaComponent } from './component/linea-telefonica/linea-tel
 import { LocacionProductivaComponent } from './component/locacion-productiva/locacion-productiva.component';
 import { LocacionComponent } from './component/locacion/locacion.component';
 import { LoginComponent } from './component/login/login.component';
+import { ReparacionComponent } from './component/parte_linea/reparacion.component';
 import { SeguridadComponent } from './component/seguridad/seguridad.component';
 import { TrazabilidadComponent } from './component/trazabilidad/trazabilidad.component'
 import { UsuarioComponent } from './component/usuario/usuario.component';
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path:'locacion_productiva', component: LocacionProductivaComponent},
   {path:'trazabilidad', component: TrazabilidadComponent},
   {path:'seguridad', component: SeguridadComponent},
+  {path:'reparacion',component: ReparacionComponent}
 
 ];
 

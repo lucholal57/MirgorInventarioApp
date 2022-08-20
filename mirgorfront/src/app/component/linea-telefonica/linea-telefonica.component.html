@@ -67,7 +67,7 @@
   <hr>
   <div class="btn-group">
     <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
-    <button class="btn btn-outline-primary"  (click)="busquedaLineaTelefonica()" style="margin-right: 5px;" >Buscar</button>
+    <button type="submit" class="btn btn-outline-primary"  (click)="busquedaLineaTelefonica()" style="margin-right: 5px;" >Buscar</button>
     <input type="text" placeholder="N° Linea" (change)="p=1"
       class="form-control" [(ngModel)]="buscar_linea_telefonica" >
       <button class="btn btn-outline-danger" (click)="cancelarbusquedaLineaTelefonica()"  style="margin-left: 5px;" >Cancelar</button>

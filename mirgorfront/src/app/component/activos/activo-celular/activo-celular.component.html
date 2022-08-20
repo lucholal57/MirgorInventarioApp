@@ -92,7 +92,7 @@
     <hr>
     <div class="btn-group">
       <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
-      <button class="btn btn-outline-primary"  (click)="busquedaActivo()" style="margin-right: 5px;" >Buscar</button>
+      <button type="submit" class="btn btn-outline-primary"  (click)="busquedaActivo()" style="margin-right: 5px;" >Buscar</button>
       <input type="text" placeholder="N° IMEI" (change)="p=1"
         class="form-control" [(ngModel)]="buscar_activo">
         <button class="btn btn-outline-danger"  style="margin-left: 5px;" (click)="cancelarbusquedaActivo()" >Cancelar</button>
