@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
   <meta charset="UTF-8">
@@ -8,10 +9,11 @@
   <title>Document</title>
 
 </head>
-<img src="../../../../assets/21 - M+ azul.png" width="150" height="60" alt=""  style="float:right;">
-<body>  
- 
-<!--
+<img src="../../../../assets/21 - M+ azul.png" width="150" height="60" alt="" style="float:right;">
+
+<body>
+
+  <!--
    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <div class="d-flex w-50 order-0">
           <h1 class="navbar-right" style="color: aliceblue;">MIRGOR IT</h1>
@@ -117,66 +119,92 @@
     </nav>
 -->
 
-<div id="wrapper">
-  <div class="overlay">
-  </div>
-       <!-- Sidebar -->
-   <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
-
-    <ul class="nav sidebar-nav">
-      <div class="sidebar-header">
-        <img src="../../../assets/21 - M+ azul.png" width="200px" >
-      
+  <div id="wrapper">
+    <div class="overlay">
     </div>
+    <!-- Sidebar -->
+    <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+
+      <ul class="nav sidebar-nav">
+        <div class="sidebar-header">
+          <img src="../../../assets/21 - M+ azul.png" width="200px">
+
+        </div>
 
         <li class="dropdown">
-          <a href="#works" class="dropdown-toggle"   data-bs-toggle="dropdown"><mat-icon>list</mat-icon>  ACTIVOS <span class="caret"></span></a>
-        <ul class="dropdown-menu animated fadeInLeft" role="menu">
-         <div class="dropdown-header">CRUD ACTIVOS</div>
-         <li><a href="/activo_industrial"><mat-icon> business</mat-icon> Industrial</a></li>
-         <li><a href="/activo_celular"><mat-icon>mobile_friendly</mat-icon> Celular</a></li>
-         <li><a href="/activo_notebook"><mat-icon>computer</mat-icon> Notebook</a></li>
-         <li><a href="/activo_general"><mat-icon>devices_other</mat-icon> General</a></li>
-         <li><a href="/activo_standar"><mat-icon>desktop_windows</mat-icon> Standar</a></li>
-         </ul>
-         </li>
+          <a href="#works" class="dropdown-toggle" data-bs-toggle="dropdown">
+            <mat-icon>list</mat-icon> ACTIVOS <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu animated fadeInLeft" role="menu">
+            <div class="dropdown-header">CRUD ACTIVOS</div>
+            <li><a href="/activo_industrial">
+                <mat-icon> business</mat-icon> Industrial
+              </a></li>
+            <li><a href="/activo_celular">
+                <mat-icon>mobile_friendly</mat-icon> Celular
+              </a></li>
+            <li><a href="/activo_notebook">
+                <mat-icon>computer</mat-icon> Notebook
+              </a></li>
+            <li><a href="/activo_general">
+                <mat-icon>devices_other</mat-icon> General
+              </a></li>
+            <li><a href="/activo_standar">
+                <mat-icon>desktop_windows</mat-icon> Standar
+              </a></li>
+          </ul>
+        </li>
 
-      <li><a href="/usuario"> <mat-icon style="color: rgb(239, 231, 231);">people</mat-icon> USUARIOS</a></li>
-      <li><a href="/linea_telefonica"><mat-icon> contact_phone</mat-icon> LINEAS TELEFONICAS</a></li>
-      <li><a href="/trazabilidad"><mat-icon>youtube_searched_for</mat-icon> TRAZABILIDAD</a></li>
-      <li><a href="/locacion"><mat-icon> linear_scale</mat-icon> UBICACIONES</a></li>
-      <li><a href="/locacion_productiva"><mat-icon> linear_scale</mat-icon> UBICACIONES PRODUCTIVAS</a></li>
-      <li><a href="/dashboard"><mat-icon>dashboard</mat-icon> DASHBOARD</a></li>
-      <li><a href="/seguridad"><mat-icon>verified_user</mat-icon> SEGURIDAD PATRIMONIAL</a></li>
-      <li><a href="/reparacion"><mat-icon>verified_user</mat-icon> REPARACION</a></li>
+        <li><a href="/usuario">
+            <mat-icon style="color: rgb(239, 231, 231);">people</mat-icon> USUARIOS
+          </a></li>
+        <li><a href="/linea_telefonica">
+            <mat-icon> contact_phone</mat-icon> LINEAS TELEFONICAS
+          </a></li>
+        <li><a href="/trazabilidad">
+            <mat-icon>youtube_searched_for</mat-icon> TRAZABILIDAD
+          </a></li>
+        <li><a href="/locacion">
+            <mat-icon> linear_scale</mat-icon> UBICACIONES
+          </a></li>
+        <li><a href="/locacion_productiva">
+            <mat-icon> linear_scale</mat-icon> UBICACIONES PRODUCTIVAS
+          </a></li>
+        <li><a href="/dashboard">
+            <mat-icon>dashboard</mat-icon> DASHBOARD
+          </a></li>
+        <li><a href="/seguridad">
+            <mat-icon>verified_user</mat-icon> SEGURIDAD PATRIMONIAL
+          </a></li>
+        <li><a href="/reparacion">
+            <mat-icon>donut_large</mat-icon> PRODUCCION
+          </a></li>
 
-      <li><a type="button" (click)="logout()">	<mat-icon>exit_to_app</mat-icon> CERRAR SESION</a></li>
-     </ul>
+        <li><a type="button" (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon> CERRAR SESION
+          </a></li>
+      </ul>
 
- </nav>
-       <!-- /#sidebar-wrapper -->
+    </nav>
+    <!-- /#sidebar-wrapper -->
 
-       <!-- Page Content -->
-       <div id="page-content-wrapper">
-           <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
-               <span class="hamb-top"></span>
-         <span class="hamb-middle"></span>
-       <span class="hamb-bottom"></span>
-           </button>
-           <div class="container">
-               <div class="row">
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+        <span class="hamb-top"></span>
+        <span class="hamb-middle"></span>
+        <span class="hamb-bottom"></span>
+      </button>
+      <div class="container">
+        <div class="row">
 
-               </div>
-           </div>
-       </div>
-       <!-- /#page-content-wrapper -->
+        </div>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
 
-   </div>
-   <!-- /#wrapper -->
+  </div>
+  <!-- /#wrapper -->
 </body>
 
 </html>
-
-
-
-

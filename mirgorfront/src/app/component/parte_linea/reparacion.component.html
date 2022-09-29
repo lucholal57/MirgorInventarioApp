@@ -1,199 +1,314 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-<app-inicio></app-inicio>
+  <app-inicio></app-inicio>
 
-<form>
-<div class="container-fluid" >
-<div class="card-group">
+  <form [formGroup]="formularioRegistro" (ngSubmit)="registrarFalla()">
+    <div class="container-fluid">
+      <div class="card-group">
 
-  <div class="card border-info" style="background-color:#ffffff00; max-height: 160px;">
-    <h5 align="center" style="color:white ;">Registro de Falla</h5> 
-    <select class="form-select form-select-sm" name="" id="" style="margin-top: -2%; margin-right: 100%;">
-      <option value="0">Seleccione Falla/Asistencia</option>
-      <option value="Faltante">Faltante</option>
-      <option value="Pantalla">Pantalla</option>
-      <option value="Pantalla">AA IMK</option>
-    </select>
-      <select class="form-select form-select-sm" name="" id="" style="margin-top: 2%;">
-        <option value="0">Seleccione Sub Falla/Asistencia</option>
-        <option value="Faltante">Tecla</option>
-        <option value="Pantalla">Speaker</option>
-        <option value="Pantalla">Tornillos</option>
-      </select>
-      <input type="text" style="margin-top: 2%;" placeholder="Ingrese IMEI">
-    
-  </div>
+        <div class="card border-info" style="background-color:#ffffff00; max-height: 160px;">
+          <h5 align="center" style="color:white ;">Registro de Falla</h5>
+          <div class="select" style="width: 80%; margin-top: -2%; margin-left: 10%;">
+            <select class="form-select form-select-sm form-control" name="" id=""
+              style="margin-top: -2%; margin-right: 100%;" formControlName="falla">
+              <option value="" disabled selected>Seleccione Falla</option>
+              <option value="Dañado">Dañado</option>
+              <option value="Faltante">Faltante</option>
+              <option value="Ensamble">Ensamble</option>
+              <option value="Sim">SIM</option>
+              <option value="Atornilladora">AA IMK</option>
+            </select>
+            <select class="form-select form-select-sm form-control" name="" id="" style="margin-top: 2%;"
+              formControlName="subfalla" (change)="focusImei()">
+              <option value="" disabled selected>Seleccione Sub Falla</option>
+              <option value="Teclas">Teclas</option>
+              <option value="Camara">Camara</option>
+              <option value="Speaker">Speaker</option>
+              <option value="Tornillos">Tornillos</option>
+              <option value="Coaxil">Coaxial</option>
+              <option value="Pantalla">Pantalla</option>
+              <option value="No impacta">No impacta SIM</option>
+            </select>
 
-  <div class="card border-info" style="background-color:#ffffff00; max-height: 160px;">
+          </div>
 
-    <p align="center" style="color:white;">{{fechaActual | date}} {{hora | date:'hh:mm:ss a'}}</p>
-    <h1 align="center" style="color:white;">EAP01</h1>
-    <h1 class="card-title" style="color:white ;" align="center">SM-908-E-D-R-M-ARO</h1>
+          <div class="input" style="text-align: center;margin-top:2%">
+            <input class="form-control" type="text" placeholder="IMEI" formControlName="imei" id="entradaImei">
+          </div>
 
-  </div>
-  
-  <div class="card border-info" style="background-color:#ffffff00; max-height: 160px;">
-    <div class="card-body" align="center" >
-      <!-- Se guarda grafico por las dudas que lo nececite mas adelante es de progreso-->
-      <circle-progress
-      [percent]="75"
-      [radius]="50"
-      [outerStrokeWidth]="10"
-      [outerStrokeColor]="'#36DE00 '"
-      [innerStrokeColor]="'F6F6F6'"
-      [animation]="true"
-      [animationDuration]="500"
-      [title]="'TOP 1'"
-      [titleColor]="'#F6F6F6'"
-      [titleFontSize]="'15'"
-      ></circle-progress>
+        </div>
+
+        <div class="card border-info" style="background-color:#ffffff00; max-height: 160px;">
+          <h5 align="center" style="color:white ;">Registro de Acciones</h5>
+          <div class="select" style="width: 80%; margin-top: -2%; margin-left: 10%;">
+            <select class="form-select form-select-sm" name="" id="">
+              <option value="" disabled selected>Seleccione Acciones</option>
+              <option value="Faltante">Mantenimiento AA IMK</option>
+              <option value="Pantalla">Soporte Sistemas</option>
+              <option value="Pantalla">Soporte ATP</option>
+              <option value="Pantalla">Piso de Planta SIM</option>
+            </select>
+          </div>
+          <button class="btn btn-warning" style="width:40% ; margin-left: 30%; margin-top: 2%;">Registrar</button>
+
+        </div>
+
+        <div class="card border-info" style="background-color:#ffffff00; max-height: 160px;">
+          <h5 align="center" style="color:white ;">Registro de Semaforo</h5>
+          <div class="select" style="width: 80%; margin-top: -2%; margin-left: 10%;">
+            <select class="form-select form-select-sm" name="" id="">
+              <option value="" disabled selected>Seleccione Semaforo</option>
+              <option value="dañado">Dañado</option>
+              <option value="faltante">Faltante</option>
+              <option value="ensamble">Ensamble</option>
+              <option value="sim">SIM</option>
+              <option value="atornilladora">AA IMK</option>
+            </select>
+            <select class="form-select form-select-sm" name="" id="" style="margin-top: 2%;">
+              <option value="" disabled selected>Seleccione Falla</option>
+              <option value="tecla">Teclas</option>
+              <option value="camara">Camara</option>
+              <option value="speaker">Speaker</option>
+              <option value="tornillos">Tornillos</option>
+              <option value="coaxil">Coaxial</option>
+              <option value="pantalla">Pantalla</option>
+              <option value="sim">No impacta SIM</option>
+            </select>
+          </div>
+          <button class="btn btn-success" style="width:40% ; margin-left: 30%; margin-top: 1%;">Registrar</button>
+
+        </div>
+
+        <div class="card border-info" style="background-color:#ffffff00; max-height: 160px;">
+          <p align="center" style="color:white;">{{fechaActual | date}} {{hora | date:'hh:mm:ss a'}}</p>
+          <h1 align="center" style="color:white;">EAP01</h1>
+          <h4 class="card-title" style="color:white ;" align="center">SM-908-E-D-R-M-ARO</h4>
+        </div>
+      </div>
     </div>
-  </div>
+  </form>
+  <div class="container-fluid">
 
-<div class="card border-info" style="background-color:#ffffff00; max-height: 160px;">
+  <div class="card-group col-md-12">
 
-<div style="text-align:center">
-  <img src="../../../assets/fotos/s22.png"  alt="..." style="max-width: 105px;">
-</div>
+    <div class="card border-info md-3" style="background-color:#ffffff00; height:320px;">
+      <div class="card-body" align="center">
 
-</div>
-</div>
+        <div class="card text-white bg-dark mb-3">
+          <table class="table table-sm table-dark table-striped">
+            <thead align="center" style="color:#ff0000 ;">
+              <tr>
+                <th scope="col">TOP FALLAS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let falla of array1 | paginate: { itemsPerPage: 6, currentPage: p }">
+                <td align="center">{{falla.falla}} {{falla.subfalla}} <mat-icon style="color: red; margin-left: 2%;">
+                    trending_up</mat-icon>
+                </td>
+              </tr>
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-<div class="card-group col-md-12">
+    <div class="card border-info mb-3" style="background-color:#ffffff00; height:320px; ">
 
-  <div class="card border-info md-3" style="background-color:#ffffff00; height:370px;">
-    <div class="card-body" align="center">
+      <div class="card-body" align="center">
+        <div class="card text-white bg-dark mb-3 ">
 
-      <div class="card text-white bg-dark mb-3">
-      <table class="table table-sm table-dark table-striped">
-        <thead align="center" style="color:#ff0000 ;">
-        <tr>
-            <th scope="col">TOP FALLAS</th>
-        </tr>
-      </thead>
-        <tbody>
-          <tr>
-            <td align="center">Faltante Camara</td>
-          </tr>
-          <tr>
-            <td align="center">Faltante Teclas</td>
-          </tr>
-          <tr>
-            <td align="center">Faltante Speaker </td>
-          </tr>
-          <tr>
-            <td align="center">Faltante Tornillo</td>
-          </tr>
-          <tr>
-            <td align="center">Tornillo Rodado</td>
-          </tr>
-          <tr>
-            <td align="center">Pantalla Dañana</td>
-          </tr>
-          <tr>
-            <td align="center">No impacta SIM</td>
-          </tr>
-          <tr>
-            <td align="center">Film dañado</td>
-          </tr>
-          <tr>
-            <td align="center">Tapa Dañada</td>
-          </tr>
-        </tbody>
-      </table>
+          <table class="table table-sm table-dark table-striped">
+            <thead align="center" style="color:yellow ;">
+              <tr>
+                <th scope="col">ACCIONES</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="center">Reposicion Faltantes <mat-icon style="color: red ; margin-left: 2%;">trending_up
+                  </mat-icon>
+                </td>
+              </tr>
+              <tr>
+                <td align="center">Soporte AA IMK <mat-icon style="color: red; margin-left: 2%;">trending_up</mat-icon>
+                </td>
+              </tr>
+              <tr>
+                <td align="center">PLR Pantallas <mat-icon style="color:  rgb(255, 251, 0); margin-left: 2%;">
+                    trending_flat</mat-icon>
+                </td>
+              </tr>
+              <tr>
+                <td align="center">Soporte ATP <mat-icon style="color: rgb(255, 251, 0); margin-left: 2%;">trending_flat
+                  </mat-icon>
+                </td>
+              </tr>
+              <tr>
+                <td align="center">Soporte AA IMK <mat-icon style="color: green; margin-left: 2%;">trending_down
+                  </mat-icon>
+                </td>
+              </tr>
+              <tr>
+                <td align="center">Reinicio Servicio SIM <mat-icon
+                    style="color: green ; margin-left: 2%;margin-left: 2%;">trending_down</mat-icon>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="card border-info mb-3" style="background-color:#ffffff00; height:320px;">
+      <div class="card-body" align="center">
+        <div class="card text-white bg-dark mb-3">
+          <table class="table table-sm table-dark table-striped">
+            <thead align="center" style="color:#00ff44 ;">
+              <tr>
+                <th scope="col">SEMAFORO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="center">Faltante Teclas <mat-icon style="color: red; margin-left: 2%;">trending_up</mat-icon>
+                </td>
+              </tr>
+              <tr>
+                <td align="center">Faltante Speaker <mat-icon style="color: red ; margin-left: 2%;margin-left: 2%;">
+                    trending_up</mat-icon>
+                </td>
+              </tr>
+              <tr>
+                <td align="center">Faltante Tornillo <mat-icon style="color:  rgb(255, 251, 0); margin-left: 2%;">
+                    trending_flat</mat-icon>
+                </td>
+              </tr>
+              <tr>
+                <td align="center">Tornillo Rodado <mat-icon
+                    style="color:  rgb(255, 251, 0) ; margin-left: 2%;margin-left: 2%;">trending_flat</mat-icon>
+                </td>
+              </tr>
+              <tr>
+                <td align="center">No impacta SIM <mat-icon style="color: green; margin-left: 2%;">trending_down
+                  </mat-icon>
+                </td>
+              </tr>
+              <tr>
+                <td align="center">Modulo Dañado <mat-icon style="color: green ; margin-left: 2%;margin-left: 2%;">
+                    trending_down</mat-icon>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-info mb-3" style="background-color:#ffffff00; height:320px;">
+      <div class="card-body" align="center">
+        <div class="card text-white bg-dark mb-3">
+          <table class="table table-sm table-dark table-striped">
+            <thead align="center" style="color:#ff0000 ;">
+              <tr>
+                <th scope="col">SCRAP</th>
+                <th scope="col">$USD</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="center">Pantalla</td>
+                <td align="center" style="color:red ;">$ 1250</td>
+              </tr>
+              <tr>
+                <td align="center">Camara</td>
+                <td align="center" style="color:red ;">$ 7250</td>
+              </tr>
+              <tr>
+                <td align="center">Speaker</td>
+                <td align="center" style="color:red ;">$ 4398</td>
+              </tr>
+              <tr>
+                <td align="center">Modulo</td>
+                <td align="center" style="color:red ;">$ 3491</td>
+              </tr>
+              <tr>
+                <td align="center">Coaxial</td>
+                <td align="center" style="color:red ;">$ 700</td>
+              </tr>
+              <tr>
+                <td align="center">Tornillo</td>
+                <td align="center" style="color:red ;">$ 2812</td>
+              </tr>
+              <tr>
+                <td align="center">Film</td>
+                <td align="center" style="color:red ;">$ 4150</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="card border-info mb-3" style="background-color:#ffffff00; height:370px; ">
-    
-    <div class="card-body" align="center">
-      <div class="card text-white bg-dark mb-3 ">
-      <!-- <div class="card-body">
-          <h1 class="card-title" style="color:yellow;">ACCIONES</h1>
-            <hr>
-            <h4>Capacitacion </h4>
-            <hr>
-            <h4>Soporte IMK</h4>
-            <hr>
-            <h4>No impacta SIM</h4>
-            <hr>
-            <h4>Limpieza LCIA</h4>
-            <hr>
-            <h4>Cambio Punta Atornilladora</h4>
-        </div> -->
+  <!--Tercera columna-->
+  <div class="card-group col-md-12">
 
-        <table class="table table-sm table-dark table-striped">
-          <thead align="center" style="color:yellow ;">
-            <tr>
-              <th scope="col">ACCIONES</th>
-          </tr></thead>
-          <tbody>
-            <tr>
-              <td align="center">Reposicion Faltantes</td>
-            </tr>
-            <tr>
-              <td align="center">Soporte AA IMK</td>
-            </tr>
-            <tr>
-              <td align="center">PLR Pantallas</td>
-            </tr>
-            <tr>
-              <td align="center">Soporte ATP</td>
-            </tr>
-            <tr>
-              <td align="center">Soporte AA IMK</td>
-            </tr>
-            <tr>
-              <td align="center">Reinicio Servicio SIM</td>
-            </tr>
-            <tr>
-              <td align="center">Capacitacion P.19</td>
-            </tr>
-            <tr>
-              <td align="center">Reinicio Servicio SIM</td>
-            </tr>
-            <tr>
-              <td align="center">PLR Tornillos</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="card border-info md-3" style="background-color:#ffffff00; height:370px;">
+      <div class="card-body" align="center">
+        <div class="card text-white bg-dark mb-3">
+          <!-- Cuadro inferior primero -->
+          <canvas id="myChart3" width="370" height="280"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-info mb-3" style="background-color:#ffffff00; height:370px; ">
+
+      <div class="card-body" align="center">
+        <div class="card text-white bg-dark mb-3 ">
+          <!-- Cuadro inferior segundo -->
+          <canvas id="myChart4" width="370" height="280"></canvas>
+        </div>
+
       </div>
 
     </div>
 
-  </div>
+    <div class="card border-info mb-3" style="background-color:#ffffff00; height:370px;">
+      <div class="card-body" align="center">
+        <div class="card text-white bg-dark mb-3 ">
+          <canvas id="myChart2" width="370" height="280"></canvas>
+        </div>
 
-  <div class="card border-info mb-3" style="background-color:#ffffff00; height:370px;">
-    <div class="card-body" align="center">
-      <div class="card text-white bg-dark mb-3 ">
-        <canvas id="myChart2" width="370" height="435" ></canvas>
       </div>
-
     </div>
-  </div>
 
-  <div class="card border-info mb-3" style="background-color:#ffffff00; height:370px;">
-    <div class="card-body" align="center">
-      <div class="card text-white bg-dark mb-3 ">
-        <canvas id="myChart" width="370" height="435" ></canvas>
+    <div class="card border-info mb-3" style="background-color:#ffffff00; height:370px;">
+      <div class="card-body" align="center">
+        <div class="card text-white bg-dark mb-3">
+          <canvas id="myChart" width="370" height="280"></canvas>
+        </div>
       </div>
-
     </div>
-  </div>
 
+  </div>
 </div>
 
-</div>
-</form>
 
 </body>
+
 </html>

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'linea_telefonica',
     'login',
     'trazabilidad',
+    'produccion',
     "corsheaders",
 ]
 

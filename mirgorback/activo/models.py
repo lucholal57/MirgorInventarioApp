@@ -1,5 +1,5 @@
 from django.db import models
-from django.forms import IntegerField
+
 
 # Create your models here.
 class ActivoIndustrial(models.Model):
